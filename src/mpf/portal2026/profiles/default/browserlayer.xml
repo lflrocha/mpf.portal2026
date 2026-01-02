@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layers>
+  <layer
+      name="mpf.portal2026"
+      interface="mpf.portal2026.interfaces.IMpfPortal2026Layer"
+      />
+</layers>

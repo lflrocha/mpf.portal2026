@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="mpf.portal2026">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="mpf.portal2026.interfaces.IMpfPortal2026Layer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="mpf.portal2026"
+      type="plone"
+      directory="static"
+      />
+
+</configure>
