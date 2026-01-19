@@ -1,0 +1,723 @@
+/* =========================================================
+   TOKENS / VARIÁVEIS
+========================================================= */
+:root{
+  --mpf-blue:#150063;
+  --brand:var(--mpf-blue);
+
+  --gray-900:#111827;
+  --gray-700:#374151;
+  --gray-600:#4B5563;
+  --gray-300:#D1D5DB;
+  --gray-200:#E5E7EB;
+  --gray-100:#F3F4F6;
+  --gray-50:#F9FAFB;
+
+  --blue-soft:#2B3A8F;
+  --green-soft:#1F7A5A;
+  --amber-soft:#B45309;
+  --amber-bg:#FEF3C7;
+  --red-soft:#B91C1C;
+
+  --shade-dark:rgba(0,0,0,.55);
+  --shade-dark-2:rgba(0,0,0,.25);
+
+  --shadow-brand-sm:
+    0 1px 3px rgba(21,0,99,.12),
+    0 1px 2px rgba(21,0,99,.08);
+
+  --shadow-brand-md:
+    0 0 10px rgba(21,0,99,.15),
+    0 0 6px rgba(21,0,99,.10);
+
+  --shadow-brand-focus:0 0 0 3px rgba(21,0,99,.25);
+
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+  --t-fast:350ms;
+  --t-med:550ms;
+  --t-slow:750ms;
+
+  /* marca (logo) */
+  --logo-size:64px;
+}
+
+[data-acc-panel][hidden] { display: none !important; }
+
+@media (max-width:1024px){
+  :root{ --logo-size:48px; }
+}
+@media (max-width:640px){
+  :root{ --logo-size:40px; }
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+html{ font-size: var(--base-font-size, 16px); }
+html, body{ overflow-x:hidden; }
+
+body{
+  font-family:"Titillium Web",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background-color: var(--gray-100);
+}
+
+/* mídias responsivas */
+img, svg, video, canvas{
+  max-width:100%;
+  height:auto;
+}
+
+/* evita overflow em layouts com flex/grid + textos longos */
+.flex, .grid{ min-width:0; }
+
+/* faixa institucional leve no conteúdo */
+.mpf-tailwind main{
+  background: linear-gradient(180deg, rgba(21,0,99,.03), rgba(255,255,255,0) 240px);
+}
+
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
+.shadow-brand-md{ box-shadow: var(--shadow-brand-md); }
+
+/* overlay padrão p/ texto em cima de imagem */
+.mpf-overlay{
+  position:relative;
+  overflow:hidden;
+}
+.mpf-overlay::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.55);
+  pointer-events:none;
+}
+.mpf-overlay > *{
+  position:relative;
+  z-index:1;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.mpf-topbar{ background: var(--brand); }
+
+/* Navegação superior */
+.mpf-nav-item{
+  display:flex;
+  align-items:center;
+  padding:1rem;
+  height:100%;
+  font-size:.95rem;
+  font-weight:700;
+  color: var(--gray-900);
+
+  border-left:1px solid rgba(0,0,0,.08);
+  border-right:1px solid rgba(0,0,0,.08);
+
+  background:transparent;
+  transition: background-color .2s ease, box-shadow .2s ease, color .2s ease;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.mpf-nav-item:hover{
+  background-color: rgba(21,0,99,.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 1px 2px rgba(0,0,0,.06);
+  color: var(--brand);
+}
+
+.mpf-nav-item:focus-visible{
+  outline:2px solid rgba(21,0,99,.45);
+  outline-offset:-2px;
+}
+
+.mpf-nav-item.is-active{
+  background-color: rgba(21,0,99,.09);
+  font-weight:700;
+}
+
+/* Dropdown "Mais" */
+[data-more-menu] a{
+  display:block;
+  padding:.6rem .75rem;
+  font-size:.95rem;
+  color: var(--gray-900);
+  text-decoration:none;
+}
+[data-more-menu] a:hover{ background: var(--gray-50); }
+
+/* Marca do cabeçalho */
+.mpf-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
+
+.mpf-brand__circle ,
+#site-header.is-sticky.is-leaving .mpf-brand__circle {
+  width: calc(var(--logo-size) + 16px);
+  height: auto;
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex:0 0 auto;
+}
+
+.mpf-brand__circle svg,
+#site-header.is-sticky.is-leaving .mpf-brand__circle svg {
+  width: var(--logo-size);
+  height:auto;
+}
+
+/* =========================================================
+   MENU MOBILE (animações + burger + overlay)
+========================================================= */
+.mpf-burger{
+  width:22px;
+  height:16px;
+  display:inline-flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.mpf-burger span{
+  display:block;
+  height:2px;
+  width:100%;
+  background: var(--gray-900);
+  border-radius:2px;
+  transform-origin:center;
+  transition: transform var(--t-med) var(--ease-out), opacity var(--t-med) var(--ease-out);
+}
+
+[data-menu-button]{ position:relative; z-index:90; }
+
+/* Painel */
+[data-menu-panel]{
+  transform: translateX(100%);
+  opacity:0;
+  transition: transform var(--t-slow) var(--ease-out), opacity var(--t-slow) var(--ease-out);
+  will-change: transform, opacity;
+}
+html.menu-open [data-menu-panel]{
+  transform: translateX(0);
+  opacity:1;
+  
+}
+
+/* Overlay */
+[data-menu-overlay]{
+  opacity:0;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+html.menu-open [data-menu-overlay]{ opacity:1; }
+
+/* trava scroll */
+html.menu-open,
+html.menu-open body{ overflow:hidden; }
+
+/* =========================================================
+   HERO / BANNERS
+========================================================= */
+.mpf-services-hero{
+  background:
+    radial-gradient(900px 220px at 20% 50%, rgba(255,255,255,.12), rgba(255,255,255,0) 60%),
+    radial-gradient(700px 240px at 80% 40%, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+    linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.40));
+}
+
+/* =========================================================
+   A11Y: ALTO CONTRASTE
+========================================================= */
+body.hc{
+  background:#000 !important;
+  color:#fff !important;
+}
+body.hc a{ color:#fff; text-decoration:underline; }
+body.hc .bg-white{ background:#000 !important; }
+
+body.hc .text-gray-900,
+body.hc .text-gray-800,
+body.hc .text-gray-700,
+body.hc .text-gray-600,
+body.hc .text-gray-500{ color:#fff !important; }
+
+body.hc .border-gray-200,
+body.hc .border-gray-100,
+body.hc .border-gray-300{ border-color: rgba(255,255,255,.35) !important; }
+
+body.hc .bg-gray-50,
+body.hc .bg-gray-100{ background:#000 !important; }
+
+body.hc .shadow,
+body.hc .shadow-sm,
+body.hc .shadow-xl{ box-shadow:none !important; }
+
+/* =========================================================
+   INTERAÇÕES / MOTION
+========================================================= */
+a, button{
+  transition:
+    background-color var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out),
+    opacity var(--t-fast) var(--ease-out);
+}
+
+a.group:hover{ transform: translateY(-1px); }
+a.group:active{ transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+}
+
+/* =========================================================
+   DROPDOWNS (Links úteis / Ferramentas, etc.)
+========================================================= */
+.mpf-nav-item svg{ transition: transform .7s ease; }
+[data-dd-root][data-open="true"] .mpf-nav-item svg{ transform: rotate(180deg); }
+
+[data-dd-root] button[aria-expanded="true"]{
+  background: rgba(13,21,20,.04);
+  border-color: var(--mpf-blue);
+}
+
+/* menu */
+[data-dd-menu]{
+  transform-origin: top right;
+  transition: opacity .12s ease, transform .12s ease;
+}
+[data-dd-menu][hidden]{
+  opacity:0;
+  transform: translateY(-4px);
+}
+[data-dd-menu]:not([hidden]){
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVIDADE: BARRAS / A11Y
+========================================================= */
+@media (max-width:1023px){
+  .mpf-bottombar{ display:none !important; }
+}
+@media (min-width:1024px){
+  .mpf-bottombar{ display:block !important; }
+}
+
+@media (min-width: 1200px){
+  .a11y-desktop{ display:flex !important; }
+  .a11y-mobile{ display:none !important; }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px){
+  .a11y-desktop{ display:none !important; }
+  .a11y-mobile{ display:flex !important; }
+}
+
+@media (max-width: 1023px){
+  .a11y-desktop{ display:none !important; }
+  .a11y-mobile{ display:none !important; }
+}
+
+/* =========================================================
+   COOKIE BANNER
+========================================================= */
+.mpf-cookie{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:80;
+  padding:12px;
+}
+
+.mpf-cookie__inner{
+  margin:0 auto;
+  max-width:1440px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  background: rgba(255,255,255,.98);
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.mpf-cookie__actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.mpf-cookie__btn{
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.12);
+  padding:8px 12px;
+  font-size:14px;
+  font-weight:700;
+  background: var(--brand);
+  color:#fff;
+}
+
+.mpf-cookie__btn--ghost{
+  background:#fff;
+  color: var(--gray-900);
+}
+
+.mpf-cookie__panel{
+  margin:8px auto 0;
+  max-width:1440px;
+  background: rgba(255,255,255,.98);
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:12px 14px;
+}
+
+@media (max-width:640px){
+  .mpf-cookie__inner{ flex-direction:column; align-items:flex-start; }
+  .mpf-cookie__actions{ width:100%; justify-content:flex-start; }
+}
+
+/* =========================================================
+   SWIPER (paginação)
+========================================================= */
+.mpf-swiper-pagination,
+.mpf-swiper-aside-pagination {
+  display:flex;
+  justify-content:flex-end;
+  gap:6px;
+}
+
+.mpf-swiper-pagination .swiper-pagination-bullet,
+.mpf-swiper-aside-pagination .swiper-pagination-bullet {
+  width:8px;
+  height:8px;
+  opacity:.25;
+  background: var(--gray-900);
+}
+
+.mpf-swiper-pagination .swiper-pagination-bullet-active,
+.mpf-swiper-aside-pagination .swiper-pagination-bullet-active  {
+  opacity:.9;
+  background: var(--brand);
+}
+
+/* =========================================================
+   FOOTER OVERRIDES (tailwind)
+========================================================= */
+footer .text-white\/70{ color: rgba(255,255,255,.85) !important; }
+footer .text-white\/85{ color: rgba(255,255,255,.92) !important; }
+footer .text-white\/90{ color:#fff !important; }
+footer .text-white\/40{ color: rgba(255,255,255,.70) !important; }
+
+
+/* =========================================================
+   STICKY HEADER — ENTRADA SUAVE REAL
+========================================================= */
+
+/* spacer evita buraco */
+#header-spacer{ height:0; }
+
+/* estado normal */
+#site-header[data-sticky]{
+  position: relative;
+  z-index: 80;
+  background:#fff;
+}
+
+/* topbar some rápido */
+#site-header .mpf-topbar{
+  max-height:80px;
+  opacity:1;
+  overflow:hidden;
+  transition: max-height 140ms ease-out, opacity 90ms ease-out;
+}
+html.is-scrolling #site-header .mpf-topbar{
+  max-height:0;
+  opacity:0;
+}
+
+/* === STICKY BASE (sem animação) === */
+#site-header.is-sticky{
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+
+  transform: translateY(-110%);
+  opacity:0;
+
+  /* ⚠️ SEM transition aqui */
+  will-change: transform, opacity;
+}
+
+/* === ENTRADA SUAVE (agora sim anima) === */
+#site-header.is-sticky.is-sticky--shown{
+  transition:
+    transform 750ms cubic-bezier(.16,.84,.3,1),
+    opacity 350ms cubic-bezier(.16,.84,.3,1);
+
+  transform: translateY(0);
+  opacity:1;
+}
+
+/* === SAÍDA RÁPIDA === */
+#site-header.is-sticky.is-leaving{
+  transition:
+    transform 500ms linear,
+    opacity 300ms linear;
+
+  transform: translateY(-110%);
+  opacity:0;
+}
+
+/* =========================================================
+   FIX: MENU MOBILE não sumir com sticky (transform + z-index)
+========================================================= */
+
+/* garante que o header não vai "cortar" filhos */
+#site-header,
+#site-header.is-sticky{
+  overflow: visible !important;
+}
+
+/* quando o menu mobile abrir, não deixa o transform do sticky afetar fixed */
+html.menu-open #site-header{
+  opacity: 1 !important;
+}
+
+/* menu/overlay precisam ficar ACIMA do header sticky (que está em z-index: 1000) */
+[data-menu-overlay]{
+  z-index: 2000 !important;
+}
+
+[data-menu-panel]{
+  z-index: 2100 !important;
+}
+
+/* =========================================================
+   ANIMAÇÃO DAS SETAS (dropdown + accordion)
+========================================================= */
+
+/* seta padrão */
+button svg{
+  transition: transform 420ms cubic-bezier(.22,.61,.36,1);
+  transform-origin: center;
+}
+
+/* estado aberto */
+button[aria-expanded="true"] svg{
+  transform: rotate(180deg);
+}
+
+/* estado fechado */
+button[aria-expanded="false"] svg{
+  transform: rotate(0deg);
+}
+
+/* =========================================================
+   NOTÍCIAS
+   - Alterna visual via .news-results.is-list / .news-results.is-cards
+   - Lista: flex (thumb + texto) com largura controlada
+   - Corrige “gap” visual abaixo da imagem (baseline / line-height / overflow)
+========================================================= */
+
+/* ---------- BASE (vale para ambos os modos) ---------- */
+
+/* wrapper da mídia (se existir) */
+.news-item .news-media{
+  overflow: hidden;
+  background: #e5e7eb;
+  line-height: 0;         
+}
+
+/* imagem: nunca inline, nunca flex */
+.news-item .news-media img,
+.news-item img{
+  display: block;         /* ✅ remove baseline gap */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: top;    /* segurança extra */
+}
+
+/* se a mídia usa aspect-ratio, mantém o “molde” */
+.news-item .news-media{
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------- MODO LISTA ---------- */
+
+.news-results.is-list{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* mobile: 1 coluna (imagem em cima) */
+.news-results.is-list .news-item{
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+/* garante que nada estoure horizontalmente */
+.news-results.is-list .news-item > *{
+  min-width: 0;
+}
+
+/* a partir do sm: 2 colunas (thumb + texto) */
+@media (min-width: 640px){
+  .news-results.is-list .news-item{
+    flex-direction: row;
+  }
+
+  /* thumb com largura “travada” (percentual + limites) */
+  .news-results.is-list .news-media{
+    flex: 0 0 clamp(180px, 34%, 260px); /* ✅ não vira metade da linha */
+  }
+
+  /* caso a imagem NÃO esteja dentro de .news-media
+     (fallback: tenta pegar a “primeira imagem” do item)
+     — se isso atrapalhar algo no seu app, me fala que a gente remove */
+  .news-results.is-list .news-item > img:first-of-type{
+    flex: 0 0 clamp(180px, 34%, 260px);
+    height: auto;
+  }
+
+  /* conteúdo textual ocupa o resto */
+  .news-results.is-list .news-body,
+  .news-results.is-list .news-content,
+  .news-results.is-list .news-text,
+  .news-results.is-list .news-item > :not(.news-media):not(img){
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* reforço anti-gap específico do modo lista */
+.news-results.is-list .news-media{
+  line-height: 0;
+}
+
+/* ---------- MODO CARDS ---------- */
+
+.news-results.is-cards{
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 1024px){
+  .news-results.is-cards{
+    grid-template-columns: repeat(3, minmax(260px, 360px));
+    justify-content: start;
+  }
+}
+
+/* wrapper do select */
+.mpf-select{
+  position: relative;
+  color: var(--gray-600); /* cor da seta */
+}
+
+.mpf-select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem; /* espaço pra seta */
+}
+
+.mpf-select::after {
+  content:"";
+  position:absolute;
+  right:.75rem;
+  top:50%;
+  width:1rem;
+  height:1rem;
+  pointer-events:none;
+
+  opacity:.7;
+  background: currentColor;
+
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+
+  transform: translateY(-50%) rotate(var(--rot, 0deg));
+  transform-origin: 50% 50%;
+  transition: transform 420ms cubic-bezier(.22,.61,.36,1), opacity 200ms ease;
+  will-change: transform;
+}
+
+.mpf-select:focus-within{
+  --rot: 180deg;
+}
+
+.mpf-select:focus-within::after{
+  opacity: .9;
+}
+
+/* wrapper do select */
+.feedback-select{
+  position: relative;
+  color: var(--gray-600);
+}
+
+/* o select */
+.feedback-select select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem;
+  line-height: 1.5rem;
+}
+
+.feedback-select{
+  position: relative;
+  color: var(--gray-600);
+}
+
+.feedback-select select{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  padding-right:2.5rem;
+}
+
+/* seta (fechada) */
+.feedback-select::after{
+  content:"";
+  position:absolute;
+  right:.75rem;
+  top:50%;
+  width:1rem;
+  height:1rem;
+  pointer-events:none;
+
+  opacity:.7;
+  background: currentColor;
+
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: 50% 50%;
+  transition: transform 420ms cubic-bezier(.22,.61,.36,1), opacity 200ms ease;
+}
+
+/* aberto (JS) */
+.feedback-select.is-open::after{
+  transform: translateY(-50%) rotate(180deg);
+  opacity:.9;
+}
