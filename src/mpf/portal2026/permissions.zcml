@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="mpf.portal2026.AddNoticia"
+        title="mpf.portal2026: Add Noticia"
+    />
+
+
 
   </configure>
 
