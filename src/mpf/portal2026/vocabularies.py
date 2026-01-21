@@ -63,6 +63,7 @@ UNIDADES_ORIGEM = [
     ("prsp", u"Procuradoria da República em São Paulo"),
     ("prse", u"Procuradoria da República em Sergipe"),
     ("prto", u"Procuradoria da República no Tocantins"),
+    ("pfdc", u"Procuradoria Federal dos Direitos do Cidadão"),
 ]
 
 def _tokenize(text):
