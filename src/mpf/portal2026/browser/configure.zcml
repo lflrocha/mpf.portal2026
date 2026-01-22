@@ -12,10 +12,27 @@
       />
 
   <!-- Publish static files -->
-  <plone:static
+  <browser:resourceDirectory
       name="mpf.portal2026"
-      type="plone"
       directory="static"
+  />
+
+  <browser:viewlet
+      name="mpf.portal2026.header-mpf"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class="mpf.portal2026.browser.viewlets.HeaderMPFViewlet"
+      template="templates/header_mpf.pt"
+      permission="zope2.View"
+  />
+
+
+  <browser:viewlet
+      name="mpf.portal2026.footer-mpf"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      class="mpf.portal2026.browser.viewlets.FooterMPFViewlet"
+      template="templates/footer_mpf.pt"
+      permission="zope2.View"
       />
+
 
 </configure>

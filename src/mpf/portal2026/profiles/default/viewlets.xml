@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="portal_viewletmanager" meta_type="Plone Viewlet Manager">
+  <object name="plone.portalheader" meta_type="Plone Viewlet Manager">
+    <property name="order">
+      <element value="mpf.portal2026.header-mpf"/>
+    </property>
+  </object>
+</object>

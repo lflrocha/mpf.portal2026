@@ -15,7 +15,7 @@
 
   <!-- has to be loaded before permissions are used, so keep above views aso. -->
   <include file="permissions.zcml" />
-
+  <include package="plone.app.layout" />
   <include package=".browser" />
 
   <genericsetup:registerProfile
