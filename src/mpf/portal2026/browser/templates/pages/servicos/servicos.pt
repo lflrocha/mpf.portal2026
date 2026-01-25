@@ -1,0 +1,426 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  tal:define="portal_url context/portal_url"
+  i18n:domain="mpf.portal2026"
+>
+  <body>
+    <metal:content-core fill-slot="content-core">
+      <div class="mpf-tailwind">
+        <main id="main-content" class="w-full">
+          <div class="mx-auto max-w-[1440px] px-4 py-6 sm:py-8">
+
+            <!-- AVISOS (slot) -->
+            <section class="mb-4 sm:mb-6" aria-label="Avisos">
+              <div class="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900 flex gap-3">
+                <span aria-hidden="true" class="mt-0.5">ⓘ</span>
+                <div class="min-w-0">
+                  <p class="font-semibold">Aviso</p>
+                  <p class="mt-0.5 text-amber-900/90">
+                    Alguns serviços podem redirecionar para páginas externas. Se encontrar instabilidade, tente novamente mais tarde.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- HERO -->
+            <header class="relative overflow-hidden rounded-xl border border-gray-300">
+              <a
+                href="#"
+                class="flex w-full"
+                aria-label="Ir para MPF Serviços"
+              >
+                <!-- LOGO -->
+                <div class="flex items-center justify-start px-4 sm:px-8 py-3 shrink-0">
+                  <img
+                    tal:attributes="src string:${portal_url}/++resource++mpf.portal2026/mpf-servicos-logo.svg"
+                    src="++resource++mpf.portal2026/mpf-servicos-logo.svg"
+                    alt="MPF Serviços"
+                    class="h-10 sm:h-16 w-auto"
+                    loading="lazy"
+                  />
+                  <span class="sr-only">Serviços — Para o cidadão</span>
+                </div>
+
+                <!-- BANNER -->
+                <div class="relative flex-1">
+                  <!-- altura -->
+                  <div class="h-[140px] sm:h-[150px]"></div>
+
+                  <!-- imagem -->
+                  <div
+                    class="absolute inset-0 bg-cover bg-right"
+                    tal:attributes="
+                      style string:background-image:url('${portal_url}/++resource++mpf.portal2026/banner-servicos-mobile.png');
+                    "
+                    style="background-image:url('++resource++mpf.portal2026/banner-servicos-mobile.png');"
+                    aria-hidden="true"
+                  ></div>
+
+                  <!-- desktop/banner maior -->
+                  <div
+                    class="hidden sm:block absolute inset-0 bg-cover bg-right"
+                    tal:attributes="
+                      style string:background-image:url('${portal_url}/++resource++mpf.portal2026/banner-servicos.png');
+                    "
+                    style="background-image:url('++resource++mpf.portal2026/banner-servicos.png');"
+                    aria-hidden="true"
+                  ></div>
+                </div>
+              </a>
+            </header>
+
+            <!-- CONTEÚDO (categorias + serviços) -->
+            <section class="mt-4 sm:mt-6 grid gap-6 lg:grid-cols-12 lg:items-start" aria-label="Catálogo de serviços">
+
+              <aside class="order-2 lg:order-1 lg:col-span-4 flex flex-col gap-6">
+
+                <!-- CATEGORIAS -->
+                <section class="rounded-md border border-gray-300 bg-white overflow-hidden">
+                  <header class="p-4 sm:p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Categorias</h2>
+                    <p class="mt-1 text-sm text-gray-600">Navegue por tema para encontrar mais rápido.</p>
+                  </header>
+
+                  <nav class="p-3" aria-label="Categorias de serviços">
+                    <ul class="grid gap-2">
+                      <li>
+                        <a href="#"
+                          data-category-link=""
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                          aria-current="true">
+                          <span>Todas as categorias</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                              stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#cat-atendimento" data-category-link="atendimento"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Atendimento e canais</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#cat-denuncias" data-category-link="denuncias"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Denúncias e pedidos</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#cat-consultas" data-category-link="consultas"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Consultas e documentos</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#cat-certidoes" data-category-link="certidoes"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Certidões</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#cat-lgpd" data-category-link="lgpd"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Dados pessoais (LGPD)</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#cat-sistemas" data-category-link="sistemas"
+                          class="group flex items-center justify-between gap-3 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          <span>Segurança da informação</span>
+                          <svg aria-hidden="true" class="inline-block h-4 w-4 opacity-80"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <!-- CTAs úteis (Carta + SAC) -->
+                  <div class="p-4 sm:p-6 border-t border-gray-200">
+                    <div class="rounded-md bg-gray-50 border border-gray-200 p-4">
+                      <p class="text-sm font-semibold text-gray-900">Precisa de orientação?</p>
+                      <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                        Consulte a Carta de Serviços ou utilize o SAC para atendimento ao cidadão.
+                      </p>
+
+                      <div class="mt-4 grid gap-4">
+                        <a href="https://www.mpf.mp.br/servicos/carta-de-servicos-ao-cidadao"
+                          class="inline-flex items-center justify-center rounded-md bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white
+                                hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          Carta de Serviços ao Cidadão
+                        </a>
+
+                        <a href="#"
+                          class="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-900
+                                hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                          Acessar o SAC
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- CARROSSEL (Em foco) -->
+                <section aria-labelledby="carrossel-aside-titulo" class="rounded-md border border-gray-200 bg-white overflow-hidden">
+                  <header class="p-4 sm:p-6 border-b border-gray-200">
+                    <h2 id="carrossel-aside-titulo" class="text-lg font-semibold text-gray-900">Em foco</h2>
+                    <p class="mt-1 text-sm text-gray-600">Conteúdos selecionados para orientar seu acesso.</p>
+                  </header>
+
+                  <div class="p-4 sm:p-6">
+                    <div class="swiper mpf-swiper-aside">
+                      <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                          <article class="group rounded-xl border border-gray-200 overflow-hidden">
+                            <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                              <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                                  alt="Imagem ilustrativa sobre serviços digitais"
+                                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                  loading="lazy" />
+                            </div>
+                            <div class="p-4">
+                              <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]">Serviços</p>
+                              <h3 class="mt-1 text-base font-semibold leading-snug text-gray-900">
+                                <a href="#" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded">
+                                  Guia rápido: principais serviços ao cidadão
+                                </a>
+                              </h3>
+                            </div>
+                          </article>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                          <article class="group rounded-xl border border-gray-200 overflow-hidden">
+                            <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                              <img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                                  alt="Imagem ilustrativa sobre transparência"
+                                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                  loading="lazy" />
+                            </div>
+                            <div class="p-4">
+                              <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]">Transparência</p>
+                              <h3 class="mt-1 text-base font-semibold leading-snug text-gray-900">
+                                <a href="#" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded">
+                                  Acesso à informação: como solicitar e acompanhar
+                                </a>
+                              </h3>
+                            </div>
+                          </article>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                          <article class="group rounded-xl border border-gray-200 overflow-hidden">
+                            <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                              <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                                  alt="Imagem ilustrativa sobre atendimento"
+                                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                  loading="lazy" />
+                            </div>
+                            <div class="p-4">
+                              <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]">Atendimento</p>
+                              <h3 class="mt-1 text-base font-semibold leading-snug text-gray-900">
+                                <a href="#" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded">
+                                  Canais oficiais: onde falar com o MPF
+                                </a>
+                              </h3>
+                            </div>
+                          </article>
+                        </div>
+                      </div>
+
+                      <!-- Controles -->
+                      <div class="mt-4 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-2">
+                          <button type="button"
+                            class="mpf-swiper-aside-prev rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                            aria-label="Voltar">
+                            <svg aria-hidden="true" class="inline-block h-8 w-8 opacity-80"
+                                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                  stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                          </button>
+
+                          <button type="button"
+                            class="mpf-swiper-aside-next rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:opacity-95
+                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                            aria-label="Avançar">
+                            <svg aria-hidden="true" class="inline-block h-8 w-8 opacity-80"
+                                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                  stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M9 18l6-6-6-6" />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <div class="mpf-swiper-aside-pagination"></div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- NOTÍCIA EM DESTAQUE -->
+                <section aria-label="Notícia em destaque" class="rounded-md border border-gray-300 bg-white overflow-hidden">
+                  <article class="relative overflow-hidden">
+                    <div class="aspect-[16/10] bg-gray-200">
+                      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&amp;fit=crop&amp;w=1600&amp;q=80"
+                          alt=""
+                          class="h-full w-full object-cover"
+                          loading="lazy" />
+                    </div>
+
+                    <div class="absolute inset-0 bg-black/45" aria-hidden="true"></div>
+
+                    <div class="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end">
+                      <p class="inline-flex w-fit items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white">
+                        Destaque
+                      </p>
+
+                      <h3 class="mt-3 text-xl font-semibold text-white leading-snug">
+                        <a href="#" class="hover:underline focus:outline-none focus:ring-2 focus:ring-white/40 rounded">
+                          MPF lança plataforma digital de atendimento ao cidadão
+                        </a>
+                      </h3>
+                    </div>
+                  </article>
+                </section>
+
+              </aside>
+
+              <!-- Lista de serviços -->
+              <div class="order-1 lg:order-2 lg:col-span-8">
+                <div class="rounded-md border border-gray-300 bg-white overflow-hidden">
+                  <header class="p-4 sm:p-6 border-b border-gray-200">
+                    <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Serviços</h2>
+                        <p class="mt-1 text-sm text-gray-600">Acesso rápido aos serviços disponíveis.</p>
+                      </div>
+
+                      <p class="text-xs text-gray-600">
+                        Mostrando <span id="services-count" class="font-semibold">0</span> serviços
+                      </p>
+                    </div>
+                  </header>
+
+                  <div class="p-4 sm:p-6">
+                    <!-- (mantive sua lista exatamente como está) -->
+                    <ul class="grid gap-3 sm:grid-cols-2">
+                      <!-- ... seus <li class="service-item"> ... -->
+                    </ul>
+
+                    <!-- Nota final -->
+                    <div class="mt-6 border-t pt-6">
+                      <p class="text-xs text-gray-600">
+                        Serviços com selo <span class="font-semibold">gov.br</span> podem exigir autenticação. Links sem selo abrem páginas internas do portal.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- COMO ACESSAR (vídeo + tutorial) -->
+                <section class="mt-6 rounded-md border border-gray-300 bg-white overflow-hidden" aria-label="Como criar conta gov.br">
+                  <header class="p-4 sm:p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Como acessar serviços com conta gov.br</h2>
+                    <p class="mt-1 text-sm text-gray-600">
+                      Alguns serviços exigem autenticação. Veja o vídeo e o passo a passo.
+                    </p>
+                  </header>
+
+                  <div class="p-4 sm:p-6 grid gap-6 lg:grid-cols-12">
+                    <!-- Vídeo -->
+                    <div class="lg:col-span-7">
+                      <div class="rounded-md border border-gray-200 overflow-hidden bg-gray-100">
+                        <div class="aspect-video">
+                          <iframe
+                            class="h-full w-full"
+                            src="https://www.youtube.com/embed/27-wl3nrDdQ"
+                            title="Como criar uma conta gov.br"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen="allowfullscreen">
+                          </iframe>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="lg:col-span-5">
+                      <div class="rounded-md border border-gray-200 p-5">
+                        <p class="text-sm font-semibold text-gray-900">Prefere ler?</p>
+                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                          Acesse o tutorial escrito com orientações para criar e validar sua conta.
+                        </p>
+
+                        <div class="mt-4 grid gap-4">
+                          <a href="https://www.gov.br/"
+                            class="inline-flex items-center justify-center rounded-md bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white
+                                  hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                            Abrir tutorial escrito
+                          </a>
+
+                          <a href="https://www.gov.br/"
+                            class="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-900
+                                  hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                            Ir para gov.br
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </metal:content-core>
+  </body>
+</html>
