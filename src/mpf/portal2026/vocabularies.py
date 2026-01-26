@@ -87,7 +87,9 @@ def _tokenize(text):
 @implementer(IVocabularyFactory)
 class NoticiaTemasVocabulary(object):
     def __call__(self, context):
-        terms = []
+        terms = [
+            SimpleTerm(value=u"", token="__novalue__", title=u"--- Selecione ---"),
+        ]
         for title in DEFAULT_TEMAS:
             token = _tokenize(title)
             terms.append(SimpleTerm(value=title, token=token, title=title))
@@ -110,4 +112,3 @@ class UnidadesOrigemVocabulary(object):
         return SimpleVocabulary(terms)
 
 unidades_origem_vocab = UnidadesOrigemVocabulary()
-

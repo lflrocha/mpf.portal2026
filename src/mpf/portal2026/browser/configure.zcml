@@ -34,5 +34,13 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="noticia_view"
+      for="mpf.portal2026.content.noticia.INoticia"
+      class=".noticia_view.NoticiaView"
+      template="templates/noticia_view.pt"
+      permission="zope2.View"
+  />
+
 
 </configure>

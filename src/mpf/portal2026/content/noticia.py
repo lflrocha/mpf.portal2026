@@ -35,10 +35,11 @@ class INoticia(model.Schema):
         required=False,
     )
 
-    temas = schema.List(
-        title=u"Temas da notícia",
+    tema = schema.Choice(
+        title=u"Tema da notícia",
         required=True,
-        value_type=schema.Choice(vocabulary="mpf.portal2026.noticiatemas"),
+        missing_value=u"",
+        vocabulary="mpf.portal2026.noticiatemas",
     )
 
     unidadeOrigem = schema.Choice(
