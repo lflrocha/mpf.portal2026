@@ -1,0 +1,180 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="mpf.portal2026">
+
+<body>
+
+  <metal:content-title metal:fill-slot="content-title">
+    <tal:dummy tal:replace="nothing" />
+  </metal:content-title>
+
+  <!-- Mata a descrição padrão do Plone -->
+  <metal:content-description metal:fill-slot="content-description">
+    <tal:dummy tal:replace="nothing" />
+  </metal:content-description>
+
+
+  <metal:content fill-slot="content-core">
+
+    <div class="mpf-tailwind">
+           <main id="main-content" class="w-full">
+       <div class="mx-auto max-w-[1440px] px-3 py-5 sm:px-4 sm:py-8">
+
+         <!-- Breadcrumb (padrão capa: compacto, com foco visível) -->
+         <nav aria-label="Breadcrumb" class="text-sm text-gray-600"
+              tal:define="crumbs view/breadcrumbs">
+
+           <ol class="flex flex-wrap items-center gap-2">
+             <tal:loop tal:repeat="c crumbs">
+
+               <li>
+                 <a tal:attributes="href c/absolute_url"
+                    tal:content="c/Title"
+                    class="rounded hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                   Página
+                 </a>
+               </li>
+
+               <li tal:condition="not: repeat/c/end"
+                   class="text-gray-300" aria-hidden="true">/</li>
+
+             </tal:loop>
+           </ol>
+         </nav>
+
+         <!-- GRID 70/30 (igual capa) -->
+         <section class="mt-4 sm:mt-6 grid gap-4 sm:gap-6 lg:grid-cols-12 lg:items-start">
+
+           <!-- COLUNA 70% — CONTEÚDO -->
+           <article class="lg:col-span-8">
+             <div class="overflow-hidden rounded-md border border-gray-300 bg-white">
+
+               <!-- Cabeçalho interno -->
+               <header class="p-4 sm:p-6 border-b border-gray-200">
+                 <h1 class="text-2xl sm:text-3xl font-semibold leading-tight text-gray-900"
+                   tal:content="view/titulo">
+                   Título da página interna
+                 </h1>
+                 <p class="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed"
+                   tal:condition="view/descricao"
+                   tal:content="view/descricao">
+                   Conteúdo institucional (placeholder). Aqui entra o corpo do Plone.
+                 </p>
+               </header>
+
+               <!-- Corpo -->
+               <div class="p-4 sm:p-6 lg:p-7">
+                 <div tal:replace="structure view/corpo_html"></div>
+               </div>
+
+             </div>
+           </article>
+
+           <!-- COLUNA 30% — SIDEBAR -->
+           <aside class="lg:col-span-4 grid gap-4 sm:gap-6">
+
+             <!-- Nesta página -->
+             <section class="rounded-md border border-gray-300 bg-white overflow-hidden">
+               <header class="p-4 sm:p-6 border-b border-gray-200">
+                 <h2 class="text-lg font-semibold text-gray-900">Nesta página</h2>
+                 <p class="mt-1 text-sm text-gray-600">Atalhos para seções deste conteúdo.</p>
+               </header>
+
+               <div class="p-4 sm:p-6">
+                 <ul class="grid gap-2 text-sm">
+                   <li>
+                     <a href="#secao-1"
+                       class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                       <span class="font-semibold text-gray-900">Seção</span>
+
+                       <svg aria-hidden="true"
+                           class="h-3.5 w-3.5 opacity-70"
+                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M9 18l6-6-6-6" />
+                       </svg>
+                     </a>
+                   </li>
+
+                   <li>
+                     <a href="#"
+                       class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                       <span class="font-semibold text-gray-900">Seção 2</span>
+
+                       <svg aria-hidden="true"
+                           class="h-3.5 w-3.5 opacity-70"
+                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M9 18l6-6-6-6" />
+                       </svg>
+                     </a>
+                   </li>
+                 </ul>
+               </div>
+             </section>
+
+             <!-- Links úteis (com setinha padrão) -->
+             <section class="rounded-md border border-gray-300 bg-white overflow-hidden">
+               <header class="p-4 sm:p-6 border-b border-gray-200">
+                 <h2 class="text-lg font-semibold text-gray-900">Links úteis</h2>
+                 <p class="mt-1 text-sm text-gray-600">Acessos rápidos relacionados a esta página.</p>
+               </header>
+
+               <div class="p-4 sm:p-6 grid gap-3">
+                 <a href="#"
+                   class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                           focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                   <span class="font-semibold text-gray-900">Link 1</span>
+
+                   <svg aria-hidden="true"
+                       class="h-3.5 w-3.5 opacity-70"
+                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M9 18l6-6-6-6" />
+                   </svg>
+                 </a>
+
+                 <a href="#"
+                   class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                           focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                   <span class="font-semibold text-gray-900">Link 2</span>
+
+                   <svg aria-hidden="true"
+                       class="h-3.5 w-3.5 opacity-70"
+                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M9 18l6-6-6-6" />
+                   </svg>
+                 </a>
+               </div>
+             </section>
+
+             <!-- Card opcional (no “jeito capa”: brand + CTA) -->
+             <aside class="rounded-xl bg-[color:var(--brand)] p-4 sm:p-6 text-white">
+               <h3 class="text-lg font-semibold">Precisa de atendimento?</h3>
+               <p class="mt-2 text-sm text-white/90">
+                 Acesse canais oficiais ou veja os principais serviços ao cidadão.
+               </p>
+               <a href="#"
+                 class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-[color:var(--brand)]
+                         hover:bg-white/95 focus:outline-none focus:ring-2 focus:ring-white/40">
+                 Ver serviços
+               </a>
+             </aside>
+
+           </aside>
+         </section>
+
+       </div>
+     </main>
+     </div>
+
+  </metal:content>
+
+</body>
+</html>

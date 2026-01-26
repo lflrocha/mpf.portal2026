@@ -34,10 +34,18 @@
       />
 
   <browser:page
-      name="noticia_view"
+      name="noticia-view"
       for="mpf.portal2026.content.noticia.INoticia"
       class=".noticia_view.NoticiaView"
       template="templates/noticia_view.pt"
+      permission="zope2.View"
+  />
+
+  <browser:page
+      name="document-view"
+      for="plone.app.contenttypes.interfaces.IDocument"
+      class=".document_view.DocumentView"
+      template="templates/document_view.pt"
       permission="zope2.View"
   />
 
