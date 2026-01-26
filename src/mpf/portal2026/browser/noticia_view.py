@@ -1,7 +1,14 @@
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from plone.dexterity.utils import iterSchemata
+from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 from zope.schema.vocabulary import getVocabularyRegistry
+from plone.dexterity.utils import iterSchemata
+
+from plone.app.relationfield.behavior import IRelatedItems
+
+from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
+
 
 class NoticiaView(BrowserView):
 
@@ -81,3 +88,159 @@ class NoticiaView(BrowserView):
             return rich.output or ""
         except Exception:
             return ""
+
+
+
+
+    def breadcrumbs(self):
+        """
+        Retorna a lista de breadcrumbs no formato do Plone:
+        [{'Title': '...', 'absolute_url': '...'}, ...]
+        """
+        bc = getMultiAdapter((self.context, self.request), name="breadcrumbs_view")
+        return bc.breadcrumbs()
+
+
+    def data_modificacao_formatada(self):
+        """
+        Retorna a data de modificação no formato:
+        DD/MM/AAAA • HH:MM
+        """
+        dt = self.context.modified()
+        if not dt:
+            return ""
+
+        data = dt.strftime("%d/%m/%Y")
+        hora = dt.strftime("%H:%M")
+        return f"{data} • {hora}"
+
+
+    def anexos(self):
+        """
+        Lista arquivos (File) dentro da Notícia.
+        Retorna uma lista de dicts: title, url, size_bytes, size_human, filename
+        """
+        catalog = getToolByName(self.context, "portal_catalog")
+
+        brains = catalog(
+            portal_type="File",
+            path={"query": "/".join(self.context.getPhysicalPath()), "depth": 1},
+            sort_on="getObjPositionInParent",
+        )
+
+        items = []
+        for b in brains:
+            obj = b.getObject()
+
+            # Em Plone/Dexterity File: arquivo costuma estar em obj.file
+            f = getattr(obj, "file", None)
+
+            size_bytes = 0
+            filename = ""
+
+            if f:
+                # NamedBlobFile / NamedFile
+                size_bytes = getattr(f, "size", 0) or 0
+                filename = getattr(f, "filename", "") or ""
+
+            items.append({
+                "title": obj.title or b.Title or filename or "Arquivo",
+                "url": obj.absolute_url(),
+                "size_bytes": size_bytes,
+                "size_human": self._human_size(size_bytes),
+                "filename": filename,
+            })
+
+        return items
+
+    def _human_size(self, num):
+        # Formato simples: B, KB, MB, GB
+        try:
+            num = int(num or 0)
+        except Exception:
+            num = 0
+
+        for unit in ["B", "KB", "MB", "GB", "TB"]:
+            if num < 1024 or unit == "TB":
+                if unit == "B":
+                    return f"{num} {unit}"
+                return f"{num/1024:.0f} {unit}" if unit == "KB" else f"{num/1024/1024:.1f} MB" if unit == "MB" else f"{num:.1f} {unit}"
+            num = num / 1024
+        return "0 B"
+
+
+    def relacionados(self, limit=6):
+        """
+        Retorna lista de itens relacionados (Related Items) do Plone.
+        Cada item vira um dict com title, url, description, portal_type.
+        """
+        if IRelatedItems is None:
+            return []
+
+        # Pega os relatedItems via behavior
+        rel = IRelatedItems(self.context, None)
+        if not rel:
+            return []
+
+        values = getattr(rel, 'relatedItems', None) or []
+        if not values:
+            return []
+
+        items = []
+        for v in values:
+            # RelationValue -> objeto
+            obj = getattr(v, 'to_object', None)
+            if obj is None:
+                # fallback (alguns casos expõem toObject)
+                obj = getattr(v, 'toObject', None)
+
+            if obj is None:
+                continue
+
+            items.append({
+                'title': obj.Title() if hasattr(obj, 'Title') else getattr(obj, 'title', u''),
+                'url': obj.absolute_url(),
+                'description': obj.Description() if hasattr(obj, 'Description') else getattr(obj, 'description', u''),
+                'portal_type': getattr(obj, 'portal_type', ''),
+            })
+
+            if limit and len(items) >= limit:
+                break
+
+        return items
+
+
+    def imagem_noticia(self):
+        """
+        Retorna dict com dados da imagem da notícia:
+        {
+          url: URL da imagem (escala large),
+          alt: texto alternativo,
+          exists: True/False
+        }
+        """
+        ctx = self.context
+
+        # 1) Lead Image behavior
+        if ILeadImageBehavior is not None:
+            lead = ILeadImageBehavior(ctx, None)
+            if lead and lead.image:
+                return {
+                    "url": f"{ctx.absolute_url()}/@@images/image/large",
+                    "alt": lead.image_caption or ctx.Title(),
+                    "exists": True,
+                }
+
+        # 2) Campo image/imagem direto no schema
+        for fieldname in ("image", "imagem"):
+            img = getattr(ctx, fieldname, None)
+            if img:
+                return {
+                    "url": f"{ctx.absolute_url()}/@@images/{fieldname}/large",
+                    "alt": ctx.Title(),
+                    "exists": True,
+                }
+
+        return {
+            "exists": False,
+        }

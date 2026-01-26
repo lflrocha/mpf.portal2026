@@ -1,8 +1,65 @@
-<?xml version="1.0"?>
-<object name="portal_viewletmanager" meta_type="Plone Viewlet Manager">
-  <object name="plone.portalheader" meta_type="Plone Viewlet Manager">
-    <property name="order">
-      <element value="mpf.portal2026.header-mpf"/>
-    </property>
-  </object>
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+ <order manager="plone.abovecontent" skinname="Plone Default">
+  <viewlet name="plone.path_bar"/>
+ </order>
+ <order manager="plone.belowcontent" skinname="Plone Default">
+  <viewlet name="plone.belowcontenttitle.keywords"/>
+  <viewlet name="plone.nextprevious"/>
+ </order>
+ <order manager="plone.belowcontentbody" skinname="Plone Default">
+  <viewlet name="plone.belowcontentbody.relateditems"/>
+  <viewlet name="plone.abovecontenttitle.documentactions"/>
+ </order>
+ <order manager="plone.mainnavigation" skinname="Plone Default">
+  <viewlet name="plone.global_sections"/>
+ </order>
+ <order manager="plone.portalfooter" skinname="Plone Default">
+  <viewlet name="plone.footer"/>
+  <viewlet name="plone.colophon"/>
+  <viewlet name="plone.site_actions"/>
+ </order>
+ <order manager="plone.portalheader" skinname="Plone Default">
+  <viewlet name="mpf.portal2026.header-mpf"/>
+  <viewlet name="plone.anontools"/>
+  <viewlet name="plone.membertools"/>
+  <viewlet name="plone.searchbox"/>
+  <viewlet name="plone.logo"/>
+  <viewlet name="plone.app.i18n.locales.languageselector"/>
+ </order>
+ <order manager="plone.portaltop" skinname="Plone Default">
+  <viewlet name="plone.header"/>
+ </order>
+ <order manager="plone.toolbar" skinname="Plone Default">
+  <viewlet name="plone.contentviews"/>
+ </order>
+ <hidden manager="plone.abovecontent" skinname="Plone Default">
+  <viewlet name="plone.path_bar"/>
+ </hidden>
+ <hidden manager="plone.abovecontenttitle" skinname="Plone Default">
+  <viewlet name="plone.abovecontenttitle.socialtags"/>
+  <viewlet name="contentleadimage"/>
+ </hidden>
+ <hidden manager="plone.belowcontent" skinname="Plone Default">
+  <viewlet name="plone.manage_portlets_fallback"/>
+ </hidden>
+ <hidden manager="plone.belowcontentbody" skinname="Plone Default">
+  <viewlet name="plone.belowcontentbody.relateditems"/>
+ </hidden>
+ <hidden manager="plone.belowcontenttitle" skinname="Plone Default">
+  <viewlet name="plone.belowcontenttitle.documentbyline"/>
+ </hidden>
+ <hidden manager="plone.mainnavigation" skinname="Plone Default">
+  <viewlet name="plone.global_sections"/>
+ </hidden>
+ <hidden manager="plone.portalfooter" skinname="Plone Default">
+  <viewlet name="plone.colophon"/>
+  <viewlet name="plone.site_actions"/>
+  <viewlet name="plone.footer"/>
+ </hidden>
+ <hidden manager="plone.portalheader" skinname="Plone Default">
+  <viewlet name="plone.searchbox"/>
+  <viewlet name="plone.logo"/>
+  <viewlet name="plone.anontools"/>
+ </hidden>
 </object>

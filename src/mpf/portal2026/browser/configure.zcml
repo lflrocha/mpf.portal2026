@@ -25,7 +25,6 @@
       permission="zope2.View"
   />
 
-
   <browser:viewlet
       name="mpf.portal2026.footer-mpf"
       manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
