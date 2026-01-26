@@ -10,7 +10,7 @@
     <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
       <div class="max-w-2xl">
         <a href="/" class="inline-flex items-center gap-3">
-          <img src="assets/logo-branca-mpf.png" alt="Ministério Público Federal" class="w-full max-w-[132px] h-auto" />
+          <img src="++resource++mpf.portal2026/logo-branca-mpf.png" alt="Ministério Público Federal" class="w-full max-w-[132px] h-auto" />
         </a>
 
         <p class="mt-4 text-sm text-white/85 leading-relaxed">
