@@ -614,3 +614,21 @@
     onScroll();
   })();
 })();
+
+(function () {
+  const shareBox = document.querySelector("[data-share-box]");
+  if (!shareBox) return; 
+
+  shareBox.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-copy-url]");
+    if (!btn) return;
+
+    const url = btn.getAttribute("data-copy-url");
+
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      window.prompt("Copie o link:", url);
+    }
+  });
+})();
