@@ -17,6 +17,8 @@
 
   <metal:content-core metal:fill-slot="content-core">
 
+  <metal:fill-slot fill-slot="column_one" />
+
     <section class="noticia">
 
       <!-- wrapper (evita <main> duplicado se o master já tiver) -->
