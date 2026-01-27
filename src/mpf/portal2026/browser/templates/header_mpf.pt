@@ -4,11 +4,11 @@ Pular para o conteúdo
 </a>
 
 <!-- HEADER (2 barras) -->
-<header id="site-header" data-sticky class="bg-white border-b border-black/10 shadow">
+<header id="site-header" data-sticky="true" class="bg-white border-b border-black/10 shadow">
 <!-- TOPBAR (institucional) -->
 <div class="mpf-topbar">
   <div class="mx-auto px-4 py-1.5 flex items-center justify-end max-w-[1440px]">
-    <a href="#" class="text-xs text-white/95 leading-relaxed">Ministério Público Federal | Rede Institucional</a>
+    <a href="/" class="text-xs text-white/95 leading-relaxed">Ministério Público Federal | Rede Institucional</a>
   </div>
 </div>
 
@@ -19,7 +19,7 @@ Pular para o conteúdo
     <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4">
       <!-- (1) LOGO (esquerda) -->
       <div class="flex items-center justify-between gap-4">
-        <a href="#" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial">
+        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial">
           <!-- Ícone / logo (SVG) reduz no mobile em vez de esconder -->
           <span class="mpf-brand__circle shrink-0" aria-hidden="true">
             <svg
@@ -47,7 +47,7 @@ Pular para o conteúdo
         <!-- Mobile: botão menu -->
         <button
           type="button"
-          data-menu-button
+          data-menu-button="true"
           class="lg:hidden relative z-[70] inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50
             focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
           aria-controls="mobile-menu"
@@ -156,7 +156,7 @@ Pular para o conteúdo
       </div>
 
       <!-- Acessibilidade: dropdown abaixo de lg -->
-      <div class="a11y-mobile relative flex justify-end" data-dd-root>
+      <div class="a11y-mobile relative flex justify-end" data-dd-root="true">
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 hover:bg-gray-50
@@ -172,7 +172,7 @@ Pular para o conteúdo
           </svg>
         </button>
 
-        <div id="dd-a11y" data-dd-menu role="menu" hidden class="absolute right-0 top-full mt-2 w-72 rounded-md border border-gray-200 bg-white shadow-lg p-2 z-[80]">
+        <div id="dd-a11y" data-dd-menu="true" role="menu" hidden="hidden" class="absolute right-0 top-full mt-2 w-72 rounded-md border border-gray-200 bg-white shadow-lg p-2 z-[80]">
           <button role="menuitem" type="button" data-contrast-toggle aria-label="Ativar alto contraste" class="w-full text-left rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30">
             Alto contraste
           </button>
@@ -205,71 +205,96 @@ Pular para o conteúdo
   <div class="mx-auto max-w-[1440px] px-4">
     <div class="flex items-center justify-between gap-4">
 
-
-
-
-
       <!-- Menu principal (desktop) -->
       <nav aria-label="Navegação principal" class="hidden lg:block">
         <ul class="flex items-stretch flex-nowrap"
             tal:define="items view/menu_tree">
-          <!-- O MPF -->
-          <li class="relative" data-dd-root
-            tal:repeat="item items">
-            <button type="button" class="mpf-nav-item gap-2" data-dd-button="dd-ompF" aria-haspopup="menu" aria-expanded="false" aria-controls="dd-ompF">
-              <span tal:content="item/title">item/title</span>
-              <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+
+          <li class="relative" data-dd-root="true"
+              tal:repeat="item items"
+              tal:define="
+                ddid string:dd-${repeat/item/index};
+                accid string:${ddid}-acc
+              ">
+
+            <button type="button"
+                    class="mpf-nav-item gap-2"
+                    tal:attributes="
+                      data-dd-button ddid;
+                      aria-controls ddid
+                    "
+                    aria-haspopup="menu"
+                    aria-expanded="false">
+              <span tal:content="item/title">Item</span>
+              <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 9l6 6 6-6" />
               </svg>
             </button>
 
-
-            <div id="dd-ompF" data-dd-menu role="menu" hidden class="absolute left-0 top-full mt-1 w-80 rounded-md border border-gray-300 bg-white shadow-lg p-2"
-                 tal:condition="item/children">
+            <!-- Dropdown nível 1 -->
+            <div tal:attributes="id ddid"
+                data-dd-menu="true"
+                role="menu"
+                hidden="hidden"
+                class="absolute left-0 top-full mt-1 w-80 rounded-md border border-gray-300 bg-white shadow-lg p-2"
+                tal:condition="item/children">
 
               <tal:n2 repeat="child item/children">
 
-                <tal:cond condition="not: child/children">
-                  <a role="menuitem" href="./paginas-internas/interna.html" class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                <!-- Nível 2 simples -->
+                <tal:cond tal:condition="not: child/children">
+                  <a role="menuitem"
+                    class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
                     tal:attributes="href child/url"
                     tal:content="child/title">
-                    Sobre o MPF
+                    Página
                   </a>
                 </tal:cond>
 
+                <!-- Nível 2 com filhos (vira accordion dentro do dropdown) -->
+                <tal:cond tal:condition="child/children">
+                  <div class="mt-1 rounded-md"
+                      tal:define="acc2id string:${ddid}-child-${repeat/child/index}">
 
-
-                <!-- NÍVEL 2: accordion -->
-                <tal:cond condition="child/children">
-
-                  <div class="mt-1 rounded-md">
-                    <button
-                      type="button"
-                      class="w-full text-left rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 flex items-center justify-between"
-                      data-acc-button="dd-ompF-institucional"
-                      aria-expanded="false"
-                      aria-controls="dd-ompF-institucional"
-                      tal:content="child/title">
-                      Institucional
-                      <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <button type="button"
+                            class="w-full text-left rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 flex items-center justify-between"
+                            tal:attributes="
+                              data-acc-button acc2id;
+                              aria-controls acc2id
+                            "
+                            aria-expanded="false">
+                      <span tal:content="child/title">Seção</span>
+                      <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 9l6 6 6-6" />
                       </svg>
                     </button>
 
-                    <div id="dd-ompF-institucional" data-acc-panel hidden class="mt-1 ml-3 border-l border-gray-200 pl-3 grid gap-1">
-                      <tal:rep repeat="gchild child/children">
-                        <a role="menuitem" href="./paginas-internas/interna.html" class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                    <div tal:attributes="id acc2id"
+                        data-acc-panel="true"
+                        hidden="hidden"
+                        class="mt-1 ml-3 border-l border-gray-200 pl-3 grid gap-1">
+
+                      <tal:n3 repeat="gchild child/children">
+                        <a role="menuitem"
+                          class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
                           tal:attributes="href gchild/url"
-                          tal:content="gchild/title">PGR</a>
-                      </tal:rep>
+                          tal:content="gchild/title">
+                          Subpágina
+                        </a>
+                      </tal:n3>
+
                     </div>
                   </div>
                 </tal:cond>
+
               </tal:n2>
             </div>
+
           </li>
-
-
         </ul>
       </nav>
 
@@ -297,14 +322,14 @@ Pular para o conteúdo
 </div>
 
 <!-- MOBILE OVERLAY -->
-<div data-menu-overlay class="fixed inset-0 z-50 bg-black/40" hidden></div>
+<div data-menu-overlay="true" class="fixed inset-0 z-50 bg-black/40" hidden="hidden"></div>
 
 <!-- MOBILE PANEL -->
 <nav
   id="mobile-menu"
-  data-menu-panel
+  data-menu-panel="true"
   class="fixed right-0 top-0 z-[60] h-full w-[88%] max-w-sm bg-white shadow-xl border-l border-gray-200 overflow-y-auto overscroll-contain"
-  hidden
+  hidden="hidden"
   tabindex="-1"
   aria-label="Menu mobile"
 >
@@ -313,7 +338,7 @@ Pular para o conteúdo
 
     <button
       type="button"
-      data-menu-close
+      data-menu-close="true"
       class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
         focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
       aria-label="Fechar menu"
@@ -377,66 +402,98 @@ Pular para o conteúdo
     <section aria-label="Navegação principal" class="grid gap-2 text-sm">
       <p class="font-semibold text-gray-900">Páginas</p>
 
+      <tal:def tal:define="items view/menu_tree">
 
-      <tal:def define="items view/menu_tree">
+        <tal:rep1 repeat="item items"
+                  tal:define="mid string:m-${repeat/item/index}">
 
-
-      <tal:rep1 repeat="item items">
-      <!-- O MPF -->
-      <div class="rounded-md border border-gray-200 overflow-hidden">
-        <button type="button" class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" data-acc-button="m-ompF" aria-expanded="false" aria-controls="m-ompF">
-          <span class="font-semibold text-gray-900"
-            tal:content="item/title"
-            >O MPF</span>
-          <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
-
-        <div id="m-ompF" data-acc-panel hidden class="p-2 grid gap-1">
-          <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html">Sobre o MPF</a>
-
-          <!-- 2º nível -->
-          <tal:n2 repeat="child item/children">
-
-            <tal:cond1 condition="not: item/children">
-              <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
-                tal:content="child/title"
-                tal:attributes="href child/url"
-                >PFDC</a>
-            </tal:cond1>
-
-          <tal:cond2 condition="item/children">
-
-          <div class="rounded-md border border-gray-200 overflow-hidden mt-1">
-            <button type="button" class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" data-acc-button="m-ompF-institucional" aria-expanded="false" aria-controls="m-ompF-institucional">
-              <span class="text-gray-900"
-                tal:content="child/title">Institucional</span>
-              <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <div class="rounded-md border border-gray-200 overflow-hidden">
+            <button type="button"
+                    class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                    tal:attributes="
+                      data-acc-button mid;
+                      aria-controls mid
+                    "
+                    aria-expanded="false">
+              <span class="font-semibold text-gray-900" tal:content="item/title">Item</span>
+              <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 9l6 6 6-6" />
               </svg>
             </button>
 
-            <div id="m-ompF-institucional" data-acc-panel hidden class="p-2 grid gap-1"
-               condition="child/children">
-              <tal:n3 repeat="gchild child/children">
-                <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
-                  tal:attributes="href gchild/url"
-                  tal:content="gchild/title"
-                  >PGR</a>
-              </tal:n3>
+            <div tal:attributes="id mid"
+                data-acc-panel="true"
+                hidden="hidden"
+                class="p-2 grid gap-1">
+
+              <!-- Link do próprio item (opcional). Se o item tiver URL válida, mostra. -->
+              <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                tal:condition="item/url"
+                tal:attributes="href item/url">
+                <span tal:content="item/title">Ver página</span>
+              </a>
+
+              <!-- Filhos nível 2 -->
+              <tal:n2 repeat="child item/children">
+
+                <!-- Se não tem netos: link simples -->
+                <tal:cond tal:condition="not: child/children">
+                  <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                    tal:attributes="href child/url"
+                    tal:content="child/title">
+                    Subpágina
+                  </a>
+                </tal:cond>
+
+                <!-- Se tem netos: accordion do nível 2 -->
+                <tal:cond tal:condition="child/children">
+                  <div class="rounded-md border border-gray-200 overflow-hidden mt-1"
+                      tal:define="mid2 string:${mid}-${repeat/child/index}">
+
+                    <button type="button"
+                            class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                            tal:attributes="
+                              data-acc-button mid2;
+                              aria-controls mid2
+                            "
+                            aria-expanded="false">
+                      <span class="text-gray-900" tal:content="child/title">Seção</span>
+                      <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+
+                    <div tal:attributes="id mid2"
+                        data-acc-panel="true"
+                        hidden="hidden"
+                        class="p-2 grid gap-1">
+
+                      <tal:n3 repeat="gchild child/children">
+                        <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                          tal:attributes="href gchild/url"
+                          tal:content="gchild/title">
+                          Neto
+                        </a>
+                      </tal:n3>
+
+                    </div>
+                  </div>
+                </tal:cond>
+
+              </tal:n2>
+
             </div>
           </div>
-          <tal:cond2>
-          </tal:n2>
 
+        </tal:rep1>
 
-
-        </div>
-      </div>
-      </tal:rep1>
       </tal:def>
     </section>
+
   </div>
 </nav>
 </header>
