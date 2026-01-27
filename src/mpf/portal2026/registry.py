@@ -2,6 +2,7 @@
 from zope import schema
 from zope.interface import Interface
 
+
 class INoticiaTemasSettings(Interface):
     noticiaTemas = schema.List(
         title=u"Temas das notícias",

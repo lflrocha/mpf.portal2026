@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from Products.Five import BrowserView
 from plone import api
-from zope.component import getMultiAdapter
 from plone.app.relationfield.behavior import IRelatedItems
+from Products.Five import BrowserView
+from zope.component import getMultiAdapter
+
 
 class DocumentView(BrowserView):
     """View customizada para Document."""

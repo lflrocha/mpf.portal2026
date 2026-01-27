@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import re
-import unicodedata
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+
+import re
+import unicodedata
 
 
 DEFAULT_TEMAS = [
