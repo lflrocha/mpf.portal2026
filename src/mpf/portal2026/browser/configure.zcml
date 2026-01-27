@@ -57,5 +57,12 @@
       permission="zope2.View"
   />
 
+  <browser:page
+      for="*"
+      name="capa_view"
+      class=".capa.CapaView"
+      template="templates/capa.pt"
+      permission="zope2.View"
+  />
 
 </configure>
