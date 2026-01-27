@@ -49,5 +49,13 @@
       permission="zope2.View"
   />
 
+  <browser:page
+      name="noticias_view"
+      for="*"
+      class=".noticias_view.NoticiasView"
+      template="templates/noticias-view.pt"
+      permission="zope2.View"
+  />
+
 
 </configure>
