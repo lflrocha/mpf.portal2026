@@ -49,5 +49,12 @@
       permission="zope2.View"
   />
 
+  <browser:page
+    name="servicos-view"
+    for="mpf.portal2026.content.servicos.IServicos"
+    class=".servicos_view.ServicosView"
+    template="templates/servicos_view.pt"
+    permission="zope2.View"
+/>
 
 </configure>
