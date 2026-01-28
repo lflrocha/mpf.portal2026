@@ -130,7 +130,7 @@
                         tal:define="img view/imagem_noticia"
                         tal:condition="img/exists">
 
-                 <div class="max-h-[280px] overflow-hidden">
+                 <div class="flex max-h-[280px] overflow-hidden">
                    <img tal:attributes="
                            src img/url;
                            alt img/alt"
