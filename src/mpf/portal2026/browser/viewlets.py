@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone.app.layout.viewlets.common import ViewletBase
-from zope.component import queryMultiAdapter
-from Products.CMFCore.utils import getToolByName
-
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.root import getNavigationRootObject
+from plone.app.layout.viewlets.common import ViewletBase
+from Products.CMFCore.utils import getToolByName
+from zope.component import queryMultiAdapter
 
 
 class HeaderMPFViewlet(ViewletBase):

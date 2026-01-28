@@ -11,282 +11,253 @@
     <tal:dummy tal:replace="nothing" />
   </metal:content-title>
 
-  <!-- Mata a descrição padrão do Plone -->
   <metal:content-description metal:fill-slot="content-description">
     <tal:dummy tal:replace="nothing" />
   </metal:content-description>
 
+  <metal:content-core metal:fill-slot="content-core">
 
-<metal:content-core metal:fill-slot="content-core">
+  <metal:fill-slot fill-slot="column_one" />
 
-  <!-- Mata o título padrão do Plone -->
+    <section class="noticia">
 
-  <section class="noticia">
+      <!-- wrapper (evita <main> duplicado se o master já tiver) -->
+      <div id="main-content" class="w-full">
+        <div class="mx-auto max-w-[1440px] px-3 py-5 sm:px-4 sm:py-8">
 
-       <main id="main-content" class="w-full">
-         <div class="mx-auto max-w-[1440px] px-3 py-5 sm:px-4 sm:py-8">
+          <!-- Breadcrumb -->
+          <nav aria-label="Breadcrumb" class="text-sm text-gray-600"
+               tal:define="crumbs view/breadcrumbs">
 
-           <!-- Breadcrumb (padrão capa) -->
+            <ol class="flex flex-wrap items-center gap-2">
+              <tal:loop tal:repeat="c crumbs">
 
-           <nav aria-label="Breadcrumb" class="text-sm text-gray-600"
-                tal:define="crumbs view/breadcrumbs">
+                <tal:notlast tal:condition="not: repeat/c/end">
+                  <li>
+                    <a tal:attributes="href c/absolute_url"
+                       tal:content="c/Title"
+                       class="rounded hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                      Página
+                    </a>
+                  </li>
+                  <li class="text-gray-300" aria-hidden="true">/</li>
+                </tal:notlast>
 
-             <ol class="flex flex-wrap items-center gap-2">
-               <tal:loop tal:repeat="c crumbs">
+                <tal:last tal:condition="repeat/c/end">
+                  <li class="text-gray-900 font-medium" tal:content="c/Title">Notícia</li>
+                </tal:last>
 
-                 <li>
-                   <a tal:attributes="href c/absolute_url"
-                      tal:content="c/Title"
-                      class="rounded hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                     Página
-                   </a>
-                 </li>
+              </tal:loop>
+            </ol>
+          </nav>
 
-                 <li tal:condition="not: repeat/c/end"
-                     class="text-gray-300" aria-hidden="true">/</li>
+          <!-- GRID 70/30 -->
+          <article class="mt-4 sm:mt-6 grid gap-4 sm:gap-6 lg:grid-cols-12 lg:items-start">
 
-               </tal:loop>
-             </ol>
-           </nav>
+            <!-- COLUNA 70% -->
+            <div class="lg:col-span-8">
 
-
-
-
-
-           <!-- GRID 70/30 (igual capa) -->
-           <article class="mt-4 sm:mt-6 grid gap-4 sm:gap-6 lg:grid-cols-12 lg:items-start">
-
-             <!-- COLUNA 70% — CONTEÚDO -->
-             <div class="lg:col-span-8">
-
-               <!-- Cabeçalho -->
-               <header class="rounded-md border border-gray-300 bg-white overflow-hidden">
-                 <div class="p-4 sm:p-6 lg:p-7">
-                   <p class="text-[11px] font-semibold uppercase tracking-wider text-[color:var(--brand)]"
+              <!-- Cabeçalho -->
+              <header class="rounded-md border border-gray-300 bg-white overflow-hidden">
+                <div class="p-4 sm:p-6 lg:p-7">
+                  <p class="text-[11px] font-semibold uppercase tracking-wider text-[color:var(--brand)]"
                      tal:content="view/tipo_noticia">
-                     Destaque institucional
-                   </p>
+                    Destaque institucional
+                  </p>
 
-                   <h1 class="mt-2 text-2xl sm:text-3xl font-semibold leading-tight text-gray-900"
-                     tal:content="view/titulo">
-                     Título da notícia (placeholder)
-                   </h1>
+                  <h1 class="mt-2 text-2xl sm:text-3xl font-semibold leading-tight text-gray-900"
+                      tal:content="view/titulo">
+                    Título da notícia
+                  </h1>
 
-                   <!-- ✅ Subtítulo / sutiã -->
-                   <p class="mt-2 text-base text-gray-700 leading-relaxed"
+                  <!-- Subtítulo / sutiã -->
+                  <p class="mt-2 text-base text-gray-700 leading-relaxed"
                      tal:condition="view/descricao"
                      tal:content="view/descricao">
-                     Subtítulo/sutiã da notícia — texto curto que contextualiza rapidamente o conteúdo (placeholder).
-                   </p>
+                    Subtítulo/sutiã da notícia
+                  </p>
 
-                   <!-- ✅ Meta: data+hora + unidade (sem categoria) -->
-                   <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600">
-                     <span class="inline-flex items-center gap-2">
-                       <span aria-hidden="true">🕒</span>
-                       <strong class="text-gray-900">Data:</strong>
-                       <span tal:content="view/data_modificacao_formatada">
+                  <!-- Meta -->
+                  <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600">
+                    <span class="inline-flex items-center gap-2">
+                      <span aria-hidden="true">🕒</span>
+                      <strong class="text-gray-900">Data:</strong>
+                      <span tal:content="view/data_modificacao_formatada">
                         18/12/2025 • 14:32
                       </span>
-                     </span>
+                    </span>
 
-                     <span class="inline-flex items-center gap-2">
-                       <span aria-hidden="true" class="text-gray-400">•</span>
-                       <strong class="text-gray-900">Unidade:</strong>
-                       <span tal:content="view/unidade_origem">Procuradoria-Geral da República</span>
-                     </span>
-                   </div>
-                 </div>
+                    <span class="inline-flex items-center gap-2">
+                      <span aria-hidden="true" class="text-gray-400">•</span>
+                      <strong class="text-gray-900">Unidade:</strong>
+                      <span tal:content="view/unidade_origem">Procuradoria-Geral da República</span>
+                    </span>
+                  </div>
+                </div>
 
-                 <!-- Ações rápidas (mobile-first) -->
-                 <div class="border-t border-gray-200 p-3 sm:p-4 bg-gray-50">
-                   <div class="flex flex-wrap items-center gap-2">
-                     <a href="noticias.html"
-                        class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
-                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                       <svg aria-hidden="true" class="h-4 w-4 opacity-80"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M15 18l-6-6 6-6" />
-                       </svg>
-                       Voltar para notícias
-                     </a>
+                <!-- Ações rápidas -->
+                <div class="border-t border-gray-200 p-3 sm:p-4 bg-gray-50">
+                  <div class="flex flex-wrap items-center gap-2">
 
-                     <a href="#corpo-noticia"
-                        class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
-                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                       Ir para o conteúdo
-                       <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M9 18l6-6-6-6" />
-                       </svg>
-                     </a>
-                   </div>
-                 </div>
-               </header>
+                    <a tal:attributes="href string:${context/portal_url}/noticias"
+                       class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
+                              focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                      <svg aria-hidden="true" class="h-4 w-4 opacity-80"
+                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                      Voltar para notícias
+                    </a>
 
-               <!-- ✅ Imagem destaque (menor, sem quebrar layout) -->
-               <section class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-gray-200 overflow-hidden"
-                        tal:define="img view/imagem_noticia"
-                        tal:condition="img/exists">
+                    <a href="#corpo-noticia"
+                       class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
+                              focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                      Ir para o conteúdo
+                      <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
+                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </a>
 
-                 <div class="max-h-[280px] overflow-hidden">
-                   <img tal:attributes="
-                           src img/url;
-                           alt img/alt"
-                        class="mx-auto h-full w-full max-w-[900px] object-cover"
-                        loading="lazy" />
-                 </div>
+                  </div>
+                </div>
+              </header>
 
-               </section>
+              <!-- Imagem destaque -->
+              <section class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-gray-200 overflow-hidden"
+                       tal:define="img view/imagem_noticia"
+                       tal:condition="img/exists">
 
+                <div class="flex max-h-[280px] overflow-hidden">
+                  <img tal:attributes="src img/url; alt img/alt"
+                       class="mx-auto h-full w-full max-w-[900px] object-cover"
+                       loading="lazy" />
+                </div>
 
-               <!-- Corpo -->
-               <section id="corpo-noticia" class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-white">
-                 <div class="p-4 sm:p-6 lg:p-7">
-                   <div class="prose max-w-none">
-                     <!-- Placeholder: Plone “corpo da notícia” entra aqui -->
+              </section>
 
-                     <div tal:replace="structure view/corpo_html"></div>
-                   <!-- Anexos -->
-                   <div class="mt-8 border-t border-gray-200 pt-6"
-                        tal:define="anexos view/anexos"
-                        tal:condition="anexos">
+              <!-- Corpo -->
+              <section id="corpo-noticia" class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-white scroll-mt-48">
+                <div class="p-4 sm:p-6 lg:p-7">
 
-                     <h2 class="text-lg font-semibold text-gray-900">Anexos</h2>
+                  <div class="prose max-w-none">
+                    <div tal:replace="structure view/corpo_html"></div>
+                  </div>
 
-                     <ul class="mt-3 grid gap-2 text-sm">
-                       <tal:loop tal:repeat="a anexos">
-                         <li>
-                           <a tal:attributes="href a/url"
-                              class="group inline-flex w-full items-center justify-between gap-3 rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
-                                     focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                  <!-- Anexos -->
+                  <div class="mt-8 border-t border-gray-200 pt-6"
+                       tal:define="anexos view/anexos"
+                       tal:condition="anexos">
 
-                             <span class="min-w-0">
-                               <span class="block font-semibold text-gray-900 truncate"
-                                     tal:content="a/title">Documento.pdf</span>
-                               <span class="block text-xs text-gray-600"
-                                     tal:content="a/size_human">250 KB</span>
-                             </span>
+                    <h2 class="text-lg font-semibold text-gray-900">Anexos</h2>
 
-                             <span class="shrink-0 inline-flex items-center gap-2 text-[color:var(--brand)] font-semibold">
-                               Baixar
-                               <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-80"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                 <path d="M9 18l6-6-6-6" />
-                               </svg>
-                             </span>
+                    <ul class="mt-3 grid gap-2 text-sm">
+                      <tal:loop tal:repeat="a anexos">
+                        <li>
+                          <a tal:attributes="href a/url"
+                             class="group inline-flex w-full items-center justify-between gap-3 rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                                    focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
 
-                           </a>
-                         </li>
-                       </tal:loop>
-                     </ul>
-                   </div>
+                            <span class="min-w-0">
+                              <span class="block font-semibold text-gray-900 truncate"
+                                    tal:content="a/title">Documento.pdf</span>
+                              <span class="block text-xs text-gray-600"
+                                    tal:content="a/size_human">250 KB</span>
+                            </span>
 
+                            <span class="shrink-0 inline-flex items-center gap-2 text-[color:var(--brand)] font-semibold">
+                              Baixar
+                              <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-80"
+                                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                   stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18l6-6-6-6" />
+                              </svg>
+                            </span>
 
-                 </div>
+                          </a>
+                        </li>
+                      </tal:loop>
+                    </ul>
+                  </div>
 
-                 <!-- ✅ Rodapé do artigo (sem categoria / sem “ver todas”) -->
-                 <div class="border-t border-gray-200 p-4 sm:p-6 bg-gray-50">
-                   <a href="noticias.html"
-                      class="inline-flex items-center justify-center rounded-md bg-[color:var(--brand)] px-4 sm:px-5 py-2.5 text-sm font-semibold text-white hover:opacity-95
-                             focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                     Voltar para notícias
-                   </a>
-                 </div>
-               </section>
+                </div>
 
-             </div>
+                <!-- Rodapé do artigo -->
+                <div class="border-t border-gray-200 p-4 sm:p-6 bg-gray-50">
+                  <a tal:attributes="href string:${context/portal_url}/noticias"
+                     class="inline-flex items-center justify-center rounded-md bg-[color:var(--brand)] px-4 sm:px-5 py-2.5 text-sm font-semibold text-white hover:opacity-95
+                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                    Voltar para notícias
+                  </a>
+                </div>
+              </section>
 
-             <!-- COLUNA 30% — SIDEBAR -->
-             <aside class="lg:col-span-4 grid gap-4 sm:gap-6">
+            </div>
 
-               <!-- Compartilhar -->
-               <section class="rounded-md border border-gray-300 bg-white overflow-hidden">
-                 <header class="p-4 sm:p-6 border-b border-gray-200">
-                   <h2 class="text-lg font-semibold text-gray-900">Compartilhar</h2>
-                   <p class="mt-1 text-sm text-gray-600">Ações rápidas para divulgar este conteúdo.</p>
-                 </header>
+            <!-- COLUNA 30% — SIDEBAR -->
+            <aside class="lg:col-span-4 grid gap-4 sm:gap-6">
 
-                 <div class="p-4 sm:p-6 grid gap-3">
-                   <a href="#"
-                      class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
-                             focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                     <span class="font-semibold text-gray-900">Copiar link</span>
-                     <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                       <path d="M9 18l6-6-6-6" />
-                     </svg>
-                   </a>
+              <!-- Compartilhar -->
+              <section class="rounded-md border border-gray-300 bg-white overflow-hidden"
+                       data-share-box>
+                <header class="p-4 sm:p-6 border-b border-gray-200">
+                  <h2 class="text-lg font-semibold text-gray-900">Compartilhar</h2>
+                  <p class="mt-1 text-sm text-gray-600">Ações rápidas para divulgar este conteúdo.</p>
+                </header>
 
-                   <a href="#"
-                      class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
-                             focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                     <span class="font-semibold text-gray-900">Enviar por e-mail</span>
-                     <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                       <path d="M9 18l6-6-6-6" />
-                     </svg>
-                   </a>
-                 </div>
-               </section>
+                <div class="p-4 sm:p-6 grid gap-3">
 
-               <!-- Relacionadas -->
-               <section class="rounded-md border border-gray-300 bg-white overflow-hidden"
-                        tal:define="rels view/relacionados"
-                        tal:condition="rels">
+                  <!-- Copiar link -->
+                  <button type="button"
+                          class="group flex w-full items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                                 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                          tal:attributes="data-copy-url context/absolute_url">
+                    <span class="font-semibold text-gray-900">Copiar link</span>
+                    <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
 
-                 <header class="p-4 sm:p-6 border-b border-gray-200">
-                   <h2 class="text-lg font-semibold text-gray-900">Relacionadas</h2>
-                   <p class="mt-1 text-sm text-gray-600">Outras publicações sobre o tema.</p>
-                 </header>
+                  <!-- E-mail -->
+                  <a tal:attributes="href string:mailto:?subject=${view/titulo}&body=${context/absolute_url}"
+                     class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
+                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                    <span class="font-semibold text-gray-900">Enviar por e-mail</span>
+                    <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </a>
 
-                 <div class="p-4 sm:p-6">
-                   <ul class="grid gap-3 text-sm">
-                     <tal:loop tal:repeat="r rels">
-                       <li>
-                         <a tal:attributes="href r/url"
-                            class="group flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50
-                                   focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                           <span class="min-w-0 font-semibold text-gray-900 truncate"
-                                 tal:content="r/title">Notícia relacionada</span>
+                </div>
+              </section>
 
-                           <svg aria-hidden="true" class="h-3.5 w-3.5 opacity-70"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                             <path d="M9 18l6-6-6-6" />
-                           </svg>
-                         </a>
-                       </li>
-                     </tal:loop>
-                   </ul>
-                 </div>
-               </section>
+              <!-- Card brand opcional -->
+              <aside class="rounded-xl bg-[color:var(--brand)] p-4 sm:p-6 text-white">
+                <h3 class="text-lg font-semibold">Quer acompanhar o MPF?</h3>
+                <p class="mt-2 text-sm text-white/90">
+                  Receba atualizações e conteúdos selecionados.
+                </p>
+                <a href="#"
+                   class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-[color:var(--brand)]
+                          hover:bg-white/95 focus:outline-none focus:ring-2 focus:ring-white/40">
+                  Inscrever-se
+                </a>
+              </aside>
 
-               <!-- Card brand opcional (igual capa) -->
-               <aside class="rounded-xl bg-[color:var(--brand)] p-4 sm:p-6 text-white">
-                 <h3 class="text-lg font-semibold">Quer acompanhar o MPF?</h3>
-                 <p class="mt-2 text-sm text-white/90">
-                   Receba atualizações e conteúdos selecionados.
-                 </p>
-                 <a href="#"
-                    class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-[color:var(--brand)]
-                           hover:bg-white/95 focus:outline-none focus:ring-2 focus:ring-white/40">
-                   Inscrever-se
-                 </a>
-               </aside>
+            </aside>
+          </article>
 
-             </aside>
-           </article>
+        </div>
+      </div>
 
-         </div>
-       </main>
+    </section>
 
-</section>
-</metal:content-core>
+  </metal:content-core>
 </body>
-
 </html>

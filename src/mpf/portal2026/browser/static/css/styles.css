@@ -53,7 +53,7 @@
 /* =========================================================
    BASE
 ========================================================= */
-html{ font-size: var(--base-font-size, 16px); }
+html{ font-size: var(--base-font-size, 16px);  scroll-behavior: smooth; }
 html, body{ overflow-x:hidden; }
 
 body{
