@@ -1,0 +1,45 @@
+<metal:main use-macro="context/main_template/macros/master">
+  <metal:content fill-slot="content-core">
+
+    <h1>Notícias</h1>
+
+    <p>
+      Escopo:
+      <strong tal:content="view/scope">local</strong>
+      |
+      <a tal:attributes="href string:${context/absolute_url}/noticias_view?scope=local">Local</a>
+      |
+      <a tal:attributes="href string:${context/absolute_url}/noticias_view?scope=global">Global</a>
+    </p>
+
+    <tal:vars tal:define="data view/results">
+      <tal:empty tal:condition="not: data/brains">
+        <p>Nenhuma notícia encontrada.</p>
+      </tal:empty>
+
+      <ul tal:condition="data/brains">
+        <li tal:repeat="b data/brains">
+          <a tal:attributes="href b/getURL" tal:content="b/Title">Título</a>
+          <span tal:condition="b/effective">
+            (<span tal:replace="b/effective">data</span>)
+          </span>
+        </li>
+      </ul>
+
+      <tal:pagination tal:condition="data/pages">
+        <div tal:condition="python:data['pages'] &gt; 1">
+          <a tal:condition="python:data['page'] &gt; 1"
+             tal:attributes="href python:view.url_for_page(data['page']-1)">Anterior</a>
+
+          <span>
+            Página <span tal:replace="data/page">1</span> de <span tal:replace="data/pages">1</span>
+          </span>
+
+          <a tal:condition="python:data['page'] &lt; data['pages']"
+             tal:attributes="href python:view.url_for_page(data['page']+1)">Próxima</a>
+        </div>
+      </tal:pagination>
+    </tal:vars>
+
+  </metal:content>
+</metal:main>

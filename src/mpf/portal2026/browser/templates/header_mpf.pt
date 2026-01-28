@@ -65,17 +65,20 @@ Pular para o conteúdo
       <nav aria-label="Links institucionais" class="hidden lg:flex justify-center">
         <ul class="flex items-center text-sm text-gray-700 divide-x divide-gray-300/70">
           <li class="pr-3">
-            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
+            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
+              tal:attributes="href string:${context/portal_url}/acesso-a-informacao">
               Acesso à Informação
             </a>
           </li>
           <li class="px-3">
-            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
+            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
+              tal:attributes="href string:${context/portal_url}/transparencia">
               Transparência
             </a>
           </li>
           <li class="pl-3">
-            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
+            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
+              tal:attributes="href string:${context/portal_url}/contact-info">
               Contatos
             </a>
           </li>
@@ -84,7 +87,8 @@ Pular para o conteúdo
 
       <!-- Acessibilidade: desktop grande -->
       <div class="a11y-desktop items-center justify-end gap-2 text-sm">
-        <a href="./paginas-internas/interna.html" class="text-gray-700 hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
+        <a href="./paginas-internas/interna.html" class="text-gray-700 hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
+          tal:attributes="href string:${context/portal_url}/accessibility-info">
           Acessibilidade
         </a>
 
@@ -146,6 +150,7 @@ Pular para o conteúdo
           title="Mapa do site"
           class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-800 hover:bg-gray-50
             focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+          tal:attributes="href string:${context/portal_url}/sitemap"
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z" />
@@ -191,7 +196,8 @@ Pular para o conteúdo
 
 
 
-          <a role="menuitem" href="./paginas-internas/interna.html" class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30">
+          <a role="menuitem" href="./paginas-internas/interna.html" class="block rounded-md px-3 py-2 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+            tal:attributes="href string:${context/portal_url}/sitemap">
             Mapa do site
           </a>
         </div>
@@ -370,14 +376,19 @@ Pular para o conteúdo
     <!-- Links institucionais (mobile) -->
     <section aria-label="Links institucionais" class="grid gap-2 text-sm">
       <p class="font-semibold text-gray-900">Links institucionais</p>
-      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html">Acesso à Informação</a>
-      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html">Transparência</a>
-      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html">Contatos</a>
+      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
+        tal:attributes="href string:${context/portal_url}/acesso-a-informacao">Acesso à Informação</a>
+      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
+        tal:attributes="href string:${context/portal_url}/transparencia">Transparência</a>
+      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
+        tal:attributes="href string:${context/portal_url}/contact-info">Contatos</a>
     </section>
 
     <!-- Ferramentas -->
     <section aria-label="Ferramentas de acessibilidade" class="grid gap-2 text-sm">
-      <a href="./paginas-internas/interna.html" class="font-semibold text-gray-900">Acessibilidade</a>
+      <a href="./paginas-internas/interna.html" class="font-semibold text-gray-900"
+        tal:attributes="href string:${context/portal_url}/accessibility-info"
+        >Acessibilidade</a>
 
       <button
         type="button"
@@ -395,7 +406,9 @@ Pular para o conteúdo
         <button type="button" data-font="increase" class="rounded-md border border-gray-200 px-3 py-3 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" aria-label="Aumentar tamanho do texto">A+</button>
       </div>
 
-      <a href="./paginas-internas/interna.html" class="w-full rounded-md border border-gray-200 px-4 py-3 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30">Mapa do site</a>
+      <a href="./paginas-internas/interna.html" class="w-full rounded-md border border-gray-200 px-4 py-3 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+        tal:attributes="href string:${context/portal_url}/sitemap"
+        >Mapa do site</a>
     </section>
 
     <!-- Navegação principal (mobile) com 2 níveis -->

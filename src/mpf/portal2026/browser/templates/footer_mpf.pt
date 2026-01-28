@@ -9,7 +9,8 @@
     <!-- Topo: marca + pitch + chips + redes -->
     <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
       <div class="max-w-2xl">
-        <a href="/" class="inline-flex items-center gap-3">
+        <a href="/" class="inline-flex items-center gap-3"
+          tal:attributes="href context/portal_url">
           <img src="++resource++mpf.portal2026/logo-branca-mpf.png" alt="Ministério Público Federal" class="w-full max-w-[132px] h-auto" />
         </a>
 
@@ -19,17 +20,20 @@
 
         <!-- Chips (sem “Contatos” pra não duplicar) -->
         <div class="mt-6 flex flex-wrap gap-5" aria-label="Atalhos principais">
-          <a href="./paginas-internas/servicos.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/servicos.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/sitemap">
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
             Mapa do Site
           </a>
 
-          <a href="./paginas-internas/interna.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/interna.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/servicos">
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
             Serviços
           </a>
 
-          <a href="./paginas-internas/noticias.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/noticias.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/noticias">
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
             Notícias
           </a>
@@ -146,13 +150,16 @@
 
               <!-- mini-links úteis (acabamento MPF) -->
               <div class="mt-6 flex flex-wrap gap-2 text-xs">
-                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  tal:attributes="href string:${context/portal_url}/contact-info">
                   Contatos
                 </a>
-                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  tal:attributes="href string:${context/portal_url}/o-mpf/ouvidoria">
                   Ouvidoria
                 </a>
-                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+                <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  tal:attributes="href string:${context/portal_url}/">
                   Atendimento ao cidadão
                 </a>
               </div>

@@ -48,10 +48,10 @@
       component=".vocabularies.noticiatemas_vocab"
       name="mpf.portal2026.noticiatemas" />
 
-<utility
-    provides="zope.schema.interfaces.IVocabularyFactory"
-    component=".vocabularies.unidades_origem_vocab"
-    name="mpf.portal2026.unidades_origem" />
+  <utility
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      component=".vocabularies.unidades_origem_vocab"
+      name="mpf.portal2026.unidades_origem" />
 
 
 </configure>

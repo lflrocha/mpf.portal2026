@@ -1,13 +1,11 @@
+from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
+from plone.app.relationfield.behavior import IRelatedItems
+from plone.dexterity.utils import iterSchemata
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 from zope.schema.vocabulary import getVocabularyRegistry
-from plone.dexterity.utils import iterSchemata
-
-from plone.app.relationfield.behavior import IRelatedItems
-
-from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 
 
 class NoticiaView(BrowserView):
