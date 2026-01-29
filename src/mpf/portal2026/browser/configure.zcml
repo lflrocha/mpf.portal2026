@@ -50,10 +50,28 @@
   />
 
   <browser:page
+    name="folder-document-view"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    class=".document_view.DocumentView"
+    template="templates/document_view.pt"
+    permission="zope2.View"
+  />
+
+ <!--
+  <browser:page
     name="servicos-view"
-    for="mpf.portal2026.content.servicos.IServicos"
+      for="plone.app.contenttypes.interfaces.IFolder"
     class=".servicos_view.ServicosView"
     template="templates/servicos_view.pt"
+      permission="zope2.View"
+  />
+  -->
+
+<browser:page
+    name="capa"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    class=".capa.CapaView"
+    template="templates/capa.pt"
     permission="zope2.View"
 />
 
