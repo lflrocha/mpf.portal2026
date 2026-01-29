@@ -5,6 +5,8 @@ from plone.scale.scale import scaleImage
 from zope.component import queryUtility
 from zope.schema.interfaces import IField
 from plone.scale.scale import scaleImage
+from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
 
 
 class CapaView(BrowserView):
@@ -226,3 +228,75 @@ class CapaView(BrowserView):
                 "imagem_url": self._image_url_from_namedblob(prefix + "imagem", width=1200, height=800),
             })
         return items
+
+    # -------------------------
+    # Últimas notícias (catálogo)
+    # -------------------------
+    def ultimas_noticias(self, limit=3, tipos=None, path=None, review_state="published"):
+        """
+        Retorna as últimas notícias (limit), usando portal_catalog.
+
+        - tipos: lista/tupla de portal_type (default tenta Noticia e variações comuns)
+        - path: se None, busca no site todo. Se quiser restringir, passe um path físico
+                tipo '/mpf2026/comunicacao/noticias'
+        - review_state: 'published' por padrão (ajuste se necessário)
+        """
+        catalog = getToolByName(self.context, "portal_catalog")
+        portal = getToolByName(self.context, "portal_url").getPortalObject()
+
+        if tipos is None:
+            # ajuste para o(s) tipo(s) real(is) do seu produto
+            tipos = ("Noticia", "noticia", "News Item", "NewsItem")
+
+        query = {
+            "portal_type": tipos,
+            "sort_on": "effective",
+            "sort_order": "reverse",
+        }
+
+        if review_state:
+            query["review_state"] = review_state
+
+        if path:
+            # aceita path físico começando com / (relativo ao portal)
+            base = "/".join(portal.getPhysicalPath())
+            if path.startswith("/"):
+                path_query = base + path
+            else:
+                path_query = base + "/" + path
+            query["path"] = {"query": path_query, "depth": -1}
+
+        brains = catalog(**query)
+
+        out = []
+        for b in brains[:limit]:
+            try:
+                obj = b.getObject()
+            except Exception:
+                continue
+
+            title = ""
+            desc = ""
+            try:
+                title = obj.Title()
+            except Exception:
+                title = getattr(obj, "title", "") or ""
+
+            try:
+                desc = obj.Description()
+            except Exception:
+                desc = getattr(obj, "description", "") or ""
+
+            dt = self._get_date_from_noticia(obj)
+
+            out.append({
+                "obj": obj,
+                "title": title,
+                "url": obj.absolute_url(),
+                "description": desc,
+                "chapeu": self._get_chapeu_from_noticia(obj),
+                "date_str": self._format_date_ptbr(dt),
+                "image_url": self._get_image_url_from_noticia(obj, scale="large"),
+            })
+
+        return out
