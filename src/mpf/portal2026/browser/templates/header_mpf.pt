@@ -19,7 +19,8 @@ Pular para o conteúdo
     <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4">
       <!-- (1) LOGO (esquerda) -->
       <div class="flex items-center justify-between gap-4">
-        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial">
+        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial"
+          tal:attributes="href string:${context/portal_url}">
           <!-- Ícone / logo (SVG) reduz no mobile em vez de esconder -->
           <span class="mpf-brand__circle shrink-0" aria-hidden="true">
             <svg
@@ -66,13 +67,12 @@ Pular para o conteúdo
         <ul class="flex items-center text-sm text-gray-700 divide-x divide-gray-300/70">
           <li class="pr-3">
             <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
-              tal:attributes="href string:${context/portal_url}/acesso-a-informacao">
+              tal:attributes="href string:${context/portal_url}/servicos/acesso-a-informacao">
               Acesso à Informação
             </a>
           </li>
           <li class="px-3">
-            <a href="./paginas-internas/interna.html" class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
-              tal:attributes="href string:${context/portal_url}/transparencia">
+            <a href="https://www.transparencia.mpf.mp.br" target="_blank"  class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
               Transparência
             </a>
           </li>
@@ -217,8 +217,8 @@ Pular para o conteúdo
             tal:define="items view/menu_tree">
 
           <li class="relative" data-dd-root="true"
-              tal:repeat="item items"
-              tal:define="
+              tal:repeat="item items">
+              <tal:block tal:define="
                 ddid string:dd-${repeat/item/index};
                 accid string:${ddid}-acc
               ">
@@ -299,7 +299,7 @@ Pular para o conteúdo
 
               </tal:n2>
             </div>
-
+          </tal:block>
           </li>
         </ul>
       </nav>
@@ -377,9 +377,9 @@ Pular para o conteúdo
     <section aria-label="Links institucionais" class="grid gap-2 text-sm">
       <p class="font-semibold text-gray-900">Links institucionais</p>
       <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
-        tal:attributes="href string:${context/portal_url}/acesso-a-informacao">Acesso à Informação</a>
-      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
-        tal:attributes="href string:${context/portal_url}/transparencia">Transparência</a>
+        tal:attributes="href string:${context/portal_url}/servicos/acesso-a-informacao">Acesso à Informação</a>
+      <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="https://www.transparencia.mpf.mp.br"
+        target="_blank">Transparência</a>
       <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30" href="./paginas-internas/interna.html"
         tal:attributes="href string:${context/portal_url}/contact-info">Contatos</a>
     </section>

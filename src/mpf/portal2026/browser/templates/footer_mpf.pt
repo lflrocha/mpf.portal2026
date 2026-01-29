@@ -33,7 +33,7 @@
           </a>
 
           <a href="./paginas-internas/noticias.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
-            tal:attributes="href string:${context/portal_url}/noticias">
+            tal:attributes="href string:${context/portal_url}/comunicacao/noticias">
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
             Notícias
           </a>
@@ -45,43 +45,43 @@
         <p class="text-xs uppercase tracking-wide text-white/70 mb-4">MPF nas redes sociais</p>
         <ul class="flex flex-wrap items-center gap-5" aria-label="Redes sociais do MPF">
           <li>
-            <a href="#" aria-label="WhatsApp" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://whatsapp.com/channel/0029VaSEPDHId7nRVXD6nV27" target="_blank" aria-label="WhatsApp" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/whatsapp.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                    tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/whatsapp.svg"/>
             </a>
           </li>
           <li>
-            <a href="#" aria-label="Facebook" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://www.facebook.com/MPFederal" target="_blank" aria-label="Facebook" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="++theme++portal-mpf-2026/facebook.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/facebook.svg" />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="Flickr" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://www.flickr.com/photos/mpfederal/albums" target="_blank" aria-label="Flickr" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/flickr.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
-                tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/whatsapp.svg" />
+                tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/flickr.svg" />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="X" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://twitter.com/mpf_pgr" target="_blank" aria-label="X" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/x.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/x.svg" />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="YouTube" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://www.youtube.com/user/tvmpf" target="_blank" aria-label="YouTube" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/youtube.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/youtube.svg" />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="Instagram" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://www.instagram.com/mpfederal" target="_blank" aria-label="Instagram" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/instagram.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/instagram.svg" />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="LinkedIn" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+            <a href="https://br.linkedin.com/company/mpf-oficial" target="_blank" aria-label="LinkedIn" class="inline-flex p-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
               <img src="assets/linkedin.svg" alt="" class="h-6 w-6 opacity-95 hover:opacity-100"
                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/linkedin.svg" />
             </a>
@@ -159,7 +159,7 @@
                   Ouvidoria
                 </a>
                 <a href="#" class="rounded-md bg-white/10 px-3 py-2 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
-                  tal:attributes="href string:${context/portal_url}/">
+                  tal:attributes="href string:${context/portal_url}/servicos/carta-de-servicos-ao-cidadao">
                   Atendimento ao cidadão
                 </a>
               </div>
@@ -183,7 +183,8 @@
                   </div>
                 </a>
 
-                <a href="#" class="group rounded-lg bg-white/10 px-4 py-4 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+                <a href="#" class="group rounded-lg bg-white/10 px-4 py-4 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  tal:attributes="href string:${context/portal_url}/comunicacao/atendimento-a-jornalistas">
                   <div class="flex items-center justify-between gap-4">
                     <span class="text-sm text-white/90 leading-snug">Atendimento a Jornalistas</span>
                     <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white/10 ring-1 ring-white/15 text-white/70 group-hover:text-white" aria-hidden="true">
@@ -194,7 +195,8 @@
                   </div>
                 </a>
 
-                <a href="#" class="group rounded-lg bg-white/10 px-4 py-4 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40">
+                <a href="#" class="group rounded-lg bg-white/10 px-4 py-4 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  tal:attributes="href string:${context/portal_url}/o-mpf/unidades">
                   <div class="flex items-center justify-between gap-4">
                     <span class="text-sm text-white/90 leading-snug">Informações das Unidades do MPF</span>
                     <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white/10 ring-1 ring-white/15 text-white/70 group-hover:text-white" aria-hidden="true">
@@ -221,15 +223,18 @@
 
         <!-- separadores | entre os links legais -->
         <nav aria-label="Links legais" class="flex flex-wrap items-center gap-1 sm:gap-2">
-          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/">
             Portal institucional
           </a>
           <span class="text-white/40" aria-hidden="true">|</span>
-          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/politica-de-privacidade">
             Política de Privacidade
           </a>
           <span class="text-white/40" aria-hidden="true">|</span>
-          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40">
+          <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
+            tal:attributes="href string:${context/portal_url}/termos-de-uso">
             Termos de Uso
           </a>
         </nav>

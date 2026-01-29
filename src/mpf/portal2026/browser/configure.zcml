@@ -66,10 +66,10 @@
   />
 
   <browser:page
-    name="capa"
-    for="plone.app.contenttypes.interfaces.IFolder"
+    name="capa-view"
+    for="mpf.portal2026.content.capa.ICapa"
     class=".capa_view.CapaView"
-    template="templates/capa.pt"
+    template="templates/capa_view.pt"
     permission="zope2.View"
   />
 

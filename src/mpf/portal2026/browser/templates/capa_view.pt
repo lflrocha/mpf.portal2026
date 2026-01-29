@@ -68,6 +68,7 @@
                 href="./paginas-internas/servicos.html"
                 class="flex w-full"
                 aria-label="Ir para MPF Serviços"
+                tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos"
               >
                 <!-- LOGO -->
                 <div class="flex items-center justify-start px-4 sm:px-8 py-3 shrink-0 ">
@@ -329,7 +330,7 @@
 
           <!-- Banner pequeno (altura vem da imagem) -->
           <section aria-label="Banner" class=" rounded-xl border border-gray-300 overflow-hidden">
-            <a href="./paginas-internas/interna.html" class="grid">
+            <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="grid">
               <img
                 src="assets/banner-radar-transparencia.png"
                 alt=""
@@ -471,8 +472,9 @@
 
               <section
                 aria-label="Banner de serviço"
-                class="mt-6 rounded-xl border border-gray-300 overflow-hidden bg-white"
-              >
+                class="mt-6 rounded-xl border border-gray-300 overflow-hidden bg-white">
+                <a href="#"
+                  tal:attributes="href string:${context/portal_url}/servicos/acesso-a-informacao">
                 <div class="grid">
                   <!-- imagem -->
                    <div class="col-start-1 row-start-1 flex">
@@ -503,11 +505,12 @@
                     </div>
                   </div>
                 </div>
+                </a>
               </section>
 
               <section aria-label="Banner institucional" class="mt-6">
                 <a
-                  href="#"
+                  href="https://mandaareal.mpf.mp.br/" target="_blank"
                   class="block overflow-hidden rounded-xl border border-gray-200
                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand)]/30"
                 >
