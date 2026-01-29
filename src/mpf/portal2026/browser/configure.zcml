@@ -50,6 +50,14 @@
   />
 
   <browser:page
+    name="folder-document-view"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    class=".document_view.DocumentView"
+    template="templates/document_view.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
     name="servicos-view"
     for="plone.app.contenttypes.interfaces.IFolder"
     class=".servicos_view.ServicosView"
