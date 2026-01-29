@@ -51,10 +51,18 @@
 
   <browser:page
     name="servicos-view"
-    for="mpf.portal2026.content.servicos.IServicos"
+    for="plone.app.contenttypes.interfaces.IFolder"
     class=".servicos_view.ServicosView"
     template="templates/servicos_view.pt"
     permission="zope2.View"
-/>
+  />
+
+  <browser:page
+    name="capa"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    class=".capa_view.CapaView"
+    template="templates/capa.pt"
+    permission="zope2.View"
+  />
 
 </configure>
