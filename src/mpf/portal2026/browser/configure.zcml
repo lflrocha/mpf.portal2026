@@ -75,22 +75,11 @@
   />
 
   <browser:page
-      name="noticias-lflr"
+      name="noticias-view2"
       for="*"
-      class=".noticias.NoticiasView"
-      template="templates/noticias.pt"
+      class=".noticias_view.NoticiasView"
+      template="templates/noticias_view.pt"
       permission="zope2.View"
   />
 
-
-
-<!--
-  <browser:page
-    name="contato-view"
-    for="plone.app.contenttypes.interfaces.IFolder"
-    class=".contato_view.ContatoView"
-    template="templates/contato_view.pt"
-    permission="zope2.View"
-  />
--->
 </configure>

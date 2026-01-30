@@ -64,13 +64,13 @@
                           name="tema"
                           class="w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm
                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                     <tal:opts tal:define="tema view/tema"
-                               tal:repeat="opt view/temas_options">
-                       <option tal:define="val python:opt[0]; label python:opt[1]"
-                               tal:attributes="value val;
-                                               selected python:(val and val==tema) or (not val and not tema)"
-                               tal:content="label">Todas</option>
-                     </tal:opts>
+                                 <tal:opts tal:repeat="opt view/temas_options">
+                                   <option
+                                       tal:define="val python:opt[0]; label python:opt[1]"
+                                       tal:attributes="value val;
+                                                       selected python:(val and val == view.tema()) or (not val and not view.tema())"
+                                       tal:content="label">Todas</option>
+                                 </tal:opts>
                   </select>
                 </div>
               </div>
@@ -83,20 +83,24 @@
                           name="sort"
                           class="w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm
                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <option value="recentes" tal:attributes="selected python:view.sort()=='recentes'">Mais recentes</option>
-                    <option value="antigas"  tal:attributes="selected python:view.sort()=='antigas'">Mais antigas</option>
+                    <option value="recentes"
+                            tal:attributes="selected python:request.get('sort','recentes')=='recentes'">Mais recentes</option>
+                    <option value="antigas"
+                            tal:attributes="selected python:request.get('sort','recentes')=='antigas'">Mais antigas</option>
+
                   </select>
                 </div>
               </div>
 
               <!-- Unidade (hidden, preenchida por clique no aside ou select mobile) -->
-              <input type="hidden" name="unidade" id="unidade-hidden" tal:attributes="value view/unidade" />
+              <input type="hidden" name="unidade" id="unidade-hidden"
+                     tal:attributes="value python:request.get('unidade','')" />
 
               <div class="lg:col-span-12 mt-2 border-t border-gray-200 pt-4"></div>
 
               <div class="lg:col-span-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p class="text-xs text-gray-600">
-                  Mostrando <span class="font-semibold" tal:content="data/total">0</span> notícias
+                  Mostrando <span class="font-semibold" tal:content="python:len(data)">0</span> notícias
                 </p>
 
                 <div class="flex items-center gap-2 sm:justify-end">
@@ -137,7 +141,9 @@
                 <div class="flex-1 overflow-y-auto p-3">
                   <ul id="asideList" class="grid gap-2" aria-label="Lista de unidades">
                     <tal:units tal:repeat="u view/unidades_options">
-                      <tal:unit tal:define="val python:u[0]; label python:u[1]">
+                      <tal:unit tal:define="
+                          val python:getattr(u,'value', None) if getattr(u,'value', None) is not None else u[0];
+                          label python:getattr(u,'title', None) if getattr(u,'title', None) is not None else u[1]">
                         <li>
                           <a href="#"
                              class="block rounded-md border border-gray-200 px-3 py-2 text-sm hover:bg-gray-50"
