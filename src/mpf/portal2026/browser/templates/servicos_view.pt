@@ -352,8 +352,299 @@
                   <div class="p-4 sm:p-6">
                     <!-- (mantive sua lista exatamente como está) -->
                     <ul class="grid gap-3 sm:grid-cols-2">
-                      <!-- ... seus <li class="service-item"> ... -->
-                    </ul>
+
+                                  <!-- 1) Protocolo (gov) -->
+                                  <li id="cat-atendimento"
+                                      class="service-item"
+                                      data-title="Protocolo"
+                                      data-category="atendimento"
+                                      data-level="bronze"
+                                      data-scope="cidadao"
+                                      data-external="true"
+                                      data-featured="true">
+                                    <a href="https://www.gov.br/" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">P</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Protocolo</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Encaminhe documentos, acompanhe notificações e respostas.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Atendimento</span>
+                                              <span class="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-900">
+                                                gov.br • Bronze
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 2) Denúncias e pedidos de informação (gov) -->
+                                  <li id="cat-denuncias"
+                                      class="service-item"
+                                      data-title="Denúncias e pedidos de informação"
+                                      data-category="denuncias"
+                                      data-level="bronze"
+                                      data-scope="cidadao"
+                                      data-external="true"
+                                      data-featured="true">
+                                    <a href="https://www.gov.br/" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">D</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Denúncias e pedidos de informação</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Registre fatos, solicite providências e acompanhe o andamento.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Denúncias</span>
+                                              <span class="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-900">
+                                                gov.br • Bronze
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 3) Petição e assinaturas (interno) -->
+                                  <li class="service-item"
+                                      data-title="Petição e assinaturas"
+                                      data-category="atendimento"
+                                      data-level=""
+                                      data-scope="cidadao"
+                                      data-external="false"
+                                      data-featured="true">
+                                    <a href="https://apps.mpf.mp.br/spe" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">✍</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Petição e assinaturas</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Encaminhe petições e documentos por meio do portal do MPF.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Atendimento</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 4) Pesquisa de processos e documentos (interno) -->
+                                  <li id="cat-consultas"
+                                      class="service-item"
+                                      data-title="Pesquisa de processos e documentos"
+                                      data-category="consultas"
+                                      data-level=""
+                                      data-scope="cidadao"
+                                      data-external="false"
+                                      data-featured="true">
+                                    <a href="http://apps.mpf.mp.br/aptusmpf/portal" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">🔎</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Pesquisa de processos e documentos</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Pesquise com número do processo pelo Portal da Transparência.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Consultas</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 5) Ouvidoria (gov) -->
+                                  <li class="service-item"
+                                      data-title="Ouvidoria"
+                                      data-category="denuncias"
+                                      data-level="bronze"
+                                      data-scope="cidadao"
+                                      data-external="true"
+                                      data-featured="false">
+                                    <a href="https://www.gov.br/" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">O</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Ouvidoria</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Envie reclamações, críticas, elogios e sugestões de melhoria.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Denúncias</span>
+                                              <span class="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-900">
+                                                gov.br • Bronze
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 6) Certidão negativa eletrônica (gov) -->
+                                  <li id="cat-certidoes"
+                                      class="service-item"
+                                      data-title="Certidão negativa eletrônica"
+                                      data-category="certidoes"
+                                      data-level="prata"
+                                      data-scope="cidadao"
+                                      data-external="true"
+                                      data-featured="true">
+                                    <a href="https://aplicativos.mpf.mp.br/ouvidoria/app/cidadao/certidao" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">🧾</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Certidão negativa eletrônica</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Emitir certidão negativa por CPF ou CNPJ.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Certidões</span>
+                                              <span class="inline-flex items-center rounded-full border border-gray-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-gray-800">
+                                                gov.br • Prata
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 7) Atendimento virtual (interno) -->
+                                  <li class="service-item"
+                                      data-title="Atendimento virtual"
+                                      data-category="atendimento"
+                                      data-level=""
+                                      data-scope="cidadao"
+                                      data-external="false"
+                                      data-featured="false">
+                                    <a href="./atendimento-virtual.html" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">🎥</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Atendimento virtual</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Tire dúvidas por videoconferência com orientação ao cidadão.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Atendimento</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 8) Solicitação do titular de dados pessoais (gov) -->
+                                  <li id="cat-lgpd"
+                                      class="service-item"
+                                      data-title="Solicitação do titular de dados pessoais"
+                                      data-category="lgpd"
+                                      data-level="prata"
+                                      data-scope="cidadao"
+                                      data-external="true"
+                                      data-featured="false">
+                                    <a href="https://www.gov.br/" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-4">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">🔐</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Solicitação do titular de dados pessoais</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Registre pedidos sobre tratamento de dados (LGPD).
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">LGPD</span>
+                                              <span class="inline-flex items-center rounded-full border border-gray-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-gray-800">
+                                                gov.br • Prata
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                  <!-- 9) Segurança da informação (interno) -->
+                                  <li id="cat-sistemas"
+                                      class="service-item"
+                                      data-title="Segurança da informação"
+                                      data-category="sistemas"
+                                      data-level=""
+                                      data-scope="institucional"
+                                      data-external="false"
+                                      data-featured="false">
+                                    <a href="./seguranca-da-informacao.html" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                      <div class="flex items-start justify-between gap-3">
+                                        <div class="flex items-start gap-3 min-w-0">
+                                          <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
+                                            <span class="text-[color:var(--brand)] font-semibold">🛡</span>
+                                          </div>
+                                          <div class="min-w-0">
+                                            <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Segurança da informação</h3>
+                                            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+                                              Relate incidentes e dúvidas sobre segurança dos sistemas do MPF.
+                                            </p>
+                                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                              <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-700">Segurança</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </a>
+                                  </li>
+
+                                </ul>
 
                     <!-- Nota final -->
                     <div class="mt-6 border-t pt-6">
