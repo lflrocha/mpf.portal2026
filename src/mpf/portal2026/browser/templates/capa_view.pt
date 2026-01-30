@@ -4,521 +4,437 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="mpf.portal2026">
+  <body>
 
-<body>
+    <metal:content-core metal:fill-slot="content-core">
+      <div class="mpf-ui">
+        <main id="main-content" class="mpf-layout">
+          <div class="mpf-container">
 
-<metal:content-core metal:fill-slot="content-core">
-
-<div class="mpf-tailwind">
-  <main id="main-content" class="w-full">
-    <div class="mx-auto max-w-[1440px] px-3 py-5 sm:px-4 sm:py-6">
-
-      <!-- Aviso: Portal em transição -->
-      <section class="mb-4 sm:mb-6" aria-label="Aviso">
-        <div class="rounded-md border border-amber-300 bg-amber-50 px-3 py-3 sm:px-4 text-sm text-amber-900 flex gap-3">
-          <span aria-hidden="true" class="mt-0.5">ⓘ</span>
-          <div class="min-w-0">
-            <p class="font-semibold">Portal em transição</p>
-            <p class="mt-0.5 text-amber-900/90">
-              Este é um portal intermediário. Alguns conteúdos estão sendo migrados e estarão disponíveis em breve. Caso encontre algum link indisponível, você será direcionado(a) para uma página informativa.
-            </p>
-          </div>
-        </div>
-      </section>
-      <!-- Banner principal -->
-      <section class="mb-4 sm:mb-6" aria-labelledby="boas-vindas-titulo">
-        <div class="rounded-2xl bg-[url(assets/hero-welcome.png)] bg-cover bg-left sm:bg-right text-white px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-14 shadow-sm"
-          tal:attributes="class string:rounded-2xl bg-[url(${context/portal_url}/++resource++mpf.portal2026/hero-welcome.png)] bg-cover bg-left sm:bg-right text-white px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-14 shadow-sm">
-          <div class="max-w-3xl">
-            <h1 id="boas-vindas-titulo" class="text-3xl md:text-4xl font-semibold leading-tight">
-              Bem-vindo ao novo Portal do MPF
-            </h1>
-            <p class="mt-2 text-white/90 text-base md:text-lg">
-              Ajude a melhorar o novo site do MPF enviando sua opinião.
-            </p>
-            <div class="mt-4 flex flex-col sm:flex-row gap-4">
-              <a href="paginas-internas/feedback.html"
-                class="inline-flex items-center justify-center rounded-md border border-white/30 px-5 py-2.5 text-sm font-semibold text-white
-                        hover:bg-white/10 active:bg-white/0 focus:outline-none focus:ring-2 focus:ring-white/40">
-                Enviar feedback
-              </a>
-              <a href="./paginas-internas/noticias.html"
-                class="inline-flex items-center justify-center rounded-md border border-white/30 px-5 py-2.5 text-sm font-semibold text-white
-                        hover:bg-white/10 active:bg-white/0 focus:outline-none focus:ring-2 focus:ring-white/40">
-                Fale Conosco
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Serviços (70%) + Destaques (30%) -->
-      <section aria-labelledby="hub-servicos-titulo"
-      class="flex flex-col gap-4 sm:gap-6 lg:grid lg:grid-cols-12 lg:items-stretch">
-
-        <!-- COLUNA 70% — SERVIÇOS -->
-<div class="lg:col-span-8">
-
-<!-- BLOCO 1 (Serviços em destaque) -->
-<div class="order-1 lg:order-1">
-  <div class="h-full overflow-hidden rounded-md border border-gray-300 bg-white flex flex-col">
-    <!-- Cabeçalho com imagem + shade -->
-            <header class="relative overflow-hidden border-b border-gray-300">
-              <a
-                href="./paginas-internas/servicos.html"
-                class="flex w-full"
-                aria-label="Ir para MPF Serviços"
-                tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos"
-              >
-                <!-- LOGO -->
-                <div class="flex items-center justify-start px-4 sm:px-8 py-3 shrink-0 ">
-                  <img
-                    src="./assets/mpf-servicos-logo.svg"
-                    alt="MPF Serviços"
-                    class="h-10 sm:h-16 w-auto"
-                    loading="lazy"
-                    tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/mpf-servicos-logo.svg"
-                  />
-                  <span class="sr-only">Serviços — Para o cidadão</span>
+            <!-- Aviso: Portal em transição -->
+            <section class="mpf-alert" aria-label="Aviso">
+              <div class="mpf-alert__box">
+                <span aria-hidden="true" class="mpf-alert__icon">ⓘ</span>
+                <div class="mpf-alert__content">
+                  <p class="mpf-alert__title">Portal em transição</p>
+                  <p class="mpf-alert__text">
+                    Este é um portal intermediário. Alguns conteúdos estão sendo migrados e estarão disponíveis em breve. Caso encontre algum link indisponível, você será direcionado(a) para uma página informativa.
+                  </p>
                 </div>
-
-                <!-- BANNER -->
-                <div class="relative flex-1">
-                  <!-- altura -->
-                  <div class="h-[140px] sm:h-[150px]"></div>
-
-                  <!-- imagem -->
-                  <div
-                    class="absolute inset-0 bg-cover bg-right bg-[url('./assets/banner-servicos-mobile.png')] sm:bg-[url('./assets/banner-servicos.png')]"
-                    aria-hidden="true"
-                    tal:attributes="class string:absolute inset-0 bg-cover bg-right bg-[url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos-mobile.png')] sm:bg-[url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos.png')]"
-                  ></div>
-                </div>
-              </a>
-            </header>
-
-    <!-- Grid (só os cards de serviços + CTA) -->
-    <div class="p-4 sm:p-6 lg:p-7 flex-1">
-      <ul class="grid gap-4 sm:grid-cols-2">
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">P</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Protocolo</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Envie documentos e acompanhe o andamento do pedido.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">D</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Denúncia</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Registre informações e solicite providências ao MPF.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">🔎</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Pesquisa de processos</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Consulte processos e documentos públicos do MPF.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">🎓</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Concursos</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Informações sobre concurso e estágio.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">O</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Ouvidoria</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Envie reclamações, elogios, sugestões e pedidos.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#"
-                    class="group block h-full rounded-md border border-gray-300 bg-white p-4 sm:p-5 hover:bg-gray-50
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                    <div class="flex items-start gap-3 sm:gap-4">
-                      <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
-                        <span class="text-[color:var(--brand)] font-semibold">C</span>
-                      </div>
-                      <div class="min-w-0">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:underline">Certidões</h3>
-                        <p class="mt-1 text-sm text-gray-700 leading-relaxed">Emita certidões e consultas relacionadas ao MPF.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-              <div class="mt-5 sm:mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p class="text-xs text-gray-600">Não achou? Use a página completa de serviços.</p>
-                <a href="./paginas-internas/servicos.html"
-                  class="inline-flex items-center justify-center rounded-md bg-[color:var(--brand)] px-4 sm:px-5 py-2.5 text-sm font-semibold text-white hover:opacity-95
-                          focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
-                  Ver todos os serviços
-                </a>
               </div>
-    </div>
-  </div>
-</div>
+            </section>
 
-</div>
+            <!-- Banner principal -->
+            <section class="mpf-hero" aria-labelledby="boas-vindas-titulo">
+              <div class="mpf-hero__box"
+                tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/hero-welcome.png');">
+                <div class="mpf-hero__content">
+                  <h1 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h1>
+                  <p class="mpf-hero__subtitle">Ajude a melhorar o novo site do MPF enviando sua opinião.</p>
 
-<aside class="lg:col-span-4 lg:row-span-2 flex flex-col gap-4 sm:gap-6">
-
-          <section aria-labelledby="destaques-titulo" class="rounded-md border border-gray-300 bg-white overflow-hidden flex flex-col">
-            <header class="p-4 sm:p-6 border-b border-gray-200">
-              <h2 id="destaques-titulo" class="text-lg font-semibold text-gray-900">Notícias em destaque</h2>
-              <p class="mt-1 text-sm text-gray-600">Atualizações institucionais selecionadas.</p>
-            </header>
-
-            <div class="p-4 sm:p-6 grid gap-4 sm:gap-4"
-                 tal:define="items view/destaques">
-
-              <tal:block tal:repeat="it items">
-                <article class="rounded-md border border-gray-300 overflow-hidden">
-                  <tal:block tal:condition="it/image_url">
-                    <div class="aspect-[16/10] overflow-hidden bg-gray-200">
-                      <img tal:attributes="src it/image_url; alt it/title"
-                           class="h-full w-full object-cover"
-                           loading="lazy" />
-                    </div>
-                  </tal:block>
-
-                  <div class="p-3 sm:p-4">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]"
-                       tal:condition="it/chapeu"
-                       tal:content="it/chapeu">Chapéu</p>
-
-                    <h3 class="mt-1 text-base font-semibold leading-snug">
-                      <a tal:attributes="href it/url"
-                         class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded"
-                         tal:content="it/title">Título</a>
-                    </h3>
-
-                    <p class="mt-2 text-sm text-gray-700 leading-relaxed line-clamp-2"
-                       tal:condition="it/description"
-                       tal:content="it/description">Resumo</p>
-
-                    <p class="mt-3 text-xs text-gray-500 leading-normal"
-                       tal:condition="it/date_str"
-                       tal:content="it/date_str">00/00/0000 | 00:00</p>
+                  <div class="mpf-hero__actions">
+                    <a href="paginas-internas/feedback.html" class="mpf-btn mpf-btn--ghost">
+                      Enviar feedback
+                    </a>
+                    <a href="./paginas-internas/noticias.html" class="mpf-btn mpf-btn--ghost">
+                      Fale Conosco
+                    </a>
                   </div>
-                </article>
-              </tal:block>
-
-            </div>
-
-          </section>
-
-          <!-- Carrossel -->
-          <section aria-labelledby="carrossel-titulo" class="rounded-md border border-gray-200 bg-white overflow-hidden">
-            <header class="p-4 sm:p-6 border-b border-gray-200">
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <h2 id="carrossel-titulo" class="text-lg font-semibold text-gray-900">Em foco</h2>
-                  <p class="mt-1 text-sm text-gray-600">Conteúdos selecionados.</p>
                 </div>
               </div>
-            </header>
+            </section>
 
-            <div class="p-4 sm:p-6">
-              <div class="swiper mpf-swiper">
-                <div class="swiper-wrapper" tal:define="items view/em_foco">
+            <!-- Serviços (70%) + Destaques (30%) -->
+            <section aria-labelledby="hub-servicos-titulo" class="mpf-grid-70-30">
 
-                  <tal:block tal:repeat="it items">
-                    <div class="swiper-slide">
-                      <article class="group rounded-2xl border border-gray-200 overflow-hidden">
-                        <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
-                          <img tal:attributes="src it/imagem_url; alt it/titulo"
-                               class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                               loading="lazy" />
-                        </div>
-                        <div class="p-3 sm:p-4">
-                          <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]"
-                             tal:content="it/chapeu">Chapéu</p>
-                          <h3 class="mt-1 text-base font-semibold leading-snug text-gray-900">
-                            <a tal:attributes="href it/link"
-                               class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded"
-                               tal:content="it/titulo">Título</a>
-                          </h3>
-                        </div>
-                      </article>
+              <!-- COLUNA 70% -->
+              <div class="mpf-col-70">
+
+                <!-- BLOCO 1: MPF Serviços + cards -->
+                <div class="mpf-card mpf-card--stack">
+                  <header class="mpf-card__header mpf-card__header--banner">
+                    <a
+                      href="./paginas-internas/servicos.html"
+                      class="mpf-servicos-hero"
+                      aria-label="Ir para MPF Serviços"
+                      tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos"
+                    >
+                      <div class="mpf-servicos-hero__logo">
+                        <img
+                          src="./assets/mpf-servicos-logo.svg"
+                          alt="MPF Serviços"
+                          class="mpf-servicos-hero__logo-img"
+                          loading="lazy"
+                          tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/mpf-servicos-logo.svg"
+                        />
+                        <span class="sr-only">Serviços — Para o cidadão</span>
+                      </div>
+
+                      <div class="mpf-servicos-hero__banner">
+                        <div class="mpf-servicos-hero__banner-spacer"></div>
+
+                        <div class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--mobile"
+                          aria-hidden="true"
+                          tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos-mobile.png');"
+                        ></div>
+
+                        <div class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--desktop"
+                          aria-hidden="true"
+                          tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos.png');"
+                        ></div>
+                      </div>
+                    </a>
+                  </header>
+
+                  <div class="mpf-card__body">
+                    <ul class="mpf-service-grid">
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">P</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Protocolo</h3>
+                              <p class="mpf-service-card__desc">Envie documentos e acompanhe o andamento do pedido.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">D</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Denúncia</h3>
+                              <p class="mpf-service-card__desc">Registre informações e solicite providências ao MPF.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">🔎</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Pesquisa de processos</h3>
+                              <p class="mpf-service-card__desc">Consulte processos e documentos públicos do MPF.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">🎓</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Concursos</h3>
+                              <p class="mpf-service-card__desc">Informações sobre concurso e estágio.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">O</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Ouvidoria</h3>
+                              <p class="mpf-service-card__desc">Envie reclamações, elogios, sugestões e pedidos.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#" class="mpf-service-card">
+                          <div class="mpf-service-card__row">
+                            <div class="mpf-service-card__icon" aria-hidden="true">
+                              <span class="mpf-service-card__icon-text">C</span>
+                            </div>
+                            <div class="mpf-service-card__text">
+                              <h3 class="mpf-service-card__title">Certidões</h3>
+                              <p class="mpf-service-card__desc">Emita certidões e consultas relacionadas ao MPF.</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+
+                    </ul>
+
+                    <div class="mpf-card__footer-row">
+                      <p class="mpf-muted">Não achou? Use a página completa de serviços.</p>
+                      <a href="./paginas-internas/servicos.html" class="mpf-btn mpf-btn--primary">
+                        Ver todos os serviços
+                      </a>
                     </div>
-                  </tal:block>
-
+                  </div>
                 </div>
 
-                <!-- Controles -->
-                <div class="mt-4 flex items-center justify-between gap-3">
-                  <div class="flex items-center gap-2">
-                    <button type="button"
-                            class="mpf-swiper-prev rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
-                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
-                            aria-label="Voltar">
-                      <svg aria-hidden="true" class="inline-block h-8 w-8 opacity-80"
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 18l-6-6 6-6" />
-                      </svg>
-                    </button>
+                <!-- BLOCO 3: Últimas notícias + banners (fica na coluna 70 no desktop) -->
+                <section id="ultimas-noticias" aria-labelledby="ultimas-noticias-titulo" class="mpf-card mpf-latest">
+                  <div class="mpf-latest__head">
+                    <h2 id="ultimas-noticias-titulo" class="mpf-h1">Últimas Notícias</h2>
 
-                    <button type="button"
-                            class="mpf-swiper-next rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
-                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
-                            aria-label="Avançar">
-                      <svg aria-hidden="true" class="inline-block h-8 w-8 opacity-80"
+                    <a href="./paginas-internas/noticias.html" class="mpf-link-cta">
+                      <span class="mpf-link-cta__plus" aria-hidden="true">+</span>
+                      <span class="mpf-link-cta__text">Ver todas</span>
+                      <svg aria-hidden="true" class="mpf-link-cta__chev"
                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 18l6-6-6-6" />
                       </svg>
-                    </button>
+                      <span class="sr-only mpf-link-cta__sr">Ver todas</span>
+                    </a>
                   </div>
 
-                  <div class="mpf-swiper-pagination"></div>
-                </div>
-              </div>
-            </div>
-          </section>
+                  <div class="mpf-latest__grid">
 
-          <!-- Banner pequeno (altura vem da imagem) -->
-          <section aria-label="Banner" class=" rounded-xl border border-gray-300 overflow-hidden">
-            <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="grid">
-              <img
-                src="assets/banner-radar-transparencia.png"
-                alt=""
-                class="col-start-1 row-start-1 w-full h-auto"
-                loading="lazy"
-                tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
-              />
-            </a>
-          </section>
+                    <!-- Lista maior -->
+                    <div class="mpf-latest__list" tal:define="ultimas view/ultimas_noticias">
+                      <tal:block tal:repeat="it ultimas">
+                        <article class="mpf-news-row">
+                          <div class="mpf-news-row__top">
+                            <p class="mpf-pill"
+                              tal:condition="it/chapeu"
+                              tal:content="it/chapeu">Chapéu</p>
+                          </div>
 
-
-        </aside>
-
-<!-- BLOCO 3 no mobile (Últimas notícias + resto da coluna 70%) -->
-<div class="lg:col-span-8">
-  <!-- Últimas noticias -->
-              <section id="ultimas-noticias" aria-labelledby="ultimas-noticias-titulo" class="mt-2 sm:mt-0 rounded-md border border-gray-300 bg-white p-4 sm:p-6">
-                <div class="flex items-center justify-between gap-4">
-                  <h2 id="ultimas-noticias-titulo" class="text-xl sm:text-2xl font-semibold">Últimas Notícias</h2>
-
-                  <!-- mobile: "+" | desktop: "Ver todas" + chevron-right -->
-                  <a href="./paginas-internas/noticias.html"
-                    class="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] hover:underline
-                            focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded">
-                    <span class="sm:hidden font-bold text-lg leading-none" aria-hidden="true">+</span>
-                    <span class="hidden sm:inline">Ver todas</span>
-
-                    <svg aria-hidden="true"
-                        class="ml-1 hidden sm:inline-block h-3.5 w-3.5 opacity-70"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-
-                    <span class="sr-only sm:hidden">Ver todas</span>
-                  </a>
-                </div>
-
-                <div class="mt-5 sm:mt-6 grid gap-4 sm:gap-6 lg:grid-cols-12">
-                  <!-- Lista (maior) -->
-                  <div class="lg:col-span-7 grid gap-4 sm:gap-4"
-                       tal:define="ultimas view/ultimas_noticias">
-
-                    <tal:block tal:repeat="it ultimas">
-                      <article class="rounded-md border border-gray-200 p-4 sm:p-5 hover:bg-gray-50 transition">
-                        <div class="flex items-start justify-between gap-4">
-                          <p class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700"
-                             tal:condition="it/chapeu"
-                             tal:content="it/chapeu">Chapéu</p>
-                        </div>
-
-                        <h3 class="mt-3 text-lg font-semibold leading-snug">
-                          <a tal:attributes="href it/url"
-                             class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded"
-                             tal:content="it/title">Título</a>
-                        </h3>
-
-                        <p class="mt-2 text-sm text-gray-700 leading-relaxed line-clamp-2"
-                           tal:condition="it/description"
-                           tal:content="it/description">Resumo</p>
-
-                        <p class="text-xs text-gray-500 inline-flex items-center gap-2 mt-4"
-                           tal:condition="it/date_str">
-                          <span aria-hidden="true">
-                            <img src="assets/calendar.svg" alt="calendário" height="12" width="12"
-                                 tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/calendar.svg" />
-                          </span>
-                          <span tal:content="it/date_str">00/00/0000 | 00:00</span>
-                        </p>
-                      </article>
-                    </tal:block>
-
-                  </div>
-
-
-                  <!-- Cards com imagem (lado direito) -->
-                  <!-- Cards com imagem (lado direito) — Destaques Últimas -->
-                  <div class="lg:col-span-5 grid gap-4 sm:gap-4"
-                       tal:define="items view/destaques_ultimas">
-
-                    <tal:block tal:repeat="it items">
-                      <article class="relative overflow-hidden rounded-xl border border-gray-200">
-                        <div class="aspect-[16/10] bg-gray-300">
-                          <img tal:attributes="src it/imagem_url; alt it/titulo"
-                               class="h-full w-full object-cover"
-                               loading="lazy" />
-                        </div>
-
-                        <div class="absolute inset-0 bg-black/35"></div>
-
-                        <div class="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end">
-                          <p class="inline-flex w-fit items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white"
-                             tal:content="it/chapeu">Chapéu</p>
-
-                          <h3 class="mt-3 text-xl font-semibold text-white leading-snug">
-                            <a tal:attributes="href it/link"
-                               class="hover:underline focus:outline-none focus:ring-2 focus:ring-white/40 rounded"
-                               tal:content="it/titulo">Título</a>
+                          <h3 class="mpf-news-row__title">
+                            <a tal:attributes="href it/url" class="mpf-link"
+                              tal:content="it/title">Título</a>
                           </h3>
+
+                          <p class="mpf-news-row__desc"
+                            tal:condition="it/description"
+                            tal:content="it/description">Resumo</p>
+
+                          <p class="mpf-date" tal:condition="it/date_str">
+                            <span aria-hidden="true" class="mpf-date__icon">
+                              <img src="assets/calendar.svg" alt="calendário" height="12" width="12"
+                                  tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/calendar.svg" />
+                            </span>
+                            <span tal:content="it/date_str">00/00/0000 | 00:00</span>
+                          </p>
+                        </article>
+                      </tal:block>
+                    </div>
+
+                    <!-- Cards com imagem -->
+                    <div class="mpf-latest__side" tal:define="items view/destaques_ultimas">
+                      <tal:block tal:repeat="it items">
+                        <article class="mpf-image-card">
+                          <div class="mpf-image-card__media">
+                            <img tal:attributes="src it/imagem_url; alt it/titulo"
+                                class="mpf-image-card__img"
+                                loading="lazy" />
+                          </div>
+
+                          <div class="mpf-image-card__overlay" aria-hidden="true"></div>
+
+                          <div class="mpf-image-card__content">
+                            <p class="mpf-pill mpf-pill--glass" tal:content="it/chapeu">Chapéu</p>
+                            <h3 class="mpf-image-card__title">
+                              <a tal:attributes="href it/link" class="mpf-link mpf-link--invert"
+                                tal:content="it/titulo">Título</a>
+                            </h3>
+                          </div>
+                        </article>
+                      </tal:block>
+                    </div>
+
+                  </div>
+                </section>
+
+                <!-- Banner de serviço -->
+                <section aria-label="Banner de serviço" class="mpf-banner mpf-banner--mt">
+                  <a href="#" class="mpf-banner__link"
+                    tal:attributes="href string:${context/portal_url}/servicos/acesso-a-informacao">
+                    <div class="mpf-banner__grid">
+                      <div class="mpf-banner__imgwrap">
+                        <img
+                          src="./assets/banner-informacao.png"
+                          alt=""
+                          class="mpf-banner__img"
+                          loading="lazy"
+                          tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-informacao.png"
+                        />
+                      </div>
+
+                      <div class="mpf-banner__shade" aria-hidden="true"></div>
+
+                      <div class="mpf-banner__content">
+                        <div class="mpf-banner__text">
+                          <p class="mpf-eyebrow">Transparência</p>
+                          <h3 class="mpf-banner__title">Acesso à Informação</h3>
+                          <p class="mpf-banner__desc">
+                            Solicite informações, acompanhe pedidos e consulte dados públicos do MPF.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </section>
+
+                <!-- Banner institucional -->
+                <section aria-label="Banner institucional" class="mpf-banner mpf-banner--mt">
+                  <a href="https://mandaareal.mpf.mp.br/" target="_blank" class="mpf-banner__link mpf-banner__link--focus">
+                    <picture>
+                      <source media="(max-width: 639px)"
+                              srcset="assets/manda-real-mobile.png"
+                              tal:attributes="srcset string:${context/portal_url}/++resource++mpf.portal2026/manda-real-mobile.png" />
+                      <source media="(min-width: 640px)"
+                              srcset="assets/manda-real-desktop.png"
+                              tal:attributes="srcset string:${context/portal_url}/++resource++mpf.portal2026/manda-real-desktop.png" />
+                      <img src="assets/manda-real-desktop.png"
+                          alt="MPF Serviços"
+                          class="mpf-banner__img-plain"
+                          loading="lazy"
+                          tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/manda-real-desktop.png" />
+                    </picture>
+                  </a>
+                </section>
+
+              </div>
+
+              <!-- COLUNA 30% -->
+              <aside class="mpf-col-30">
+
+                <!-- Notícias em destaque -->
+                <section aria-labelledby="destaques-titulo" class="mpf-card mpf-card--stack">
+                  <header class="mpf-card__header">
+                    <h2 id="destaques-titulo" class="mpf-h2">Notícias em destaque</h2>
+                    <p class="mpf-sub">Atualizações institucionais selecionadas.</p>
+                  </header>
+
+                  <div class="mpf-card__body mpf-stack" tal:define="items view/destaques">
+                    <tal:block tal:repeat="it items">
+                      <article class="mpf-mini-card">
+                        <tal:block tal:condition="it/image_url">
+                          <div class="mpf-mini-card__media">
+                            <img tal:attributes="src it/image_url; alt it/title"
+                                class="mpf-mini-card__img"
+                                loading="lazy" />
+                          </div>
+                        </tal:block>
+
+                        <div class="mpf-mini-card__body">
+                          <p class="mpf-eyebrow mpf-eyebrow--brand"
+                            tal:condition="it/chapeu"
+                            tal:content="it/chapeu">Chapéu</p>
+
+                          <h3 class="mpf-mini-card__title">
+                            <a tal:attributes="href it/url" class="mpf-link"
+                              tal:content="it/title">Título</a>
+                          </h3>
+
+                          <p class="mpf-mini-card__desc"
+                            tal:condition="it/description"
+                            tal:content="it/description">Resumo</p>
+
+                          <p class="mpf-mini-card__date"
+                            tal:condition="it/date_str"
+                            tal:content="it/date_str">00/00/0000 | 00:00</p>
                         </div>
                       </article>
                     </tal:block>
-
                   </div>
-                </div>
-              </section>
+                </section>
 
-              <section
-                aria-label="Banner de serviço"
-                class="mt-6 rounded-xl border border-gray-300 overflow-hidden bg-white">
-                <a href="#"
-                  tal:attributes="href string:${context/portal_url}/servicos/acesso-a-informacao">
-                <div class="grid">
-                  <!-- imagem -->
-                   <div class="col-start-1 row-start-1 flex">
-                    <img
-                      src="./assets/banner-informacao.png"
-                      alt=""
-                      class="col-start-1 row-start-1 w-full h-auto object-cover object-right"
-                      loading="lazy"
-                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-informacao.png"
-                    />
-                   </div>
+                <!-- Carrossel -->
+                <section aria-labelledby="carrossel-titulo" class="mpf-card">
+                  <header class="mpf-card__header mpf-card__header--row">
+                    <div>
+                      <h2 id="carrossel-titulo" class="mpf-h2">Em foco</h2>
+                      <p class="mpf-sub">Conteúdos selecionados.</p>
+                    </div>
+                  </header>
 
-                  <!-- overlay -->
-                  <div class="col-start-1 row-start-1 bg-black/60"></div>
+                  <div class="mpf-card__body">
+                    <div class="swiper mpf-swiper">
+                      <div class="swiper-wrapper" tal:define="items view/em_foco">
 
-                  <!-- conteúdo -->
-                  <div class="col-start-1 row-start-1 p-4 sm:p-5 flex items-center justify-between gap-4">
-                    <div class="text-white max-w-xl">
-                      <p class="text-[11px] font-semibold uppercase tracking-wider text-white/90">
-                        Transparência
-                      </p>
-                      <h3 class="mt-1 text-2xl font-semibold leading-tight">
-                        Acesso à Informação
-                      </h3>
-                      <p class="mt-1 text-sm text-white/90">
-                        Solicite informações, acompanhe pedidos e consulte dados públicos do MPF.
-                      </p>
+                        <tal:block tal:repeat="it items">
+                          <div class="swiper-slide">
+                            <article class="mpf-slide-card">
+                              <div class="mpf-slide-card__media">
+                                <img tal:attributes="src it/imagem_url; alt it/titulo"
+                                    class="mpf-slide-card__img"
+                                    loading="lazy" />
+                              </div>
+                              <div class="mpf-slide-card__body">
+                                <p class="mpf-eyebrow mpf-eyebrow--brand"
+                                  tal:content="it/chapeu">Chapéu</p>
+                                <h3 class="mpf-slide-card__title">
+                                  <a tal:attributes="href it/link" class="mpf-link"
+                                    tal:content="it/titulo">Título</a>
+                                </h3>
+                              </div>
+                            </article>
+                          </div>
+                        </tal:block>
+
+                      </div>
+
+                      <div class="mpf-swiper-controls">
+                        <div class="mpf-swiper-buttons">
+                          <button type="button" class="mpf-swiper-prev mpf-icon-btn" aria-label="Voltar">
+                            <svg aria-hidden="true" class="mpf-icon"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                          </button>
+
+                          <button type="button" class="mpf-swiper-next mpf-icon-btn" aria-label="Avançar">
+                            <svg aria-hidden="true" class="mpf-icon"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M9 18l6-6-6-6" />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <div class="mpf-swiper-pagination"></div>
+                      </div>
+
                     </div>
                   </div>
-                </div>
-                </a>
-              </section>
+                </section>
 
-              <section aria-label="Banner institucional" class="mt-6">
-                <a
-                  href="https://mandaareal.mpf.mp.br/" target="_blank"
-                  class="block overflow-hidden rounded-xl border border-gray-200
-                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand)]/30"
-                >
-                  <picture>
-                    <!-- Mobile -->
-                    <source
-                      media="(max-width: 639px)"
-                      srcset="assets/manda-real-mobile.png"
-                      tal:attributes="srcset string:${context/portal_url}/++resource++mpf.portal2026/manda-real-mobile.png"
-                    />
-
-                    <!-- Desktop / Tablet -->
-                    <source
-                      media="(min-width: 640px)"
-                      srcset="assets/manda-real-desktop.png"
-                      tal:attributes="srcset string:${context/portal_url}/++resource++mpf.portal2026/manda-real-desktop.png"
-                    />
-
+                <!-- Banner pequeno -->
+                <section aria-label="Banner" class="mpf-banner-mini">
+                  <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
                     <img
-                      src="assets/manda-real-desktop.png"
-                      alt="MPF Serviços"
-                      class="block w-full h-auto"
+                      src="assets/banner-radar-transparencia.png"
+                      alt=""
+                      class="mpf-banner-mini__img"
                       loading="lazy"
-                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/manda-real-desktop.png"
+                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
                     />
-                  </picture>
-                </a>
-              </section>
-</div>
+                  </a>
+                </section>
 
+              </aside>
 
+            </section>
+          </div>
+        </main>
+      </div>
+    </metal:content-core>
 
-        <!-- COLUNA 30% — DESTAQUES + BANNER -->
-
-      </section>
-
-    </div>
-  </main>
-</div>
-</metal:content-core>
-</body>
-
+  </body>
 </html>
