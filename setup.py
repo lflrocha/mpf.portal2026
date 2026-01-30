@@ -5,10 +5,10 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-long_description = '\n\n'.join([
-    open('README.rst').read(),
-    open('CONTRIBUTORS.rst').read(),
-    open('CHANGES.rst').read(),
+long_description = "\n\n".join([
+    open("README.rst").read(),
+    open("CONTRIBUTORS.rst").read(),
+    open("CHANGES.rst").read(),
 ])
 
 
@@ -17,7 +17,8 @@ setup(
     version='1.0a1',
     description="Portal MPF 2026",
     long_description=long_description,
-    # Get more from https://pypi.org/classifiers/
+    long_description_content_type="text/x-rst",
+
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",

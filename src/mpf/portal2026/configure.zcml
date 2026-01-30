@@ -3,13 +3,14 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="mpf.portal2026">
 
   <i18n:registerTranslations directory="locales" />
 
   <!--
     Be careful if you use general includeDependencies, it can have side effects!
-    Better import explicit packages or configurations ;)
+    Better import explicit packages or configurations ;
   -->
   <!--<includeDependencies package="." />-->
 
@@ -17,6 +18,14 @@
   <include file="permissions.zcml" />
   <include package="plone.app.layout" />
   <include package=".browser" />
+
+<browser:page
+    name="noticias"
+    for="*"
+    class=".browser.noticias_view.NoticiasView"
+    template="browser/templates/noticias.pt"
+    permission="zope2.View"
+/>
 
   <genericsetup:registerProfile
       name="default"
