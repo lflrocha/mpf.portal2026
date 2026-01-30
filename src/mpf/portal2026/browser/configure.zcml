@@ -73,4 +73,12 @@
     permission="zope2.View"
   />
 
+  <browser:page
+    name="contato-view"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    class=".contato_view.ContatoView"
+    template="templates/contato_view.pt"
+    permission="zope2.View"
+  />
+
 </configure>
