@@ -28,7 +28,22 @@ class NoticiasView(BrowserView):
         return (self.request.get("q") or "").strip()
 
     def tema(self):
-        return (self.request.get("tema") or "").strip()
+        t = self.request.get("tema")
+
+        # se vier lista (ex: ?tema=a&tema=b)
+        if isinstance(t, (list, tuple)):
+            # valores a remover
+            blacklist = ("", "-- Selecione --", None)
+            t = [x for x in t if x not in blacklist]
+
+            # se sobrar 1, retorna string
+            return t[0].strip() if t else ""
+
+        # se vier string normal
+        if isinstance(t, str):
+            return t.strip()
+
+        return ""
 
     def unidade(self):
         # esperado: "/portal/pgr" (relativo ao site)
