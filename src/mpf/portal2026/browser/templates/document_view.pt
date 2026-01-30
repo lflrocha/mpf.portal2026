@@ -105,24 +105,8 @@
                    </a>
                  </tal:loop>
 
-
-
                </div>
              </section>
-
-             <!-- Card opcional (no “jeito capa”: brand + CTA) -->
-             <aside class="rounded-xl bg-[color:var(--brand)] p-4 sm:p-6 text-white">
-               <h3 class="text-lg font-semibold">Precisa de atendimento?</h3>
-               <p class="mt-2 text-sm text-white/90">
-                 Acesse canais oficiais ou veja os principais serviços ao cidadão.
-               </p>
-               <a href="#"
-                 class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-[color:var(--brand)]
-                         hover:bg-white/95 focus:outline-none focus:ring-2 focus:ring-white/40"
-                  tal:attributes="href string:${context/portal_url}/servicos">
-                 Ver serviços
-               </a>
-             </aside>
 
            </aside>
          </section>

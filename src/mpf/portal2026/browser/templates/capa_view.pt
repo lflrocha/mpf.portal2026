@@ -36,7 +36,8 @@
                     <a href="paginas-internas/feedback.html" class="mpf-btn mpf-btn--ghost">
                       Enviar feedback
                     </a>
-                    <a href="./paginas-internas/noticias.html" class="mpf-btn mpf-btn--ghost">
+                    <a href="./paginas-internas/noticias.html" class="mpf-btn mpf-btn--ghost"
+                      tal:attributes="href string:${context/portal_url}/contact-info">
                       Fale Conosco
                     </a>
                   </div>
@@ -189,7 +190,8 @@
                   <div class="mpf-latest__head">
                     <h2 id="ultimas-noticias-titulo" class="mpf-h1">Últimas Notícias</h2>
 
-                    <a href="./paginas-internas/noticias.html" class="mpf-link-cta">
+                    <a href="./paginas-internas/noticias.html" class="mpf-link-cta"
+                      tal:attributes="href string:${context/portal_url}/comunicacao/noticias">
                       <span class="mpf-link-cta__plus" aria-hidden="true">+</span>
                       <span class="mpf-link-cta__text">Ver todas</span>
                       <svg aria-hidden="true" class="mpf-link-cta__chev"
