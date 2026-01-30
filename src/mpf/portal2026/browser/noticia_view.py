@@ -6,9 +6,15 @@ from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 from zope.schema.vocabulary import getVocabularyRegistry
+from Products.Five import BrowserView
 
 
 class NoticiaView(BrowserView):
+
+    def __call__(self):
+        self.request.set('disable_plone.leftcolumn', 1)
+        self.request.set('disable_plone.rightcolumn', 1)
+        return self.index()
 
     def _field(self, name):
         for schema in iterSchemata(self.context):

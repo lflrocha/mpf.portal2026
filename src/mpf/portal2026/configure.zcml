@@ -19,13 +19,6 @@
   <include package="plone.app.layout" />
   <include package=".browser" />
 
-<browser:page
-    name="noticias"
-    for="*"
-    class=".browser.noticias_view.NoticiasView"
-    template="browser/templates/noticias.pt"
-    permission="zope2.View"
-/>
 
   <genericsetup:registerProfile
       name="default"

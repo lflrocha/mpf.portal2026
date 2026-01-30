@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:portlets="http://namespaces.plone.org/portlets"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="mpf.portal2026">
 
@@ -80,6 +81,8 @@
       template="templates/noticias.pt"
       permission="zope2.View"
   />
+
+
 
 <!--
   <browser:page
