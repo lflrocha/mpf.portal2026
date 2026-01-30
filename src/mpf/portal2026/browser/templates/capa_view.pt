@@ -436,7 +436,10 @@
           </div>
         </main>
       </div>
-      <script src="++resource++mpf.portal2026/js/slider.js"></script>
+
+      <script src="++resource++mpf.portal2026/js/filtersServices.js"
+        tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/js/slider.js"></script>
+
     </metal:content-core>
 
   </body>

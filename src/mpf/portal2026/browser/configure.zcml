@@ -64,15 +64,6 @@
     template="templates/servicos_view.pt"
       permission="zope2.View"
   />
-  -->
-
-<browser:page
-    name="capa"
-    for="plone.app.contenttypes.interfaces.IFolder"
-    class=".capa.CapaView"
-    template="templates/capa.pt"
-    permission="zope2.View"
-  />
 
   <browser:page
     name="capa-view"
@@ -83,11 +74,20 @@
   />
 
   <browser:page
+      name="noticias-lflr"
+      for="*"
+      class=".noticias.NoticiasView"
+      template="templates/noticias.pt"
+      permission="zope2.View"
+  />
+
+<!--
+  <browser:page
     name="contato-view"
     for="plone.app.contenttypes.interfaces.IFolder"
     class=".contato_view.ContatoView"
     template="templates/contato_view.pt"
     permission="zope2.View"
   />
-
+-->
 </configure>
