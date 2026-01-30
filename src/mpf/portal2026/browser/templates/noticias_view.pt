@@ -168,7 +168,7 @@
                         <p class="mt-2 text-sm text-gray-700 leading-relaxed line-clamp-3"
                            tal:content="it/description">Descrição</p>
 
-                        <div class="mt-3 text-xs text-gray-500" tal:content="it/origin">/portal/pgr</div>
+                        <div class="mt-3 text-xs text-gray-500" tal:content="it/unidadeOrigem">/portal/pgr</div>
                         <div class="mt-1 text-xs text-gray-500 inline-flex items-center gap-2" tal:condition="it/datetime_human">
                           <span aria-hidden="true">🕒</span>
                           <time data-role="datetime" tal:content="it/datetime_human">18/12/2025 • 14:32</time>
