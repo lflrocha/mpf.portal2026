@@ -100,7 +100,7 @@
 
               <div class="lg:col-span-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p class="text-xs text-gray-600">
-                  Mostrando <span class="font-semibold" tal:content="python:len(data)">0</span> notícias
+                  Mostrando <span class="font-semibold" tal:content="data/total">0</span> notícias
                 </p>
 
                 <div class="flex items-center gap-2 sm:justify-end">

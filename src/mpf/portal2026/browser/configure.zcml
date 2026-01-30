@@ -75,7 +75,7 @@
   />
 
   <browser:page
-      name="noticias-view2"
+      name="noticias-view"
       for="*"
       class=".noticias_view.NoticiasView"
       template="templates/noticias_view.pt"
