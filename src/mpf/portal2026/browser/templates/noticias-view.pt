@@ -40,6 +40,6 @@
         </div>
       </tal:pagination>
     </tal:vars>
-
+  <script src="++resource++mpf.portal2026/js/newsResults.js"></script>
   </metal:content>
 </metal:main>
