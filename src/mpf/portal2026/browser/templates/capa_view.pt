@@ -434,6 +434,7 @@
           </div>
         </main>
       </div>
+      <script src="++resource++mpf.portal2026/js/slider.js"></script>
     </metal:content-core>
 
   </body>
