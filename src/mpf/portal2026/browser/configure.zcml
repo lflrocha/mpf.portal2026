@@ -75,11 +75,13 @@
   />
 
   <browser:page
-      name="noticias-view"
-      for="*"
-      class=".noticias_view.NoticiasView"
-      template="templates/noticias_view.pt"
+      name="noticias_colecao_view"
+      for="plone.app.contenttypes.interfaces.ICollection"
+      class=".collection_noticias.CollectionSummaryView"
+      template="templates/noticias_list.pt"
       permission="zope2.View"
   />
+
+
 
 </configure>
