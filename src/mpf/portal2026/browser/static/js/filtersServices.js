@@ -10,7 +10,6 @@
       .trim();
   }
 
-  // ===== Serviços: Busca + filtros =====
   function initServicesPage() {
     const searchInput = $("#service-search");
     const levelSelect = $("#service-level");
@@ -24,16 +23,8 @@
     const chips = $$("[data-chip]");
     const categoryLinks = $$("[data-category-link]");
 
-    // estado
-    const state = {
-      q: "",
-      level: "",
-      scope: "",
-      category: "",
-      featuredOnly: false,
-    };
+    const state = { q: "", level: "", scope: "", category: "", featuredOnly: false };
 
-    // marca links externos
     items.forEach((li) => {
       const isExternal = li.dataset.external === "true";
       const link = li.querySelector("a");
@@ -42,7 +33,6 @@
       if (isExternal) {
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        // opcional: adiciona indicador visual ↗ no final do título
         const title = li.querySelector("h3");
         if (title && !title.querySelector(".ext-indicator")) {
           const span = document.createElement("span");
@@ -86,11 +76,7 @@
         const scp = normalize(li.dataset.scope);
         const featured = li.dataset.featured === "true";
 
-        const matchQ =
-          !q ||
-          title.includes(q) ||
-          normalize(li.textContent).includes(q);
-
+        const matchQ = !q || title.includes(q) || normalize(li.textContent).includes(q);
         const matchLevel = !level || lvl === level;
         const matchScope = !scope || scp === scope;
         const matchCategory = !category || cat === category;
@@ -98,7 +84,8 @@
 
         const show = matchQ && matchLevel && matchScope && matchCategory && matchFeatured;
 
-        li.classList.toggle("hidden", !show);
+        li.hidden = !show;
+
         if (show) visibleCount += 1;
       });
 
@@ -110,7 +97,6 @@
       }
     }
 
-    // eventos
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
         state.q = e.target.value || "";
@@ -132,12 +118,10 @@
       });
     }
 
-    // chips (ex.: data-chip="featured" / "denuncias" / etc)
     chips.forEach((btn) => {
       btn.addEventListener("click", () => {
         const chip = btn.dataset.chip;
 
-        // reset chip state
         state.featuredOnly = false;
         state.category = "";
 
@@ -145,7 +129,7 @@
           state.featuredOnly = true;
           setActiveChip("featured");
         } else {
-          state.category = chip; // chip = categoria
+          state.category = chip;
           setActiveChip(chip);
         }
 
@@ -153,12 +137,10 @@
       });
     });
 
-    // links do aside (scroll + filtra)
     categoryLinks.forEach((a) => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
-        const cat = a.dataset.categoryLink;
-        state.category = cat || "";
+        state.category = a.dataset.categoryLink || "";
         state.featuredOnly = false;
         clearChips();
         applyFilters({ scrollToCategory: true });
@@ -182,9 +164,13 @@
       });
     }
 
-    // inicializa contagem
     applyFilters();
   }
 
-  document.addEventListener("DOMContentLoaded", initServicesPage);
+  const boot = () => initServicesPage();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
 })();
