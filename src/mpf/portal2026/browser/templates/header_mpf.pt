@@ -1,4 +1,4 @@
-<!-- Skip link -->
+Minis<!-- Skip link -->
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-gray-900 focus:shadow focus:outline-none">
 Pular para o conteúdo
 </a>
@@ -8,7 +8,9 @@ Pular para o conteúdo
 <!-- TOPBAR (institucional) -->
 <div class="mpf-topbar">
   <div class="mx-auto px-4 py-1.5 flex items-center justify-end max-w-[1440px]">
-    <a href="/" class="text-xs text-white/95 leading-relaxed">Ministério Público Federal | Rede Institucional</a>
+    <a href="/" class="text-xs text-white/95 leading-relaxed"
+      tal:attributes="href string:${context/portal_url}">
+      Ministério Público Federal | Rede Institucional</a>
   </div>
 </div>
 
