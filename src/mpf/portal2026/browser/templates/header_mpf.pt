@@ -418,92 +418,91 @@ Pular para o conteúdo
 
       <tal:def tal:define="items view/menu_tree">
 
-        <tal:rep1 repeat="item items"
-                  tal:define="mid string:m-${repeat/item/index}">
+        <tal:rep1 repeat="item items">
+          <tal:block tal:define="mid string:mobile-m-${repeat/item/index}">
+            
+            <div class="rounded-md border border-gray-200 overflow-hidden">
+              <button type="button"
+                      class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                      tal:attributes="
+                        data-acc-button mid;
+                        aria-controls mid
+                      "
+                      aria-expanded="false">
+                <span class="font-semibold text-gray-900" tal:content="item/title">Item</span>
+                <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
 
-          <div class="rounded-md border border-gray-200 overflow-hidden">
-            <button type="button"
-                    class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
-                    tal:attributes="
-                      data-acc-button mid;
-                      aria-controls mid
-                    "
-                    aria-expanded="false">
-              <span class="font-semibold text-gray-900" tal:content="item/title">Item</span>
-              <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
+              <div tal:attributes="id mid"
+                  data-acc-panel="true"
+                  hidden="hidden"
+                  class="p-2 grid gap-1">
 
-            <div tal:attributes="id mid"
-                data-acc-panel="true"
-                hidden="hidden"
-                class="p-2 grid gap-1">
+                <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                  tal:condition="item/url"
+                  tal:attributes="href item/url">
+                  <span tal:content="item/title">Ver página</span>
+                </a>
 
-              <!-- Link do próprio item (opcional). Se o item tiver URL válida, mostra. -->
-              <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
-                tal:condition="item/url"
-                tal:attributes="href item/url">
-                <span tal:content="item/title">Ver página</span>
-              </a>
+                <tal:n2 repeat="child item/children">
 
-              <!-- Filhos nível 2 -->
-              <tal:n2 repeat="child item/children">
+                  <tal:cond tal:condition="not: child/children">
+                    <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                      tal:attributes="href child/url"
+                      tal:content="child/title">
+                      Subpágina
+                    </a>
+                  </tal:cond>
 
-                <!-- Se não tem netos: link simples -->
-                <tal:cond tal:condition="not: child/children">
-                  <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
-                    tal:attributes="href child/url"
-                    tal:content="child/title">
-                    Subpágina
-                  </a>
-                </tal:cond>
+                  <tal:cond tal:condition="child/children">
+                    <tal:block tal:define="mid2 string:${mid}-${repeat/child/index}">
+                      <div class="rounded-md border border-gray-200 overflow-hidden mt-1">
 
-                <!-- Se tem netos: accordion do nível 2 -->
-                <tal:cond tal:condition="child/children">
-                  <div class="rounded-md border border-gray-200 overflow-hidden mt-1"
-                      tal:define="mid2 string:${mid}-${repeat/child/index}">
+                        <button type="button"
+                                class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                                tal:attributes="
+                                  data-acc-button mid2;
+                                  aria-controls mid2
+                                "
+                                aria-expanded="false">
+                          <span class="text-gray-900" tal:content="child/title">Seção</span>
+                          <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6" />
+                          </svg>
+                        </button>
 
-                    <button type="button"
-                            class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
-                            tal:attributes="
-                              data-acc-button mid2;
-                              aria-controls mid2
-                            "
-                            aria-expanded="false">
-                      <span class="text-gray-900" tal:content="child/title">Seção</span>
-                      <svg aria-hidden="true" class="ml-1 inline-block h-3.5 w-3.5 opacity-70"
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
-                    </button>
+                        <div tal:attributes="id mid2"
+                            data-acc-panel="true"
+                            hidden="hidden"
+                            class="p-2 grid gap-1">
 
-                    <div tal:attributes="id mid2"
-                        data-acc-panel="true"
-                        hidden="hidden"
-                        class="p-2 grid gap-1">
+                          <tal:n3 repeat="gchild child/children">
+                            <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
+                              tal:attributes="href gchild/url"
+                              tal:content="gchild/title">
+                              Neto
+                            </a>
+                          </tal:n3>
 
-                      <tal:n3 repeat="gchild child/children">
-                        <a class="rounded-md px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
-                          tal:attributes="href gchild/url"
-                          tal:content="gchild/title">
-                          Neto
-                        </a>
-                      </tal:n3>
+                        </div>
+                      </div>
+                    </tal:block>
+                  </tal:cond>
 
-                    </div>
-                  </div>
-                </tal:cond>
+                </tal:n2>
 
-              </tal:n2>
-
+              </div>
             </div>
-          </div>
 
+          </tal:block>
         </tal:rep1>
+
 
       </tal:def>
     </section>
