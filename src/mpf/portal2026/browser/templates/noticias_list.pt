@@ -1,0 +1,146 @@
+<tal:root
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+>
+
+  <metal:main fill-slot="main">
+    <main id="main-content" class="w-full">
+      <div class="mx-auto max-w-[1440px] px-4 py-6 sm:py-8"
+          tal:define="items view/get_results">
+
+        <!-- HERO -->
+        <header class="rounded-md border border-gray-300 bg-white overflow-hidden">
+          <div class="relative overflow-hidden">
+            <div class="absolute inset-0 bg-[color:var(--brand)]"></div>
+            <div class="absolute inset-0 opacity-15"
+                 style="background-image:
+                   radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 55%),
+                   radial-gradient(circle at 80% 30%, rgba(255,255,255,.6), transparent 55%);"
+                 aria-hidden="true"></div>
+
+            <div class="relative p-4 sm:p-6 md:p-7 text-white">
+              <p class="text-[11px] font-semibold uppercase tracking-wider text-white/90">
+                Sala de imprensa
+              </p>
+              <h1 class="mt-1 text-2xl sm:text-3xl font-semibold leading-tight"
+                  tal:content="context/title">Notícias</h1>
+
+              <p class="mt-1 text-sm text-white/90 max-w-3xl"
+                 tal:content="python: context.Description() or 'Acompanhe as publicações mais recentes.'">
+                Acompanhe as publicações mais recentes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Barra inferior do hero (sem form) -->
+<!--
+          <div class="p-4 sm:p-6 md:p-7 border-t border-white/15 bg-white">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs text-gray-600">
+                Mostrando <span class="font-semibold" tal:content="data/total">0</span> notícias
+              </p>
+
+            </div>
+          </div>
+-->          
+        </header>
+
+        <!-- GRID PRINCIPAL -->
+        <section class="mt-4 sm:mt-6 grid gap-6 lg:grid-cols-12 lg:items-start">
+
+          <!-- RESULTADOS -->
+          <div class="lg:col-span-8">
+            <section class="rounded-md border border-gray-300 bg-white overflow-hidden">
+              <header class="p-4 sm:p-6 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900">Resultados</h2>
+                <p class="mt-1 text-sm text-gray-600">
+                  Exibindo as notícias publicadas nesta coleção.
+                </p>
+              </header>
+
+              <div class="p-4 sm:p-6">
+                <div id="news-results" class="news-results is-list">
+
+                  <tal:empty tal:condition="not:items">
+                    <p class="text-sm text-gray-700">Nenhuma notícia encontrada.</p>
+                  </tal:empty>
+
+                  <tal:item tal:condition="items">
+                    <tal:rep repeat="it items">
+                    <article class="news-item group rounded-md border border-gray-200 bg-white overflow-hidden">
+
+                      <div class="news-media" tal:define="obj it/getObject">
+                                    <img tal:define="scales obj/@@images;
+                                                     thumbnail python:scales.scale('image', width=200, height=200)"
+                                         tal:condition="thumbnail"
+                                         tal:attributes="src thumbnail/url;
+                                                         width thumbnail/width;
+                                                         height thumbnail/height" />
+                      </div>
+
+                      <div class="p-5">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--brand)]"
+                           tal:condition="it/tema"
+                           tal:content="it/tema">Geral</p>
+
+                        <h3 class="mt-2 text-base font-semibold leading-snug text-gray-900">
+                          <a tal:attributes="href it/getURL"
+                             class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30 rounded"
+                             tal:content="it/Title">Título</a>
+                        </h3>
+
+                        <p class="mt-2 text-sm text-gray-700 leading-relaxed line-clamp-3"
+                           tal:condition="it/Description"
+                           tal:content="it/Description">Descrição</p>
+
+<!--                        <div class="mt-3 text-xs text-gray-500"
+                             tal:condition="it/unidadeOrigem"
+                             tal:content="it/unidadeOrigem">/portal/pgr</div>-->
+
+                        <div class="mt-1 text-xs text-gray-500 inline-flex items-center gap-2">
+                          <span aria-hidden="true">🕒</span>
+                          <time data-role="datetime"
+                            tal:define="data_efetivacao it/effective;
+                                               formatada python:data_efetivacao.strftime('%d/%m/%Y • %H:%M') if data_efetivacao else ''"
+                                   tal:content="formatada"
+                            >18/12/2025 • 14:32</time>
+                        </div>
+
+                      </div>
+                    </article>
+                    </tal:rep>
+                  </tal:item>
+
+                </div>
+              </div>
+            </section>
+
+            <!-- Paginação -->
+<!--
+            <tal:pagination tal:define="pages data/pages; p data/page"
+                            tal:condition="python: pages > 1">
+              <nav class="mt-6 flex items-center justify-center" aria-label="Paginação">
+                <div class="rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 flex items-center gap-3">
+                  <a tal:condition="python: p>1"
+                     tal:attributes="href python:view.build_url(page=p-1)"
+                     class="hover:underline">Anterior</a>
+
+                  <span class="font-medium text-gray-900"
+                        tal:content="python:'Página %s de %s' % (p, pages)">Página</span>
+
+                  <a tal:condition="python: p<pages"
+                     tal:attributes="href python:view.build_url(page=p+1)"
+                     class="hover:underline">Próximo</a>
+                </div>
+              </nav>
+            </tal:pagination>
+-->
+          </div>
+        </section>
+      </div>
+    </main>
+  </metal:main>
+</tal:root>
