@@ -36,7 +36,8 @@ class HeaderMPFViewlet(ViewletBase):
         brains = catalog(
             path={'query': root_path, 'depth': depth},
             sort_on='getObjPositionInParent',
-            review_state='published',   # importante se você testa como Anonymous
+            review_state='published',
+                    exclude_from_nav=False,  # <-- aqui   # importante se você testa como Anonymous
             # portal_type=['Folder', 'Document'],  # se quiser limitar
         )
 

@@ -8,7 +8,9 @@ Pular para o conteúdo
 <!-- TOPBAR (institucional) -->
 <div class="mpf-topbar">
   <div class="mx-auto px-4 py-1.5 flex items-center justify-end max-w-[1440px]">
-    <a href="/" class="text-xs text-white/95 leading-relaxed">Ministério Público Federal | Rede Institucional</a>
+    <a href="/" class="text-xs text-white/95 leading-relaxed"
+      tal:attributes="href string:${context/portal_url}">
+      Ministério Público Federal | Rede Institucional</a>
   </div>
 </div>
 
@@ -306,7 +308,7 @@ Pular para o conteúdo
 
       <!-- Busca (desktop) -->
       <form class="hidden md:flex items-center gap-2 ml-auto" role="search" aria-label="Buscar no site"
-        tal:attributes="action string:${context/absolute_url}/@@search">
+        tal:attributes="action string:${context/portal_url}/@@search">
         <label class="sr-only" for="site-search">Buscar</label>
         <input
           id="site-search"
@@ -356,11 +358,12 @@ Pular para o conteúdo
 
   <div class="p-4 grid gap-6 pb-10">
     <!-- Busca mobile -->
-    <form role="search" aria-label="Buscar no site (mobile)">
+    <form role="search" aria-label="Buscar no site (mobile)"
+      tal:attributes="action string:${context/portal_url}/@@search">
       <label class="sr-only" for="site-search-mobile">Buscar</label>
       <input
         id="site-search-mobile"
-        name="q"
+        name="SearchableText"
         type="search"
         placeholder="Buscar…"
         class="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
