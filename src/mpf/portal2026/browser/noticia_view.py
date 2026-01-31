@@ -110,7 +110,7 @@ class NoticiaView(BrowserView):
         Retorna a data de modificação no formato:
         DD/MM/AAAA • HH:MM
         """
-        dt = self.context.modified()
+        dt = self.context.effective()
         if not dt:
             return ""
 
