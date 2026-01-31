@@ -432,7 +432,8 @@
                                       data-external="false"
                                       data-featured="true">
                                     <a href="https://apps.mpf.mp.br/spe" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
-                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                                               target="_blank">
                                       <div class="flex items-start justify-between gap-4">
                                         <div class="flex items-start gap-3 min-w-0">
                                           <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
@@ -463,7 +464,8 @@
                                       data-external="false"
                                       data-featured="true">
                                     <a href="http://apps.mpf.mp.br/aptusmpf/portal" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
-                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                                               target="_blank">
                                       <div class="flex items-start justify-between gap-4">
                                         <div class="flex items-start gap-3 min-w-0">
                                           <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
@@ -528,7 +530,8 @@
                                       data-external="true"
                                       data-featured="true">
                                     <a href="https://aplicativos.mpf.mp.br/ouvidoria/app/cidadao/certidao" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
-                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                                               target="_blank">
                                       <div class="flex items-start justify-between gap-4">
                                         <div class="flex items-start gap-3 min-w-0">
                                           <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
@@ -561,7 +564,8 @@
                                       data-external="false"
                                       data-featured="false">
                                     <a href="./atendimento-virtual.html" class="group block h-full rounded-md border border-gray-300 bg-white p-3 sm:p-5 hover:opacity-95
-                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
+                                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30"
+                                               tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos/atendimento-ao-cidadao">
                                       <div class="flex items-start justify-between gap-4">
                                         <div class="flex items-start gap-3 min-w-0">
                                           <div class="h-10 w-10 shrink-0 rounded-md bg-gray-100 grid place-items-center border border-gray-300" aria-hidden="true">
