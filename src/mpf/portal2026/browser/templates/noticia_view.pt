@@ -99,7 +99,7 @@
                 <div class="border-t border-gray-200 p-3 sm:p-4 bg-gray-50">
                   <div class="flex flex-wrap items-center gap-2">
 
-                    <a tal:attributes="href string:${context/portal_url}/noticias"
+                    <a tal:attributes="href string:${context/portal_url}/comunicacao/noticias"
                        class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50
                               focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30">
                       <svg aria-hidden="true" class="h-4 w-4 opacity-80"
