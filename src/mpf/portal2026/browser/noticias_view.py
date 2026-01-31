@@ -21,6 +21,31 @@ class NoticiasView(BrowserView):
     DEFAULT_PAGE_SIZE = 10
     temas_vocabulary_name = "mpf.portal2026.noticiatemas"
 
+    def __call__(self):
+        self.request.set('disable_plone.leftcolumn', 1)
+        self.request.set('disable_plone.rightcolumn', 1)
+        return self.index()
+
+
+    def _normalize_single_value(self, value):
+        """
+        Normaliza campos que podem vir como:
+        - string
+        - lista/tupla (pega só o primeiro válido)
+        Remove valores vazios e '-- Selecione --'.
+        """
+        blacklist = ("", None, "-- Selecione --")
+
+        if isinstance(value, (list, tuple)):
+            value = [v for v in value if v not in blacklist]
+            return safe_unicode(value[0]).strip() if value else ""
+
+        if isinstance(value, str):
+            value = value.strip()
+            return safe_unicode(value) if value not in blacklist else ""
+
+        return ""
+
     # -------------------------
     # Params do request
     # -------------------------
@@ -28,7 +53,22 @@ class NoticiasView(BrowserView):
         return (self.request.get("q") or "").strip()
 
     def tema(self):
-        return (self.request.get("tema") or "").strip()
+        t = self.request.get("tema")
+
+        # se vier lista (ex: ?tema=a&tema=b)
+        if isinstance(t, (list, tuple)):
+            # valores a remover
+            blacklist = ("", "-- Selecione --", None)
+            t = [x for x in t if x not in blacklist]
+
+            # se sobrar 1, retorna string
+            return t[0].strip() if t else ""
+
+        # se vier string normal
+        if isinstance(t, str):
+            return t.strip()
+
+        return ""
 
     def unidade(self):
         # esperado: "/portal/pgr" (relativo ao site)
@@ -202,6 +242,9 @@ class NoticiasView(BrowserView):
         except Exception:
             return ""
 
+
+
+
     def _human_date(self, dt):
         if not dt:
             return ""
@@ -236,16 +279,25 @@ class NoticiasView(BrowserView):
                 obj = None
 
             # tema id: tenta brain primeiro; se não tiver, tenta no objeto
-            tema_id = ""
-            try:
-                tema_id = getattr(b, "tema", "") or getattr(b, "temas", "") or ""
-            except Exception:
-                tema_id = ""
+            tema_id = self._normalize_single_value(
+                getattr(b, "tema", None) or getattr(b, "temas", None)
+            )
 
             if obj and not tema_id:
-                tema_id = getattr(obj, "tema", "") or getattr(obj, "temas", "") or ""
+                tema_id = self._normalize_single_value(
+                    getattr(obj, "tema", None) or getattr(obj, "temas", None)
+                )
 
-            tema_id = safe_unicode(tema_id) if tema_id else ""
+            unidade_origem = ""
+            try:
+                unidade_origem = getattr(b, "unidadeOrigem", "") or ""
+            except Exception:
+                unidade_origem = ""
+
+            if obj and not unidade_origem:
+                unidade_origem = getattr(obj, "unidadeOrigem", "") or ""
+
+            unidade_origem = safe_unicode(unidade_origem) if unidade_origem else ""
 
             dt = getattr(b, "effective", None) or getattr(b, "created", None) or None
 
@@ -256,6 +308,7 @@ class NoticiasView(BrowserView):
                 "origin": safe_unicode(self._origin(b)),
                 "tema_id": tema_id,
                 "tema": self._tema_title(tema_id) if tema_id else u"Geral",
+                "unidadeOrigem": unidade_origem,
                 "image_url": self._image_url(obj) if obj else "",
                 "datetime_iso": dt.ISO() if dt else "",
                 "datetime_human": self._human_date(dt),

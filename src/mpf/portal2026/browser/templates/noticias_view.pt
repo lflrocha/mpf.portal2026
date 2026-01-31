@@ -100,7 +100,7 @@
 
               <div class="lg:col-span-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p class="text-xs text-gray-600">
-                  Mostrando <span class="font-semibold" tal:content="python:len(data)">0</span> notícias
+                  Mostrando <span class="font-semibold" tal:content="data/total">0</span> notícias
                 </p>
 
                 <div class="flex items-center gap-2 sm:justify-end">
@@ -119,44 +119,7 @@
         <section class="mt-4 sm:mt-6 grid gap-6 lg:grid-cols-12 lg:items-start">
 
           <!-- ASIDE: Unidades (desktop) -->
-          <aside class="hidden lg:block lg:col-span-4">
-            <div class="sticky top-6">
-              <section class="rounded-md border border-gray-300 bg-white overflow-hidden flex flex-col h-[calc(80vh)]">
-                <header class="p-4 sm:p-6 border-b border-gray-200">
-                  <h2 class="text-lg font-semibold text-gray-900">Filtro por unidade</h2>
-                  <p class="mt-1 text-sm text-gray-600">Escolha a unidade publicadora.</p>
-                </header>
 
-                <div class="p-4 sm:p-6 border-b border-gray-200 grid gap-4">
-                  <div>
-                    <label for="asideSearch" class="text-xs font-semibold text-gray-700">Buscar na lista</label>
-                    <input id="asideSearch"
-                           type="search"
-                           placeholder="Digite para filtrar…"
-                           class="mt-2 w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm
-                                  focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/30" />
-                  </div>
-                </div>
-
-                <div class="flex-1 overflow-y-auto p-3">
-                  <ul id="asideList" class="grid gap-2" aria-label="Lista de unidades">
-                    <tal:units tal:repeat="u view/unidades_options">
-                      <tal:unit tal:define="
-                          val python:getattr(u,'value', None) if getattr(u,'value', None) is not None else u[0];
-                          label python:getattr(u,'title', None) if getattr(u,'title', None) is not None else u[1]">
-                        <li>
-                          <a href="#"
-                             class="block rounded-md border border-gray-200 px-3 py-2 text-sm hover:bg-gray-50"
-                             tal:attributes="data-unidade val"
-                             tal:content="label">/portal/pgr</a>
-                        </li>
-                      </tal:unit>
-                    </tal:units>
-                  </ul>
-                </div>
-              </section>
-            </div>
-          </aside>
 
           <!-- RESULTADOS -->
           <div class="lg:col-span-8">
@@ -205,7 +168,7 @@
                         <p class="mt-2 text-sm text-gray-700 leading-relaxed line-clamp-3"
                            tal:content="it/description">Descrição</p>
 
-                        <div class="mt-3 text-xs text-gray-500" tal:content="it/origin">/portal/pgr</div>
+                        <div class="mt-3 text-xs text-gray-500" tal:content="it/unidadeOrigem">/portal/pgr</div>
                         <div class="mt-1 text-xs text-gray-500 inline-flex items-center gap-2" tal:condition="it/datetime_human">
                           <span aria-hidden="true">🕒</span>
                           <time data-role="datetime" tal:content="it/datetime_human">18/12/2025 • 14:32</time>

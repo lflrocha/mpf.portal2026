@@ -2,11 +2,12 @@ from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.app.relationfield.behavior import IRelatedItems
 from plone.dexterity.utils import iterSchemata
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five import BrowserView
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 from zope.schema.vocabulary import getVocabularyRegistry
-from Products.Five import BrowserView
 
 
 class NoticiaView(BrowserView):
@@ -110,7 +111,7 @@ class NoticiaView(BrowserView):
         Retorna a data de modificação no formato:
         DD/MM/AAAA • HH:MM
         """
-        dt = self.context.modified()
+        dt = self.context.effective()
         if not dt:
             return ""
 
@@ -213,6 +214,31 @@ class NoticiaView(BrowserView):
 
         return items
 
+    def _get_tags(self, brain, obj=None):
+        """
+        Retorna lista de tags (Subjects) normalizada.
+        """
+        tags = []
+
+        # tenta pelo brain (mais rápido)
+        try:
+            tags = getattr(brain, "Subject", None) or []
+        except Exception:
+            tags = []
+
+        # fallback para o objeto
+        if obj and not tags:
+            try:
+                tags = getattr(obj, "Subject", None) or getattr(obj, "subject", []) or []
+            except Exception:
+                tags = []
+
+        # normaliza
+        if isinstance(tags, (str,)):
+            tags = [tags]
+
+        return [safe_unicode(t).strip() for t in tags if t]
+
 
     def imagem_noticia(self):
         """
@@ -248,3 +274,71 @@ class NoticiaView(BrowserView):
         return {
             "exists": False,
         }
+
+
+
+    def tags(self):
+        """
+        Retorna lista de tags (Subjects) da notícia, normalizada.
+        """
+        ctx = self.context
+
+        tags = []
+
+        # 1) Preferencial: Subject() (método)
+        try:
+            subj = getattr(ctx, "Subject", None)
+            if callable(subj):
+                tags = subj() or []
+            else:
+                # se vier como atributo já pronto
+                tags = subj or []
+        except Exception:
+            tags = []
+
+        # 2) fallback: campo dexterity "subject"
+        if not tags:
+            try:
+                subj = getattr(ctx, "subject", None)
+                if callable(subj):
+                    tags = subj() or []
+                else:
+                    tags = subj or []
+            except Exception:
+                tags = []
+
+        # 3) normaliza para lista
+        if not tags:
+            return []
+
+        if isinstance(tags, str):
+            tags = [tags]
+
+        # se por algum motivo veio um método aqui, zera
+        if callable(tags):
+            return []
+
+        out = []
+        for t in tags:
+            if not t:
+                continue
+            t = safe_unicode(t).strip()
+            if t:
+                out.append(t)
+
+        return out
+
+    def tag_search_url(self, tag):
+        """
+        URL para clicar na tag.
+        Pode ser a busca padrão ou sua listagem custom.
+        """
+        tag = (tag or "").strip()
+        if not tag:
+            return ""
+
+        # 1) busca padrão do Plone
+        return f"{api.portal.get().absolute_url()}/@@search?Subject={tag}"
+
+        # 2) OU, se quiser usar sua listagem:
+        # return f"{api.portal.get().absolute_url()}/@@noticias-view?tag={tag}"

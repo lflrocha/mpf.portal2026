@@ -59,6 +59,8 @@ class INoticia(model.Schema):
     # )
 
 
+
+
 @implementer(INoticia)
 class Noticia(Container):
     """ Content-type class for INoticia
