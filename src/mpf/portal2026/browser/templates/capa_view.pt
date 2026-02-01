@@ -426,7 +426,7 @@
 
                 <!-- Banner pequeno -->
                 <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
+                  <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
                     <img
                       src="assets/banner-radar-transparencia.png"
                       alt=""
