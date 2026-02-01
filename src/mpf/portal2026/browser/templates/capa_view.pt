@@ -33,7 +33,8 @@
                   <p class="mpf-hero__subtitle">Ajude a melhorar o novo site do MPF enviando sua opinião.</p>
 
                   <div class="mpf-hero__actions">
-                    <a href="paginas-internas/feedback.html" class="mpf-btn mpf-btn--ghost">
+                    <a href="paginas-internas/feedback.html" class="mpf-btn mpf-btn--ghost"
+                      tal:attributes="href string:${context/portal_url}/questionario-de-feedback">
                       Enviar feedback
                     </a>
                     <a href="./paginas-internas/noticias.html" class="mpf-btn mpf-btn--ghost"
