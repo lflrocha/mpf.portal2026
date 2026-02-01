@@ -4,5 +4,78 @@
     i18n:domain="mpf.portal2026">
 
 <!-- -*- extra stuff goes here -*- -->
+<record name="plone.app.querystring.field.unidadeOrigem.title">
+  <field type="plone.registry.field.TextLine">
+    <title>Title</title>
+  </field>
+  <value>Unidade de origem</value>
+</record>
+
+<!-- description -->
+<record name="plone.app.querystring.field.unidadeOrigem.description">
+  <field type="plone.registry.field.Text">
+    <title>Description</title>
+  </field>
+  <value>Filtra pelo campo Unidade de origem</value>
+</record>
+
+<!-- enabled -->
+<record name="plone.app.querystring.field.unidadeOrigem.enabled">
+  <field type="plone.registry.field.Bool">
+    <title>Enabled</title>
+  </field>
+  <value>True</value>
+</record>
+
+<!-- group -->
+<record name="plone.app.querystring.field.unidadeOrigem.group">
+  <field type="plone.registry.field.TextLine">
+    <title>Group</title>
+  </field>
+  <value>Metadata</value>
+</record>
+
+<!-- index -->
+<record name="plone.app.querystring.field.unidadeOrigem.index">
+  <field type="plone.registry.field.TextLine">
+    <title>Index</title>
+  </field>
+  <value>unidadeOrigem</value>
+</record>
+
+<!-- vocabulary -->
+<record name="plone.app.querystring.field.unidadeOrigem.vocabulary">
+  <field type="plone.registry.field.TextLine">
+    <title>Vocabulary</title>
+  </field>
+  <value>mpf.portal2026.unidades_origem</value>
+</record>
+
+<!-- fetch_vocabulary -->
+<record name="plone.app.querystring.field.unidadeOrigem.fetch_vocabulary">
+  <field type="plone.registry.field.Bool">
+    <title>Fetch vocabulary</title>
+  </field>
+  <value>True</value>
+</record>
+
+<!-- operations (tem que ser Tuple/List, nunca Text) -->
+<record name="plone.app.querystring.field.unidadeOrigem.operations">
+  <field type="plone.registry.field.Tuple">
+    <title>Operations</title>
+    <value_type type="plone.registry.field.TextLine" />
+  </field>
+  <value>
+    <element>plone.app.querystring.operation.selection.is</element>
+  </value>
+</record>
+
+<!-- sortable -->
+<record name="plone.app.querystring.field.unidadeOrigem.sortable">
+  <field type="plone.registry.field.Bool">
+    <title>Sortable</title>
+  </field>
+  <value>False</value>
+</record>
 
 </registry>
