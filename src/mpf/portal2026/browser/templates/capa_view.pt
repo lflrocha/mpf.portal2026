@@ -5,7 +5,24 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="mpf.portal2026"
       tal:define="page_title string:Ministério Público Federal">
-  <body>
+
+      <body>
+
+        <metal:title metal:fill-slot="title">
+          Ministério Público Federal
+        </metal:title>
+
+      <metal:content-title metal:fill-slot="content-title">
+        <tal:dummy tal:replace="nothing" />
+      </metal:content-title>
+
+      <!-- Mata a descrição padrão do Plone -->
+      <metal:content-description metal:fill-slot="content-description">
+        <tal:dummy tal:replace="nothing" />
+      </metal:content-description>
+
+
+
 
     <metal:content-core metal:fill-slot="content-core">
 
@@ -304,7 +321,7 @@
 
                 <!-- Banner pequeno -->
                 <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
+                  <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
                     <img
                       src="assets/banner-radar-transparencia.png"
                       alt=""
