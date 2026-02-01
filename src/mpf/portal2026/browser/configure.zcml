@@ -43,6 +43,15 @@
   />
 
   <browser:page
+      name="noticias-view"
+      for="*"
+      class=".noticias_view.NoticiasView"
+      template="templates/noticias_view.pt"
+      permission="zope2.View"
+  />
+
+
+  <browser:page
       name="document-view"
       for="plone.app.contenttypes.interfaces.IDocument"
       class=".document_view.DocumentView"
