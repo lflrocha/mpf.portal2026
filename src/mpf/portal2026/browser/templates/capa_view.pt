@@ -92,7 +92,7 @@
 
                       <li>
                         <a href="#" class="mpf-service-card"
-                          tal:attributes="href string:${context/portal_url}/servicos/carta-de-servicos-ao-cidadao/servicos-ao-cidadao/protocolo">
+                          tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos-internas/protocolo">
                           <div class="mpf-service-card__row">
                             <div class="mpf-service-card__icon" aria-hidden="true">
                               <span class="mpf-service-card__icon-text">P</span>
@@ -107,7 +107,8 @@
 
                       <li>
                         <a href="#" class="mpf-service-card"
-                          tal:attributes="href string:${context/portal_url}/servicos/carta-de-servicos-ao-cidadao/servicos-ao-cidadao/representacao">
+                          tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos-internas/denuncias">
+
                           <div class="mpf-service-card__row">
                             <div class="mpf-service-card__icon" aria-hidden="true">
                               <span class="mpf-service-card__icon-text">D</span>
@@ -121,8 +122,7 @@
                       </li>
 
                       <li>
-                        <a href="#" class="mpf-service-card"
-                          tal:attributes="href string:${context/portal_url}/servicos/carta-de-servicos-ao-cidadao/servicos-ao-cidadao/copia-processo">
+                        <a href="http://apps.mpf.mp.br/aptusmpf/portal" class="mpf-service-card" target="_blank">
                           <div class="mpf-service-card__row">
                             <div class="mpf-service-card__icon" aria-hidden="true">
                               <span class="mpf-service-card__icon-text">🔎</span>
@@ -152,7 +152,7 @@
 
                       <li>
                         <a href="#" class="mpf-service-card"
-                          tal:attributes="href string:${context/portal_url}/orgaos-superiores/ouvidoria">
+                          tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos-internas/ouvidoria">
                           <div class="mpf-service-card__row">
                             <div class="mpf-service-card__icon" aria-hidden="true">
                               <span class="mpf-service-card__icon-text">O</span>
@@ -184,7 +184,7 @@
                     <div class="mpf-card__footer-row">
                       <p class="mpf-muted">Não achou? Use a página completa de serviços.</p>
                       <a href="./paginas-internas/servicos.html" class="mpf-btn mpf-btn--primary"
-                        tal:attributes="href string:${context/portal_url}/servicos">
+                        tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos">
                         Ver todos os serviços
                       </a>
                     </div>
