@@ -30,7 +30,7 @@
                 tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/hero-welcome.png');">
                 <div class="mpf-hero__content">
                   <h1 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h1>
-                  <p class="mpf-hero__subtitle">Ajude a melhorar o novo site do MPF enviando sua opinião.</p>
+                  <p class="mpf-hero__subtitle">Estamos em transição tecnológica, ajude a melhorar enviando críticas e sugestões</p>
 
                   <div class="mpf-hero__actions">
                     <a href="paginas-internas/feedback.html" class="mpf-btn mpf-btn--ghost"

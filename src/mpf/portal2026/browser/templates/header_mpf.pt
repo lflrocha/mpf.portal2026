@@ -74,7 +74,7 @@ Pular para o conteúdo
             </a>
           </li>
           <li class="px-3">
-            <a href="https://www.transparencia.mpf.mp.br" target="_blank"  class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
+            <a href="https://transparencia.mpf.mp.br" target="_blank"  class="hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded">
               Transparência
             </a>
           </li>
@@ -423,7 +423,7 @@ Pular para o conteúdo
 
         <tal:rep1 repeat="item items">
           <tal:block tal:define="mid string:mobile-m-${repeat/item/index}">
-            
+
             <div class="rounded-md border border-gray-200 overflow-hidden">
               <button type="button"
                       class="w-full px-3 py-3 flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
