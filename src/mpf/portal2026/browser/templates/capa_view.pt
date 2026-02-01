@@ -3,10 +3,12 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="mpf.portal2026">
+      i18n:domain="mpf.portal2026"
+      tal:define="page_title string:Ministério Público Federal">
   <body>
 
     <metal:content-core metal:fill-slot="content-core">
+
       <div class="mpf-ui">
         <main id="main-content" class="mpf-layout">
           <div class="mpf-container">
