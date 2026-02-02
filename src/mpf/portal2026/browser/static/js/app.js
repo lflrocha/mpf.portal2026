@@ -292,9 +292,9 @@
       buttons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
-          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          const opened = btn.getAttribute("aria-expanded") === "true";
 
-          if (isOpen) return closeBtn(btn);
+          if (opened) return closeBtn(btn);
 
           closeOthersInScope(btn);
           openBtn(btn);
@@ -613,11 +613,55 @@
 
     onScroll();
   })();
+
+  /* =========================================================
+     8) FECHAR MENUS FLUTUANTES AO ROLAR (desktop + mobile)
+  ========================================================= */
+  (() => {
+    const closeAllHeaderMenus = () => {
+      if (isFn(window.__mpfCloseAllDropdowns)) window.__mpfCloseAllDropdowns();
+      if (isFn(window.__mpfCloseMoreMenu)) window.__mpfCloseMoreMenu();
+      if (mobileMenu && isFn(mobileMenu.isOpen) && mobileMenu.isOpen()) mobileMenu.close();
+    };
+
+    const hasAnythingOpen = () => {
+      if (document.querySelector('[data-dd-button][aria-expanded="true"]')) return true;
+      if (document.querySelector('[data-more-button][aria-expanded="true"]')) return true;
+      if (mobileMenu && isFn(mobileMenu.isOpen) && mobileMenu.isOpen()) return true;
+      if (document.querySelector('[data-acc-button][aria-expanded="true"]')) return true;
+      return false;
+    };
+
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+          const y = window.scrollY || 0;
+          const delta = Math.abs(y - lastY);
+
+          if (delta > 6 && hasAnythingOpen()) closeAllHeaderMenus();
+
+          lastY = y;
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+  })();
 })();
 
+/* =========================================================
+   Share box (copiar link)
+========================================================= */
 (function () {
   const shareBox = document.querySelector("[data-share-box]");
-  if (!shareBox) return; 
+  if (!shareBox) return;
 
   shareBox.addEventListener("click", async (e) => {
     const btn = e.target.closest("[data-copy-url]");

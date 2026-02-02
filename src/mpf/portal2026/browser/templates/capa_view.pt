@@ -49,8 +49,8 @@
             <!-- Serviços (70%) + Destaques (30%) -->
             <section aria-labelledby="hub-servicos-titulo" class="mpf-grid-70-30">
 
-              <!-- COLUNA 70% -->
-              <div class="mpf-col-70">
+              <!-- LINHA 1 / COLUNA 70% — SERVIÇOS -->
+              <div class="mpf-col-70 mpf-col-70--top">
 
                 <!-- BLOCO 1: MPF Serviços + cards -->
                 <div class="mpf-card mpf-card--stack">
@@ -75,12 +75,14 @@
                       <div class="mpf-servicos-hero__banner">
                         <div class="mpf-servicos-hero__banner-spacer"></div>
 
-                        <div class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--mobile"
+                        <div
+                          class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--mobile"
                           aria-hidden="true"
                           tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos-mobile.png');"
                         ></div>
 
-                        <div class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--desktop"
+                        <div
+                          class="mpf-servicos-hero__banner-bg mpf-servicos-hero__banner-bg--desktop"
                           aria-hidden="true"
                           tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/banner-servicos.png');"
                         ></div>
@@ -109,7 +111,6 @@
                       <li>
                         <a href="#" class="mpf-service-card"
                           tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos-internas/denuncias">
-
                           <div class="mpf-service-card__row">
                             <div class="mpf-service-card__icon" aria-hidden="true">
                               <span class="mpf-service-card__icon-text">D</span>
@@ -192,7 +193,132 @@
                   </div>
                 </div>
 
-                <!-- BLOCO 3: Últimas notícias + banners (fica na coluna 70 no desktop) -->
+              </div>
+
+              <!-- COLUNA 30% — ASIDE (fica NO MEIO do DOM pra bater o mobile) -->
+              <aside class="mpf-col-30 mpf-col-30--span">
+
+                <!-- Notícias em destaque -->
+                <section aria-labelledby="destaques-titulo" class="mpf-card mpf-card--stack">
+                  <header class="mpf-card__header">
+                    <h2 id="destaques-titulo" class="mpf-h2">Notícias em destaque</h2>
+                    <p class="mpf-sub">Atualizações institucionais selecionadas.</p>
+                  </header>
+
+                  <div class="mpf-card__body mpf-stack" tal:define="items view/destaques">
+                    <tal:block tal:repeat="it items">
+                      <article class="mpf-mini-card">
+                        <tal:block tal:condition="it/image_url">
+                          <div class="mpf-mini-card__media">
+                            <img tal:attributes="src it/image_url; alt it/title"
+                                class="mpf-mini-card__img"
+                                loading="lazy" />
+                          </div>
+                        </tal:block>
+
+                        <div class="mpf-mini-card__body">
+                          <p class="mpf-eyebrow mpf-eyebrow--brand"
+                            tal:condition="it/chapeu"
+                            tal:content="it/chapeu">Chapéu</p>
+
+                          <h3 class="mpf-mini-card__title">
+                            <a tal:attributes="href it/url" class="mpf-link"
+                              tal:content="it/title">Título</a>
+                          </h3>
+
+                          <p class="mpf-mini-card__desc"
+                            tal:condition="it/description"
+                            tal:content="it/description">Resumo</p>
+
+                          <p class="mpf-mini-card__date"
+                            tal:condition="it/date_str"
+                            tal:content="it/date_str">00/00/0000 | 00:00</p>
+                        </div>
+                      </article>
+                    </tal:block>
+                  </div>
+                </section>
+
+                <!-- Carrossel -->
+                <section aria-labelledby="carrossel-titulo" class="mpf-card">
+                  <header class="mpf-card__header mpf-card__header--row">
+                    <div>
+                      <h2 id="carrossel-titulo" class="mpf-h2">Em foco</h2>
+                      <p class="mpf-sub">Conteúdos selecionados.</p>
+                    </div>
+                  </header>
+
+                  <div class="mpf-card__body">
+                    <div class="swiper mpf-swiper">
+                      <div class="swiper-wrapper" tal:define="items view/em_foco">
+
+                        <tal:block tal:repeat="it items">
+                          <div class="swiper-slide">
+                            <article class="mpf-slide-card">
+                              <div class="mpf-slide-card__media">
+                                <img tal:attributes="src it/imagem_url; alt it/titulo"
+                                    class="mpf-slide-card__img"
+                                    loading="lazy" />
+                              </div>
+                              <div class="mpf-slide-card__body">
+                                <p class="mpf-eyebrow mpf-eyebrow--brand"
+                                  tal:content="it/chapeu">Chapéu</p>
+                                <h3 class="mpf-slide-card__title">
+                                  <a tal:attributes="href it/link" class="mpf-link"
+                                    tal:content="it/titulo">Título</a>
+                                </h3>
+                              </div>
+                            </article>
+                          </div>
+                        </tal:block>
+
+                      </div>
+
+                      <div class="mpf-swiper-controls">
+                        <div class="mpf-swiper-buttons">
+                          <button type="button" class="mpf-swiper-prev mpf-icon-btn" aria-label="Voltar">
+                            <svg aria-hidden="true" class="mpf-icon"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                          </button>
+
+                          <button type="button" class="mpf-swiper-next mpf-icon-btn" aria-label="Avançar">
+                            <svg aria-hidden="true" class="mpf-icon"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M9 18l6-6-6-6" />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <div class="mpf-swiper-pagination"></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Banner pequeno -->
+                <section aria-label="Banner" class="mpf-banner-mini">
+                  <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
+                    <img
+                      src="assets/banner-radar-transparencia.png"
+                      alt=""
+                      class="mpf-banner-mini__img"
+                      loading="lazy"
+                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
+                    />
+                  </a>
+                </section>
+
+              </aside>
+
+              <!-- LINHA 2 / COLUNA 70% — ÚLTIMAS + BANNERS -->
+              <div class="mpf-col-70 mpf-col-70--bottom">
+
+                <!-- BLOCO 3: Últimas notícias + banners -->
                 <section id="ultimas-noticias" aria-labelledby="ultimas-noticias-titulo" class="mpf-card mpf-latest">
                   <div class="mpf-latest__head">
                     <h2 id="ultimas-noticias-titulo" class="mpf-h1">Últimas Notícias</h2>
@@ -319,127 +445,8 @@
 
               </div>
 
-              <!-- COLUNA 30% -->
-              <aside class="mpf-col-30">
-
-                <!-- Notícias em destaque -->
-                <section aria-labelledby="destaques-titulo" class="mpf-card mpf-card--stack">
-                  <header class="mpf-card__header">
-                    <h2 id="destaques-titulo" class="mpf-h2">Notícias em destaque</h2>
-                    <p class="mpf-sub">Atualizações institucionais selecionadas.</p>
-                  </header>
-
-                  <div class="mpf-card__body mpf-stack" tal:define="items view/destaques">
-                    <tal:block tal:repeat="it items">
-                      <article class="mpf-mini-card">
-                        <tal:block tal:condition="it/image_url">
-                          <div class="mpf-mini-card__media">
-                            <img tal:attributes="src it/image_url; alt it/title"
-                                class="mpf-mini-card__img"
-                                loading="lazy" />
-                          </div>
-                        </tal:block>
-
-                        <div class="mpf-mini-card__body">
-                          <p class="mpf-eyebrow mpf-eyebrow--brand"
-                            tal:condition="it/chapeu"
-                            tal:content="it/chapeu">Chapéu</p>
-
-                          <h3 class="mpf-mini-card__title">
-                            <a tal:attributes="href it/url" class="mpf-link"
-                              tal:content="it/title">Título</a>
-                          </h3>
-
-                          <p class="mpf-mini-card__desc"
-                            tal:condition="it/description"
-                            tal:content="it/description">Resumo</p>
-
-                          <p class="mpf-mini-card__date"
-                            tal:condition="it/date_str"
-                            tal:content="it/date_str">00/00/0000 | 00:00</p>
-                        </div>
-                      </article>
-                    </tal:block>
-                  </div>
-                </section>
-
-                <!-- Carrossel -->
-                <section aria-labelledby="carrossel-titulo" class="mpf-card">
-                  <header class="mpf-card__header mpf-card__header--row">
-                    <div>
-                      <h2 id="carrossel-titulo" class="mpf-h2">Em foco</h2>
-                      <p class="mpf-sub">Conteúdos selecionados.</p>
-                    </div>
-                  </header>
-
-                  <div class="mpf-card__body">
-                    <div class="swiper mpf-swiper">
-                      <div class="swiper-wrapper" tal:define="items view/em_foco">
-
-                        <tal:block tal:repeat="it items">
-                          <div class="swiper-slide">
-                            <article class="mpf-slide-card">
-                              <div class="mpf-slide-card__media">
-                                <img tal:attributes="src it/imagem_url; alt it/titulo"
-                                    class="mpf-slide-card__img"
-                                    loading="lazy" />
-                              </div>
-                              <div class="mpf-slide-card__body">
-                                <p class="mpf-eyebrow mpf-eyebrow--brand"
-                                  tal:content="it/chapeu">Chapéu</p>
-                                <h3 class="mpf-slide-card__title">
-                                  <a tal:attributes="href it/link" class="mpf-link"
-                                    tal:content="it/titulo">Título</a>
-                                </h3>
-                              </div>
-                            </article>
-                          </div>
-                        </tal:block>
-
-                      </div>
-
-                      <div class="mpf-swiper-controls">
-                        <div class="mpf-swiper-buttons">
-                          <button type="button" class="mpf-swiper-prev mpf-icon-btn" aria-label="Voltar">
-                            <svg aria-hidden="true" class="mpf-icon"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M15 18l-6-6 6-6" />
-                            </svg>
-                          </button>
-
-                          <button type="button" class="mpf-swiper-next mpf-icon-btn" aria-label="Avançar">
-                            <svg aria-hidden="true" class="mpf-icon"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="#555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M9 18l6-6-6-6" />
-                            </svg>
-                          </button>
-                        </div>
-
-                        <div class="mpf-swiper-pagination"></div>
-                      </div>
-
-                    </div>
-                  </div>
-                </section>
-
-                <!-- Banner pequeno -->
-                <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="https://www.transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
-                    <img
-                      src="assets/banner-radar-transparencia.png"
-                      alt=""
-                      class="mpf-banner-mini__img"
-                      loading="lazy"
-                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
-                    />
-                  </a>
-                </section>
-
-              </aside>
-
             </section>
+
           </div>
         </main>
       </div>
