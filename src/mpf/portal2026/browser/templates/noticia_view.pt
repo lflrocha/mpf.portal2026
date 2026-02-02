@@ -138,10 +138,9 @@
                         loading="lazy" />
                   </div>
 
-                  <figcaption tal:condition="img/credit"
-                              class="mpf-noticia-imagem-credito">
+                  <figcaption class="mpf-noticia-imagem-credito">
                     <span class="sr-only">Crédito da imagem:</span>
-                    <span tal:content="img/credit">Crédito</span>
+                    <span >Crédito</span>
                   </figcaption>
 
                 </figure>
