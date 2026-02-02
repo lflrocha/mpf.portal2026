@@ -622,8 +622,12 @@
       if (isFn(window.__mpfCloseAllDropdowns)) window.__mpfCloseAllDropdowns();
       if (isFn(window.__mpfCloseMoreMenu)) window.__mpfCloseMoreMenu();
       if (mobileMenu && isFn(mobileMenu.isOpen) && mobileMenu.isOpen()) mobileMenu.close();
-    };
 
+      // 🔥 remove foco visual do botão clicado
+      if (document.activeElement && typeof document.activeElement.blur === "function") {
+        document.activeElement.blur();
+      }
+    };
     const hasAnythingOpen = () => {
       if (document.querySelector('[data-dd-button][aria-expanded="true"]')) return true;
       if (document.querySelector('[data-more-button][aria-expanded="true"]')) return true;
