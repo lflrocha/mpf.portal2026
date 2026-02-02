@@ -90,7 +90,7 @@ Pular para o conteúdo
       <!-- Acessibilidade: desktop grande -->
       <div class="a11y-desktop items-center justify-end gap-2 text-sm">
         <a href="./paginas-internas/interna.html" class="text-gray-700 hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30 rounded"
-          tal:attributes="href string:${context/portal_url}/accessibility-info">
+          tal:attributes="href string:${context/portal_url}/acessibilidade">
           Acessibilidade
         </a>
 
