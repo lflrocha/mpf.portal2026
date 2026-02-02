@@ -126,15 +126,25 @@
               </header>
 
               <!-- Imagem destaque -->
-              <section class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-gray-200 overflow-hidden"
-                       tal:define="img view/imagem_noticia"
-                       tal:condition="img/exists">
+              <section class="mpf-noticia-imagem"
+                      tal:define="img view/imagem_noticia"
+                      tal:condition="img/exists">
 
-                <div class="flex max-h-[280px] overflow-hidden">
-                  <img tal:attributes="src img/url; alt img/alt"
-                       class="mx-auto h-full w-full max-w-[900px] object-cover"
-                       loading="lazy" />
-                </div>
+                <figure class="mpf-noticia-figure">
+
+                  <div class="mpf-noticia-imagem-wrap">
+                    <img tal:attributes="src img/url; alt img/alt"
+                        class="mpf-noticia-imagem-img"
+                        loading="lazy" />
+                  </div>
+
+                  <figcaption tal:condition="img/credit"
+                              class="mpf-noticia-imagem-credito">
+                    <span class="sr-only">Crédito da imagem:</span>
+                    <span tal:content="img/credit">Crédito</span>
+                  </figcaption>
+
+                </figure>
 
               </section>
 
