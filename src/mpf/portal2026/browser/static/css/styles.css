@@ -1342,4 +1342,5 @@ button[aria-expanded="false"] svg{
   background: #f9fafb;
   border-top: 1px solid var(--gray-300);
   text-align: right;
+  margin: 0 !important;
 }
