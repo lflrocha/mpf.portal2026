@@ -1333,47 +1333,13 @@ button[aria-expanded="false"] svg{
    CRÉDITO DE IMAGEM — NOTÍCIA
    ========================================= */
 
-body.template-noticia_view .mpf-noticia-imagem,
-body.template-noticia_view .mpf-noticia-figure {
-  position: relative;
-}
-
-body.template-noticia_view .mpf-noticia-imagem-wrap {
-  max-height: 280px;
-  overflow: hidden;
-  background: #e5e7eb; /* cinza neutro */
-}
-
-body.template-noticia_view .mpf-noticia-imagem-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Crédito sobre a imagem */
-body.template-noticia_view .mpf-noticia-imagem-credito {
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
-  background: rgba(0, 0, 0, 0.65);
-  color: #fff;
-  font-size: 11px;
-  line-height: 1.3;
-  padding: 4px 8px;
-  border-radius: 4px;
-  max-width: 90%;
-}
-
-/* Mobile: crédito abaixo da imagem */
-@media (max-width: 639px) {
-  body.template-noticia_view .mpf-noticia-imagem-credito {
-    position: static;
-    background: #fff;
-    color: #4b5563; /* cinza texto */
-    text-align: right;
-    padding: 6px 12px;
-    border-top: 1px solid #d1d5db;
-    border-radius: 0;
-  }
+/* Crédito de imagem — notícias */
+.mpf-image-credit {
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6b7280; /* cinza institucional */
+  background: #f9fafb;
+  border-top: 1px solid var(--gray-300);
+  text-align: right;
 }

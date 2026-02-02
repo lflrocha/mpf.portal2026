@@ -126,26 +126,23 @@
               </header>
 
               <!-- Imagem destaque -->
-              <section class="mpf-noticia-imagem"
-                      tal:define="img view/imagem_noticia"
-                      tal:condition="img/exists">
+              <section class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-gray-200 overflow-hidden">
 
-                <figure class="mpf-noticia-figure">
+                <div class="flex max-h-[280px] overflow-hidden">
+                  <img
+                    class="mx-auto h-full w-full max-w-[900px] object-cover"
+                    loading="lazy"
+                    src="https://www.mpf.mp.br/o-mpf/unidades/pr-pb/noticias/decisao-da-anvisa-reforca-atuacao-pioneira-do-mpf-na-garantia-do-direito-a-saude-com-uso-medicinal-da-cannabis/@@images/image/large"
+                    alt="Foto: MPF">
+                </div>
 
-                  <div class="mpf-noticia-imagem-wrap">
-                    <img tal:attributes="src img/url; alt img/alt"
-                        class="mpf-noticia-imagem-img"
-                        loading="lazy" />
-                  </div>
-
-                  <figcaption class="mpf-noticia-imagem-credito">
-                    <span class="sr-only">Crédito da imagem:</span>
-                    <span >Crédito</span>
-                  </figcaption>
-
-                </figure>
+                <!-- Crédito da imagem -->
+                <p class="mpf-image-credit">
+                  Foto: MPF
+                </p>
 
               </section>
+
 
               <!-- Corpo -->
               <section id="corpo-noticia" class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-white scroll-mt-48">
