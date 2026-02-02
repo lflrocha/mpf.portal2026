@@ -8,9 +8,13 @@ Pular para o conteúdo
 <!-- TOPBAR (institucional) -->
 <div class="mpf-topbar">
   <div class="mx-auto px-4 py-1.5 flex items-center justify-end max-w-[1440px]">
-    <a href="/" class="text-xs text-white/95 leading-relaxed"
-      tal:attributes="href string:${context/portal_url}">
-      Ministério Público Federal | Rede Institucional</a>
+    <div class="text-xs text-white/95 leading-relaxed">
+      <a tal:attributes="href string:${context/portal_url}">
+      Ministério Público Federal | </a>
+      <a href="https://novoportal.mpf.mp.br" target="_blank">
+        Rede Institucional
+      </a>
+    </div>
   </div>
 </div>
 
