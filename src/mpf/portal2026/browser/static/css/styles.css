@@ -1291,92 +1291,40 @@ button[aria-expanded="false"] svg{
 .mpf-banner-mini__link{ display:grid; text-decoration:none; }
 .mpf-banner-mini__img{ width:100%; height:auto; display:block; }
 
-/* =========================
-   Pequenos ajustes de compatibilidade
-   ========================= */
-
-/* se tiver conflito com estilos do Plone em lists */
 .mpf-ui ul{ margin:0; }
 
-/* =========================================================
-   GRID MPF CAPA — 70/30 com aside span 2 rows
-   Escopo TOTAL: apenas páginas com .grid-mpf-capa
-   ========================================================= */
-
-.grid-mpf-capa .mpf-grid-70-30 {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
+.mpf-alert__box{
+  position: relative !important;
+  display: flex important;
+  gap: 12px important;
+  align-items: flex-start important;
 }
 
-/* sm */
-@media (min-width: 640px) {
-  .grid-mpf-capa .mpf-grid-70-30 {
-    gap: 24px !important;
-  }
+.mpf-alert__content{
+  flex: 1 important;
 }
 
-/* lg — vira grid 12 colunas */
-@media (min-width: 1024px) {
-  .grid-mpf-capa .mpf-grid-70-30 {
-    display: grid !important;
-    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-    gap: 24px !important;
-    align-items: stretch !important;
-  }
-
-  .grid-mpf-capa .mpf-col-70 {
-    grid-column: 1 / span 8 !important;
-  }
-
-  .grid-mpf-capa .mpf-col-30 {
-    grid-column: 9 / span 4 !important;
-  }
-
-  .grid-mpf-capa .mpf-col-70--top {
-    grid-row: 1 !important;
-  }
-
-  .grid-mpf-capa .mpf-col-70--bottom {
-    grid-row: 2 !important;
-  }
-
-  .grid-mpf-capa .mpf-col-30--span {
-    grid-row: 1 / span 2 !important;
-  }
+.mpf-alert__close{
+  border: 0 important;
+  background: transparent important;
+  cursor: pointer important;
+  line-height: 1 important;
+  font-size: 22px important;
+  padding: 6px 10px important;
+  border-radius: 8px important;
+  color: inherit important;
 }
 
-/* =========================================================
-   CARD DE SERVIÇOS — footer responsivo (col / row)
-   ========================================================= */
-
-.grid-mpf-capa .mpf-card__footer-row {
-  margin-top: 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
+.mpf-alert__close:hover{
+  background: rgba(0,0,0,0.06) important;
 }
 
-@media (min-width: 640px) {
-  .grid-mpf-capa .mpf-card__footer-row {
-    margin-top: 24px !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
+.mpf-alert__close:focus{
+  outline: none important;
+  box-shadow: 0 0 0 2px rgba(11,92,255,0.30) important;
 }
 
-/* =========================================================
-   GRID DE SERVIÇOS — 1 col mobile / 2 col sm+
-   ========================================================= */
-
-.grid-mpf-capa .mpf-service-grid {
-  display: grid !important;
-  gap: 16px !important;
-}
-
-@media (min-width: 640px) {
-  .grid-mpf-capa .mpf-service-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
+.mpf-alert__close:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(11, 92, 255, 0.4) !important;
 }

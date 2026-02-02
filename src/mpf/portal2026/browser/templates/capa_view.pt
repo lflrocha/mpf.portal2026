@@ -31,17 +31,38 @@
           <div class="mpf-container">
 
             <!-- Aviso: Portal em transição -->
-            <section class="mpf-alert" aria-label="Aviso">
+            <section
+              id="mpf-alert-transition"
+              class="mpf-alert"
+              role="status"
+              aria-live="polite"
+              aria-label="Aviso"
+              data-alert-key="mpf_alert_transition_v1"
+            >
+
               <div class="mpf-alert__box">
                 <span aria-hidden="true" class="mpf-alert__icon">ⓘ</span>
+
                 <div class="mpf-alert__content">
                   <p class="mpf-alert__title">Portal em transição</p>
                   <p class="mpf-alert__text">
-                    Este é um portal intermediário. Alguns conteúdos estão sendo migrados e estarão disponíveis em breve. Caso encontre algum link indisponível, você será direcionado(a) para uma página informativa.
+                    Este é um portal intermediário. Alguns conteúdos estão sendo migrados e estarão disponíveis em breve.
+                    Caso encontre algum link indisponível, você será direcionado(a) para uma página informativa.
                   </p>
                 </div>
+
+                <!-- botão fechar -->
+                <button
+                  type="button"
+                  class="mpf-alert__close"
+                  aria-label="Fechar aviso"
+                  data-alert-close
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
               </div>
             </section>
+
 
             <!-- Banner principal -->
             <section class="mpf-hero" aria-labelledby="boas-vindas-titulo">
@@ -472,6 +493,9 @@
 
       <script src="++resource++mpf.portal2026/js/filtersServices.js"
         tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/js/slider.js"></script>
+
+      <script tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/js/closeAlert.js"></script>
+
 
     </metal:content-core>
 
