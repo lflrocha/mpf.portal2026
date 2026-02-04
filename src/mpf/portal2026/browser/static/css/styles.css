@@ -1344,3 +1344,15 @@ button[aria-expanded="false"] svg{
   text-align: right;
   margin: 0 !important;
 }
+
+.section-capa-noticia-view {
+  display: flex;
+  margin: 30px auto;
+  max-width: 50%;
+  position: relative;
+}
+
+.container-capa-noticia-view {
+  flex: 1;
+}
+

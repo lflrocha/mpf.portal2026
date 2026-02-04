@@ -225,8 +225,8 @@
         <!-- separadores | entre os links legais -->
         <nav aria-label="Links legais" class="flex flex-wrap items-center gap-1 sm:gap-2">
           <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
-            tal:attributes="href string:${context/portal_url}/">
-            Portal institucional
+            tal:attributes="href string:${context/portal_url}/area-restrita">
+            Área Restrita
           </a>
           <span class="text-white/40" aria-hidden="true">|</span>
           <a href="./paginas-internas/interna.html" class="rounded-md px-3 py-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
