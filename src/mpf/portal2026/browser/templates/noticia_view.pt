@@ -127,21 +127,22 @@
 
               <!-- Imagem destaque -->
               <section class="mt-4 sm:mt-6 rounded-md border border-gray-300 bg-gray-200 overflow-hidden section-capa-noticia-view"
-                       tal:define="imagem view/imagem_destaque"
-                       tal:condition="imagem">
+                       tal:define="img view/imagem_noticia"
+                       tal:condition="img/exists">
 
-                <div class="flex overflow-hidden container-capa-noticia-view"
-                     tal:define="imagem view/imagem_destaque"
-                     tal:condition="imagem">
+                <div class="flex overflow-hidden container-capa-noticia-view">
                   <img
                     class="mx-auto h-full w-full object-cover"
                     loading="lazy"
                     src="https://www.mpf.mp.br/o-mpf/unidades/pr-pb/noticias/decisao-da-anvisa-reforca-atuacao-pioneira-do-mpf-na-garantia-do-direito-a-saude-com-uso-medicinal-da-cannabis/@@images/image/large"
-                    alt="Foto: MPF">
+                    alt="Foto: MPF"
+                    tal:attributes="src img/url;
+                                    alt view/descricao_imagem">
                 </div>
 
                 <!-- Crédito da imagem -->
-                <p class="mpf-image-credit">
+                <p class="mpf-image-credit"
+                  tal:content="view/credito_imagem">
                   Foto: MPF
                 </p>
 

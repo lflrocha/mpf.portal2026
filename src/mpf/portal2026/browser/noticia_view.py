@@ -67,6 +67,17 @@ class NoticiaView(BrowserView):
                 labels.append(str(token))
         return labels
 
+
+
+    def breadcrumbs(self):
+        """
+        Retorna a lista de breadcrumbs no formato do Plone:
+        [{'Title': '...', 'absolute_url': '...'}, ...]
+        """
+        bc = getMultiAdapter((self.context, self.request), name="breadcrumbs_view")
+        return bc.breadcrumbs()
+
+
     def tipo_noticia(self):
         return ", ".join(self._labels("tema"))
 
@@ -79,6 +90,11 @@ class NoticiaView(BrowserView):
     def descricao(self):
         return getattr(self.context, "description", "")
 
+    def credito_imagem(self):
+        return (getattr(self.context, "creditoImagem", "") or "").strip()
+
+    def descricao_imagem(self):
+        return (getattr(self.context, "descricaoImagem", "") or "").strip()
 
     def corpo_html(self):
         """Retorna o corpo (RichText) como HTML."""
@@ -95,15 +111,6 @@ class NoticiaView(BrowserView):
             return ""
 
 
-
-
-    def breadcrumbs(self):
-        """
-        Retorna a lista de breadcrumbs no formato do Plone:
-        [{'Title': '...', 'absolute_url': '...'}, ...]
-        """
-        bc = getMultiAdapter((self.context, self.request), name="breadcrumbs_view")
-        return bc.breadcrumbs()
 
 
     def data_modificacao_formatada(self):
