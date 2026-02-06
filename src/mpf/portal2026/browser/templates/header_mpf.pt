@@ -4,7 +4,7 @@ Pular para o conteúdo
 </a>
 
 <!-- HEADER (2 barras) -->
-<header id="site-header" data-sticky="true" class="bg-white border-b border-black/10 shadow">
+<div id="site-header" data-sticky="true" class="bg-white border-b border-black/10 shadow">
 <!-- TOPBAR (institucional) -->
 <div class="mpf-topbar">
   <div class="mx-auto px-4 py-1.5 flex items-center justify-end max-w-[1440px]">
@@ -25,7 +25,7 @@ Pular para o conteúdo
     <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4">
       <!-- (1) LOGO (esquerda) -->
       <div class="flex items-center justify-between gap-4">
-        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial"
+        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0"
           tal:attributes="href string:${context/portal_url}">
           <!-- Ícone / logo (SVG) reduz no mobile em vez de esconder -->
           <span class="mpf-brand__circle shrink-0" aria-hidden="true">
@@ -313,14 +313,16 @@ Pular para o conteúdo
       <!-- Busca (desktop) -->
       <form class="hidden md:flex items-center gap-2 ml-auto" role="search" aria-label="Buscar no site"
         tal:attributes="action string:${context/portal_url}/@@search">
-        <label class="sr-only" for="site-search">Buscar</label>
+        <label class="sr-only" for="site-search">Buscar no Portal do MPF</label>
         <input
           id="site-search"
           name="SearchableText"
           type="search"
+          aria-label="Buscar no Portal do MPF"
           placeholder="Buscar…"
           class="w-72 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
         />
+
         <button type="submit" class="rounded-md bg-[color:var(--mpf-blue)] px-4 py-2 text-sm font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30">
           Buscar
         </button>
@@ -516,4 +518,4 @@ Pular para o conteúdo
 
   </div>
 </nav>
-</header>
+</div>

@@ -19,7 +19,7 @@
         </p>
 
         <!-- Chips (sem “Contatos” pra não duplicar) -->
-        <div class="mt-6 flex flex-wrap gap-5" aria-label="Atalhos principais">
+        <nav class="mt-6 flex flex-wrap gap-5" aria-label="Atalhos principais">
           <a href="./paginas-internas/servicos.html" class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-xs text-white/90 ring-1 ring-white/15 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
             tal:attributes="href string:${context/portal_url}/sitemap">
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
@@ -37,7 +37,7 @@
             <span class="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden="true"></span>
             Notícias
           </a>
-        </div>
+        </nav>
       </div>
 
       <!-- Redes sociais (ícones-link simples, com área clicável boa) -->

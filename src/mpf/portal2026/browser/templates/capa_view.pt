@@ -69,7 +69,7 @@
               <div class="mpf-hero__box"
                 tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/hero-welcome.png');">
                 <div class="mpf-hero__content">
-                  <h1 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h1>
+                  <h2 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h2>
                   <p class="mpf-hero__subtitle">Estamos em transição tecnológica, ajude a melhorar enviando críticas e sugestões</p>
 
                   <div class="mpf-hero__actions">
@@ -98,7 +98,6 @@
                     <a
                       href="./paginas-internas/servicos.html"
                       class="mpf-servicos-hero"
-                      aria-label="Ir para MPF Serviços"
                       tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos"
                     >
                       <div class="mpf-servicos-hero__logo">
@@ -236,7 +235,7 @@
               </div>
 
               <!-- COLUNA 30% — ASIDE (fica NO MEIO do DOM pra bater o mobile) -->
-              <aside class="mpf-col-30 mpf-col-30--span">
+              <aside class="mpf-col-30 mpf-col-30--span" aria-label="Notícias em destaque">
 
                 <!-- Notícias em destaque -->
                 <section aria-labelledby="destaques-titulo" class="mpf-card mpf-card--stack">
@@ -342,10 +341,15 @@
 
                 <!-- Banner pequeno -->
                 <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
+                  <a href="https://transparencia.mpf.mp.br"
+                     target="_blank"
+                     rel="noopener"
+                     class="mpf-banner-mini__link"
+                     aria-label="Acessar Portal da Transparência do Ministério Público Federal — abre em nova aba">
+
                     <img
                       src="assets/banner-radar-transparencia.png"
-                      alt=""
+                      alt="Logo do Radar da Transparência do Ministério Público Federal"
                       class="mpf-banner-mini__img"
                       loading="lazy"
                       tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
