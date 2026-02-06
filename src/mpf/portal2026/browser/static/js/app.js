@@ -617,7 +617,7 @@
   /* =========================================================
      8) FECHAR MENUS FLUTUANTES AO ROLAR (desktop + mobile)
   ========================================================= */
-  (() => {
+  /*(() => {
     const closeAllHeaderMenus = () => {
       if (isFn(window.__mpfCloseAllDropdowns)) window.__mpfCloseAllDropdowns();
       if (isFn(window.__mpfCloseMoreMenu)) window.__mpfCloseMoreMenu();
@@ -657,7 +657,7 @@
       },
       { passive: true }
     );
-  })();
+  })();*/
 })();
 
 /* =========================================================

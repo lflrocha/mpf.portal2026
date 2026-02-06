@@ -1,0 +1,442 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master">
+
+  <metal:css fill-slot="style_slot">
+    <style>
+      /* =========================
+         TOKENS
+         ========================= */
+      :root{
+        --mpf-surface:#fff;
+        --mpf-text:#111827;
+        --mpf-muted:#6b7280;
+        --mpf-border:#d1d5db;
+        --mpf-border-soft:#e5e7eb;
+        --mpf-brand:#150063;
+        --mpf-focus:rgba(11,92,255,0.30);
+        --mpf-radius:6px;
+        --mpf-shadow:0 1px 0 rgba(17,24,39,.04);
+        --mpf-gap:16px;
+      }
+
+      .sr-only{
+        position:absolute!important;
+        width:1px!important;height:1px!important;
+        padding:0!important;margin:-1px!important;
+        overflow:hidden!important;clip:rect(0,0,0,0)!important;
+        white-space:nowrap!important;border:0!important;
+      }
+
+      /* =========================
+         HUB (sem depender do container do site)
+         ========================= */
+      .mpf-ui{ color:var(--mpf-text); }
+
+      /* Header do hub */
+      .mpf-hub__head{
+        border:1px solid var(--mpf-border);
+        border-radius:var(--mpf-radius);
+        background:var(--mpf-surface);
+        padding:16px;
+        box-shadow:var(--mpf-shadow);
+      }
+      @media (min-width:640px){
+        .mpf-hub__head{
+          padding:20px;
+          display:flex;
+          justify-content:space-between;
+          align-items:flex-start;
+          gap:16px;
+        }
+      }
+      .mpf-hub__title{
+        margin:0;
+        font-size:22px;
+        font-weight:900;
+        letter-spacing:-0.2px;
+      }
+      @media (min-width:640px){ .mpf-hub__title{ font-size:28px; } }
+      .mpf-hub__subtitle{
+        margin:8px 0 0;
+        color:var(--mpf-muted);
+        font-size:14px;
+        max-width:70ch;
+      }
+      .mpf-hub__meta{
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+        margin-top:12px;
+      }
+      @media (min-width:640px){
+        .mpf-hub__meta{ margin-top:0; justify-content:flex-end; }
+      }
+
+      /* Actions */
+      .mpf-hub__actions{
+        display:grid;
+        gap:12px;
+        margin-top:var(--mpf-gap);
+      }
+      @media (min-width:640px){
+        .mpf-hub__actions{
+          grid-template-columns:1fr auto;
+          align-items:center;
+        }
+      }
+
+      .mpf-search{ display:flex; gap:10px; }
+      .mpf-input{
+        width:100%;
+        min-height:42px;
+        padding:10px 12px;
+        border-radius:var(--mpf-radius);
+        border:1px solid var(--mpf-border);
+        background:#fff;
+        font-size:14px;
+        color:var(--mpf-text);
+      }
+      .mpf-input:focus{ outline:none; box-shadow:0 0 0 2px var(--mpf-focus); }
+
+      .mpf-btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        padding:10px 14px;
+        border-radius:var(--mpf-radius);
+        border:1px solid var(--mpf-border);
+        background:#fff;
+        color:var(--mpf-text);
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        cursor:pointer;
+        transition:background .15s ease,border-color .15s ease,transform .06s ease;
+      }
+      .mpf-btn:active{ transform:translateY(1px); }
+      .mpf-btn:focus{ outline:none; box-shadow:0 0 0 2px var(--mpf-focus); }
+      .mpf-btn--primary{ border-color:transparent; background:var(--mpf-brand); color:#fff; }
+
+      .mpf-filters{ display:flex; flex-wrap:wrap; gap:8px; }
+      .mpf-filter{
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid var(--mpf-border);
+        background:#fff;
+        font-weight:800;
+        font-size:12px;
+        cursor:pointer;
+      }
+      .mpf-filter:focus{ outline:none; box-shadow:0 0 0 2px var(--mpf-focus); }
+      .mpf-filter.is-active{
+        background:rgba(21,0,99,.06);
+        border-color:rgba(21,0,99,.25);
+        color:var(--mpf-brand);
+      }
+
+      /* Chips / badges / tags */
+      .mpf-chip{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:6px 10px;
+        font-size:12px;
+        border-radius:999px;
+        border:1px solid var(--mpf-border);
+        background:#fff;
+        color:var(--mpf-text);
+      }
+      .mpf-chip--muted{ color:var(--mpf-muted); border-color:var(--mpf-border-soft); }
+
+      .mpf-badge{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        min-width:44px;
+        padding:4px 8px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:800;
+        border:1px solid var(--mpf-border-soft);
+        background:#fff;
+      }
+      .mpf-badge--pdf{ color:#7c2d12; border-color:#fed7aa; background:#fff7ed; }
+      .mpf-badge--page{ color:#1e3a8a; border-color:#bfdbfe; background:#eff6ff; }
+      .mpf-badge--link{ color:#065f46; border-color:#a7f3d0; background:#ecfdf5; }
+      .mpf-badge--folder{ color:#374151; border-color:#e5e7eb; background:#f9fafb; }
+      .mpf-badge--image{ color:#7c3aed; border-color:#ddd6fe; background:#f5f3ff; }
+      .mpf-badge--file{ color:#0f766e; border-color:#99f6e4; background:#f0fdfa; }
+
+      .mpf-tag{
+        display:inline-flex;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:12px;
+        border:1px solid var(--mpf-border-soft);
+        color:var(--mpf-muted);
+        background:#fff;
+      }
+
+      /* Card base */
+      .mpf-card{
+        border:1px solid var(--mpf-border);
+        border-radius:var(--mpf-radius);
+        background:#fff;
+        overflow:hidden;
+        box-shadow:var(--mpf-shadow);
+        margin-top:var(--mpf-gap);
+      }
+      .mpf-card__header{ padding:14px 16px; }
+      @media (min-width:640px){ .mpf-card__header{ padding:18px 20px; } }
+      .mpf-card__header--row{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:12px;
+      }
+      .mpf-card__body{ padding:16px; }
+      @media (min-width:640px){ .mpf-card__body{ padding:20px; } }
+      .mpf-card--stack .mpf-card__header{ border-bottom:1px solid var(--mpf-border-soft); }
+
+      .mpf-h2{ margin:0; font-size:16px; line-height:1.25; font-weight:800; }
+      .mpf-sub{ margin:6px 0 0; color:var(--mpf-muted); font-size:14px; }
+
+      /* =========================
+         LISTA no mobile / GRID no sm+
+         ========================= */
+      .mpf-hub-list{
+        list-style:none;
+        margin:0;
+        padding:0;
+        display:grid;
+        gap:10px;
+      }
+      @media (min-width:640px){
+        .mpf-hub-list{
+          grid-template-columns:repeat(2, minmax(0,1fr));
+          gap:14px;
+        }
+      }
+      @media (min-width:992px){
+        .mpf-hub-list{
+          grid-template-columns:repeat(3, minmax(0,1fr));
+          gap:16px;
+        }
+      }
+
+      .mpf-hub-card{
+        position:relative;
+        display:block;
+        height:100%;
+        border-radius:var(--mpf-radius);
+        border:1px solid var(--mpf-border-soft);
+        background:#fff;
+        padding:14px;
+        text-decoration:none;
+        color:inherit;
+        transition:transform .12s ease,border-color .12s ease,background .12s ease;
+      }
+      .mpf-hub-card:hover{
+        border-color:var(--mpf-border);
+        background:#fcfcff;
+        transform:translateY(-1px);
+      }
+      .mpf-hub-card:focus{
+        outline:none;
+        box-shadow:0 0 0 2px var(--mpf-focus);
+      }
+
+      /* micro-ícone */
+      .mpf-hub-card::after{
+        content:"";
+        position:absolute;
+        top:12px;
+        right:12px;
+        width:28px;
+        height:28px;
+        border-radius:8px;
+        border:1px solid var(--mpf-border-soft);
+        background:#fff;
+        display:grid;
+        place-items:center;
+        font-weight:900;
+        font-size:14px;
+        color:var(--mpf-brand);
+      }
+      .mpf-hub-card.is-pdf::after{ content:"PDF"; font-size:11px; }
+      .mpf-hub-card.is-link::after{ content:"↗"; font-size:16px; }
+      .mpf-hub-card.is-page::after{ content:"≡"; font-size:16px; }
+      .mpf-hub-card.is-folder::after{ content:"▦"; font-size:16px; }
+      .mpf-hub-card.is-image::after{ content:"⌁"; font-size:16px; }
+      .mpf-hub-card.is-file::after{ content:"⬇"; font-size:16px; }
+
+      .mpf-hub-card__top{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        padding-right:40px; /* espaço pro micro-ícone */
+      }
+
+      .mpf-meta{ font-size:12px; color:var(--mpf-muted); }
+
+      .mpf-hub-card__title{
+        margin:10px 0 6px;
+        font-size:15px;
+        line-height:1.25;
+        font-weight:900;
+      }
+      .mpf-hub-card__desc{
+        margin:0;
+        color:var(--mpf-muted);
+        font-size:13px;
+        line-height:1.45;
+      }
+      .mpf-hub-card__bottom{
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-top:12px;
+        align-items:center;
+      }
+      .mpf-cta{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        font-weight:900;
+        font-size:12px;
+        color:var(--mpf-brand);
+        margin-left:auto;
+      }
+      .mpf-cta__chev{ font-size:16px; line-height:1; }
+
+      /* mobile com cara de lista */
+      @media (max-width:639px){
+        .mpf-hub-card{ padding:14px 12px; }
+        .mpf-hub-card__title{ font-size:14px; }
+        .mpf-cta{ margin-left:0; }
+      }
+
+      /* estado vazio */
+      .mpf-empty{
+        border:1px dashed var(--mpf-border);
+        border-radius:var(--mpf-radius);
+        background:#fff;
+        padding:16px;
+        color:var(--mpf-muted);
+      }
+    </style>
+  </metal:css>
+
+  <metal:main fill-slot="main">
+    <div class="mpf-ui mpf-hub">
+
+      <!-- Header -->
+      <header class="mpf-hub__head" aria-labelledby="mpf-hub-title">
+        <div class="mpf-hub__titlewrap">
+          <h1 id="mpf-hub-title" class="mpf-hub__title"
+              tal:content="context/Title">Título da página</h1>
+          <p class="mpf-hub__subtitle"
+             tal:condition="context/Description"
+             tal:content="context/Description">
+            Subtítulo da página se houver.
+          </p>
+        </div>
+
+        <div class="mpf-hub__meta" aria-label="Informações da página">
+          <span class="mpf-chip mpf-chip--muted">
+            <span tal:content="python: context.modified().strftime('%d/%m/%Y')">00/00/0000</span>
+          </span>
+          <span class="mpf-chip mpf-chip--muted">Portal MPF</span>
+        </div>
+      </header>
+
+            <!-- Lista -->
+      <section class="mpf-card mpf-card--stack"
+               tal:define="brains python: context.getFolderContents({'sort_on':'getObjPositionInParent'})">
+        <header class="mpf-card__header mpf-card__header--row">
+          <div>
+            <h2 class="mpf-h2">Conteúdos</h2>
+            <p class="mpf-sub">Arquivos, páginas, links e subpastas.</p>
+          </div>
+          <span class="mpf-chip mpf-chip--muted">
+            <span tal:content="python: len(brains)">0</span> itens
+          </span>
+        </header>
+
+        <div class="mpf-card__body">
+          <!-- vazio -->
+          <div class="mpf-empty" tal:condition="python: not brains">
+            Nenhum conteúdo foi publicado nesta pasta ainda.
+          </div>
+
+          <ul class="mpf-hub-list" role="list" tal:condition="python: brains">
+            <tal:block tal:repeat="b brains"
+                       tal:define="
+                          obj b/getObject;
+                          ptype b/portal_type;
+                          ctype python: (getattr(obj, 'contentType', None) or (obj.getContentType() if hasattr(obj,'getContentType') else ''));
+                          is_folder python: ptype in ('Folder','Dexterity Folder','Large Plone Folder','ATFolder');
+                          is_link python: ptype == 'Link';
+                          is_pdf python: (ctype == 'application/pdf');
+                          is_image python: (isinstance(ctype, str) and ctype.startswith('image/'));
+                          is_file python: (ptype in ('File','Blob','ATFile')) or (ctype not in ('', None) and not is_image and not is_pdf and not is_link and not is_folder);
+                          kind python: ('folder' if is_folder else ('link' if is_link else ('pdf' if is_pdf else ('image' if is_image else ('file' if is_file else 'page')))));
+                          badge_text python: ('Pasta' if kind=='folder' else ('Link' if kind=='link' else ('PDF' if kind=='pdf' else ('Imagem' if kind=='image' else ('Arquivo' if kind=='file' else 'Página')))));
+                       ">
+
+              <li class="mpf-hub-item">
+                <a tal:attributes="
+                      href b/getURL;
+                      class string:mpf-hub-card is-${kind};
+                      target python:'_blank' if (kind=='pdf' or kind=='link') else None;
+                      rel python:'noopener' if (kind=='pdf' or kind=='link') else None;
+                    ">
+
+                  <div class="mpf-hub-card__top">
+                    <span tal:attributes="class python:
+                          'mpf-badge mpf-badge--folder' if kind=='folder' else
+                          ('mpf-badge mpf-badge--link' if kind=='link' else
+                          ('mpf-badge mpf-badge--pdf' if kind=='pdf' else
+                          ('mpf-badge mpf-badge--image' if kind=='image' else
+                          ('mpf-badge mpf-badge--file' if kind=='file' else 'mpf-badge mpf-badge--page'))))"
+                          tal:content="python: badge_text">
+                      Tipo
+                    </span>
+
+                    <span class="mpf-meta"
+                          tal:content="python: b.modified.strftime('%d/%m/%Y') if hasattr(b,'modified') else ''">
+                      00/00/0000
+                    </span>
+                  </div>
+
+                  <h3 class="mpf-hub-card__title" tal:content="b/Title">Nome do arquivo</h3>
+
+
+                  <div class="mpf-hub-card__bottom">
+                    <span class="mpf-cta"
+                          tal:content="python:
+                            'Abrir PDF ›' if kind=='pdf' else
+                            ('Ir para a página ›' if kind=='link' else
+                            ('Abrir pasta ›' if kind=='folder' else
+                            ('Abrir imagem ›' if kind=='image' else
+                            ('Baixar arquivo ›' if kind=='file' else 'Acessar página ›'))))">
+                      Acessar ›
+                    </span>
+                  </div>
+
+                </a>
+              </li>
+
+            </tal:block>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </metal:main>
+</html>

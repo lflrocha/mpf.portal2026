@@ -22,8 +22,6 @@
       </metal:content-description>
 
 
-
-
     <metal:content-core metal:fill-slot="content-core">
 
       <div class="mpf-ui">
@@ -340,7 +338,7 @@
                   </div>
                 </section>
 
-                <!-- Banner pequeno -->
+                <!-- Banner Transparência MPF -->
                 <section aria-label="Banner" class="mpf-banner-mini">
                   <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link" aria-label="Portal da Transparência do MPF (abre em nova aba)">
                     <img
@@ -349,6 +347,19 @@
                       class="mpf-banner-mini__img"
                       loading="lazy"
                       tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
+                    />
+                  </a>
+                </section>
+
+                <!-- Banner Radar da transparência -->
+                <section aria-label="Banner" class="mpf-banner-mini">
+                  <a href="h https://radardatransparencia.atricon.org.br/" target="_blank" class="mpf-banner-mini__link" aria-label="Radar da Transparência do MPF (abre em nova aba)">
+                    <img
+                      src="assets/banner-radar-transparencia.png"
+                      alt="Banner Radar da Transparência do MPF"
+                      class="mpf-banner-mini__img"
+                      loading="lazy"
+                      tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/radar-final.png"
                     />
                   </a>
                 </section>
