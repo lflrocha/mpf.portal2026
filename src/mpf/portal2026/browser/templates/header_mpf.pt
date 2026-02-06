@@ -320,6 +320,7 @@ Pular para o conteúdo
           type="search"
           aria-label="Buscar no Portal do MPF"
           placeholder="Buscar…"
+          aria-label="Buscar no site"
           class="w-72 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
         />
 
@@ -372,6 +373,7 @@ Pular para o conteúdo
         name="SearchableText"
         type="search"
         placeholder="Buscar…"
+        aria-label="Buscar no site (mobile)"
         class="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
       />
       <button
