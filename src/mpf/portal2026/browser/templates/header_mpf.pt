@@ -25,7 +25,7 @@ Pular para o conteúdo
     <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4">
       <!-- (1) LOGO (esquerda) -->
       <div class="flex items-center justify-between gap-4">
-        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0" aria-label="Ir para a página inicial"
+        <a href="/" class="mpf-brand flex items-center gap-3 min-w-0"
           tal:attributes="href string:${context/portal_url}">
           <!-- Ícone / logo (SVG) reduz no mobile em vez de esconder -->
           <span class="mpf-brand__circle shrink-0" aria-hidden="true">
@@ -319,6 +319,7 @@ Pular para o conteúdo
           name="SearchableText"
           type="search"
           placeholder="Buscar…"
+          aria-label="Buscar no site"
           class="w-72 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
         />
         <button type="submit" class="rounded-md bg-[color:var(--mpf-blue)] px-4 py-2 text-sm font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30">
@@ -370,6 +371,7 @@ Pular para o conteúdo
         name="SearchableText"
         type="search"
         placeholder="Buscar…"
+        aria-label="Buscar no site (mobile)"
         class="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--mpf-blue)]/30"
       />
       <button

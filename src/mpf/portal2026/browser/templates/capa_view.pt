@@ -27,7 +27,7 @@
     <metal:content-core metal:fill-slot="content-core">
 
       <div class="mpf-ui">
-        <main id="main-content" class="mpf-layout">
+        <div id="main-content" class="mpf-layout">
           <div class="mpf-container">
 
             <!-- Aviso: Portal em transição -->
@@ -69,7 +69,7 @@
               <div class="mpf-hero__box"
                 tal:attributes="style string:background-image:url('${context/portal_url}/++resource++mpf.portal2026/hero-welcome.png');">
                 <div class="mpf-hero__content">
-                  <h1 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h1>
+                  <h2 id="boas-vindas-titulo" class="mpf-hero__title">Bem-vindo ao novo Portal do MPF</h2>
                   <p class="mpf-hero__subtitle">Estamos em transição tecnológica, ajude a melhorar enviando críticas e sugestões</p>
 
                   <div class="mpf-hero__actions">
@@ -98,8 +98,8 @@
                     <a
                       href="./paginas-internas/servicos.html"
                       class="mpf-servicos-hero"
-                      aria-label="Ir para MPF Serviços"
                       tal:attributes="href string:${context/portal_url}/servicos/mpf-servicos"
+                      title="Acesse os serviços do MPF para o cidadão"
                     >
                       <div class="mpf-servicos-hero__logo">
                         <img
@@ -342,10 +342,10 @@
 
                 <!-- Banner pequeno -->
                 <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link">
+                  <a href="https://transparencia.mpf.mp.br" target="_blank" class="mpf-banner-mini__link" aria-label="Portal da Transparência do MPF (abre em nova aba)">
                     <img
                       src="assets/banner-radar-transparencia.png"
-                      alt=""
+                      alt="Banner Transparência do MPF"
                       class="mpf-banner-mini__img"
                       loading="lazy"
                       tal:attributes="src string:${context/portal_url}/++resource++mpf.portal2026/banner-radar-transparencia.png"
@@ -488,7 +488,7 @@
             </section>
 
           </div>
-        </main>
+        </div>
       </div>
 
       <script src="++resource++mpf.portal2026/js/filtersServices.js"
