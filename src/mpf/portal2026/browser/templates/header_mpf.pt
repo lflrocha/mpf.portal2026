@@ -311,7 +311,7 @@ Pular para o conteúdo
       </nav>
 
       <!-- Busca (desktop) -->
-      <form class="hidden md:flex items-center gap-2 ml-auto" role="search" aria-label="Buscar no site"
+      <form class="hidden md:flex items-center gap-2 ml-auto" role="search"
         tal:attributes="action string:${context/portal_url}/@@search">
         <label class="sr-only" for="site-search">Buscar no Portal do MPF</label>
         <input
