@@ -92,13 +92,5 @@
   />
 
 
-  <browser:page
-      name="pasta-view"
-      for="plone.app.contenttypes.interfaces.IFolder"
-      class=".pasta_view.PastaView"
-      template="templates/pasta_view.pt"
-      permission="zope2.View"
-  />
-
 
 </configure>
