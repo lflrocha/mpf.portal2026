@@ -12,6 +12,7 @@
       layer="mpf.portal2026.interfaces.IMpfPortal2026Layer"
       />
 
+
   <!-- Publish static files -->
   <browser:resourceDirectory
       name="mpf.portal2026"
@@ -50,21 +51,12 @@
       permission="zope2.View"
   />
 
-
   <browser:page
       name="document-view"
       for="plone.app.contenttypes.interfaces.IDocument"
       class=".document_view.DocumentView"
       template="templates/document_view.pt"
       permission="zope2.View"
-  />
-
-  <browser:page
-    name="folder-document-view"
-    for="plone.app.contenttypes.interfaces.IFolder"
-    class=".document_view.DocumentView"
-    template="templates/document_view.pt"
-    permission="zope2.View"
   />
 
   <browser:page
@@ -98,5 +90,15 @@
     template="templates/contato_view.pt"
     permission="zope2.View"
   />
+
+
+  <browser:page
+      name="pasta-view"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      class=".pasta_view.PastaView"
+      template="templates/pasta_view.pt"
+      permission="zope2.View"
+  />
+
 
 </configure>

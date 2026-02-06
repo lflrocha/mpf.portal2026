@@ -234,7 +234,7 @@
               </div>
 
               <!-- COLUNA 30% — ASIDE (fica NO MEIO do DOM pra bater o mobile) -->
-              <aside class="mpf-col-30 mpf-col-30--span" aria-label="Notícias em destaque">
+              <aside class="mpf-col-30 mpf-col-30--span">
 
                 <!-- Notícias em destaque -->
                 <section aria-labelledby="destaques-titulo" class="mpf-card mpf-card--stack">
@@ -358,7 +358,7 @@
 
                 <!-- Banner Radar da transparência -->
                 <section aria-label="Banner" class="mpf-banner-mini">
-                  <a href="h https://radardatransparencia.atricon.org.br/" target="_blank" class="mpf-banner-mini__link" aria-label="Radar da Transparência do MPF (abre em nova aba)">
+                  <a href="https://radardatransparencia.atricon.org.br/" target="_blank" class="mpf-banner-mini__link" aria-label="Radar da Transparência do MPF (abre em nova aba)">
                     <img
                       src="assets/banner-radar-transparencia.png"
                       alt="Banner Radar da Transparência do MPF"
